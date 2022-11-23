@@ -1,0 +1,161 @@
+* {
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    src:
+        url('fuentes/ubuntu/Ubuntu-Light.ttf') format('truetype');
+}
+
+body {
+    margin: 0 auto;
+    background-color: #FEDB41;
+    font-family: Ubuntu;
+}
+
+nav {
+    background: #383e4c;
+    height: 11vh;/*MOD*/
+    width: 100%;
+}
+
+nav input#check {
+    display: none;
+}
+
+nav a#aLogo {
+    position: absolute;
+}
+
+img#logo {
+    height: 11vh;/*MOD*/
+}
+
+nav ul#ulNav {
+    float: right;
+    margin-right: 20px;
+}
+
+nav ul#ulNav li {
+    display: inline-block;
+    line-height: 11vh;/*MOD*/ 
+    margin: 0 5px;
+}
+
+nav ul#ulNav li a {
+    color: #fff;
+    font-size: 18px;
+    padding: 1vh 13px; /*MOD*/
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+li a#active,
+li a:hover {
+    background: #36454F;
+    transition: .5s;
+}
+
+nav label#btnMenu {
+    float: right;
+    margin-top: 2vh; /*MOD*/
+    margin-right: 40px;
+    display: none;
+    cursor: pointer;
+    line-height: 2.8vh;
+    height: 7vh; /*MOD*/
+}
+
+/*Estilo de los divs para la ventana del canvas*/
+main h1#mensajeAviso {
+    display: none;
+}
+
+main div#juego {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+main div#juego canvas {
+    width: 960px;
+    border: 1px solid black;
+    margin-top: 3vh; /*MOD*/
+    background-color: #E9FAFF;
+}
+
+
+footer {
+    position: absolute;
+    bottom: 0px;
+    height: 8vh;/*MOD*/
+    width: 100%;
+    background-color: #383e4c;
+    color: #60705e;
+    margin-top: 7vh; /*MOD*/
+}
+
+
+
+/*para movil*/
+@media (max-width: 960px) {
+
+    /*lo añadido*/
+    nav a#aLogo {
+        padding-left: 20px;
+    }
+
+    main div#juego canvas {
+        display: none;
+    }
+
+    main h1#mensajeAviso {
+        display: inline-block;
+    }
+
+    /*hasta aqui*/
+    nav label#btnMenu {
+        display: block;
+    }
+
+    nav ul#ulNav {
+        margin-top: 0.4vh;
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #383e4c;
+        top: 11vh;
+        left: -100%;
+        text-align: center;
+        transition: all 1s;
+        z-index: 10;
+    }
+
+    nav ul#ulNav li {
+        display: block;
+        margin: 7vh 0;
+        line-height: 4.2vh;
+    }
+
+    nav ul#ulNav li a {
+        font-size: 20px;
+
+    }
+
+    ul#ulNav li a:hover,
+    ul#ulNav li a#active {
+        background: none;
+        color: red;
+    }
+
+    nav input#check:checked~ul {
+        left: 0;
+    }
+}
