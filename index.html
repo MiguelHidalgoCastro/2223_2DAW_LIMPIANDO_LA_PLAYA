@@ -10,26 +10,24 @@
 </head>
 
 <body>
-	<nav>
-		<input type="checkbox" id="check">
-		<label for="check" id="btnMenu">
-			<img src="img/menu.png" />
-		</label>
-		<a href="#" id="aLogo">
+	<header class="header">
+		<div class="logo">
 			<img src="img/logodefinitivo1.png" alt="logo" id="logo" />
-		</a>
-		<ul id="ulNav">
-			<li id="liInicio"><a href="#">Juego</a></li>
-			<li id="liRanking"><a href="#">Ranking</a></li>
-			<!--
-			<li id="liConfiguracion"><a href="#">Configuración</a></li>
-			<li id="liEscenarios"><a href="#">Escenarios</a></li>
-			<li id="liDefensas"><a href="#">Defensas</a></li>
-			<li id="liEnemigos"><a href="#">Enemigos</a></li>
-			<li id="liCerrarSesion"><a href="#" id="active">Cerrar Sesión</a></li>
-			-->
-		</ul>
-	</nav>
+		</div>
+		<nav>
+			<input type="checkbox" id="check">
+			<label for="check" id="btnMenu">
+				<img src="img/menu.png" />
+			</label>
+			<ul class="nav-links">
+				<li><a href="#">Juego</a></li>
+				<li><a href="#">Ranking</a></li>
+				<!--<li><a class="btn" href="#"><button>Cerrar Sesion</button></a></li>-->
+			</ul>
+		</nav>
+		
+	</header>
+
 	<main>
 		<div id="juego">
 			<h1 id="mensajeAviso">SÓLO VERSIÓN DESKTOP</h1>
