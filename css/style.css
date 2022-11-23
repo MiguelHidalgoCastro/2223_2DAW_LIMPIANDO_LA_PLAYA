@@ -105,6 +105,54 @@ nav label#btnMenu {
     /*MOD*/
 }
 
+
+/*-------------Estilo tabla Ranking-------------*/
+div#tablaRanking {
+    width: 500px;
+    padding: 30px;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 4px;
+    font-family: 'Arial', 'Helvetica', 'sans-serif';
+    color: black;
+    overflow: hidden;
+    background-color: #AFDAFF;
+    box-shadow: 5px 10px 10px black;
+    font-size: 24px;
+
+}
+
+div#tablaRanking>table {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 5px;
+}
+
+thead {
+    background-color: #FEA832;
+    border-bottom: solid 5px black;
+}
+
+tr:nth-child(even) {
+    background-color: white;
+}
+
+tr:nth-child(odd) td {
+    background: #E9FAFF;
+}
+
+tr:hover td {
+    background-color: #383E4C;
+}
+
+
+
 /*-------------Estilo de los divs para la ventana del canvas-------------*/
 main h1#mensajeAviso {
     display: none;
