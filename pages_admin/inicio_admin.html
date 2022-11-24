@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="author" content="Grupo Limpiemos La Playa 2DAW 22/23" />
 		<link rel="stylesheet" href="../css/style.css">
-		<title>Inicio de Sesión</title>
+		<title>Menú Responsive</title>
 	</head>
 	<body>
 		<header class="header">
@@ -14,21 +14,30 @@
 				<img src="../img/logo/logodefinitivo1.png" alt="logo" id="logo" />
 			</div>
 			<nav>
+				<input type="checkbox" id="check"/>
+				<label for="check" id="btnMenu">
+					<img src="../img/iconos/menu.png"/>
+				</label>
 				<ul class="nav-links">
+					<li><a href="#">Inicio</a></li>
+					<li><a href="#">Configuración</a></li>
+					<li><a href="#">Escenarios</a></li>
+					<li><a href="#">Defensas</a></li>
+					<li><a href="#">Enemigos</a></li>
+					<li>
+						<form action="">
+							<input class="btn" type="submit" value="Cerrar Sesión"/>
+						</form>
+					</li>
 				</ul>
 			</nav>
 		</header>
 		<main>
-			<form id="login" action="sergiomaquina.php">
-				<div id="formularioLogin">
-					<h2>INICIO DE SESIÓN</h2>
-					<label for="usuario">Usuario</label>
-					<input type="text" name="usuario">
-					<label for="password">Contraseña</label>
-					<input type="password" name="password">
-					<input type="submit" value="Entrar">
-				</div>
-			</form>
+			<div id="inicioAdmin">
+				<p id="bienvenida">
+					La sesión ha sido iniciada con éxito. Bienvenido a la app de administrador.
+				</p>
+			</div>
 		</main>
 		<footer>
 			<div id="copy">
