@@ -18,8 +18,20 @@ body {
     margin: 0 auto;
     background-color: #FEDB41;
     font-family: Ubuntu;
+    min-width: 500px;
 }
 
+/*-------------FOOTER-------------*/
+footer {
+    position: absolute;
+    bottom: 0px;
+    height: 8vh;
+    width: 100%;
+    background-color: #383e4c;
+    color: #60705e;
+    margin-top: 7vh;
+    min-width: 500px;
+}
 
 /*-------------Ajustes navbar con flexbox-------------*/
 nav input#check {
@@ -172,6 +184,7 @@ main div#juego canvas {
     background-color: #E9FAFF;
 }
 
+<<<<<<< HEAD
 /*** Estilo del formulario del login ***/
 
 main form div#formularioLogin{
@@ -301,6 +314,9 @@ footer{
 	text-align:center;
     /*MOD*/
 }
+=======
+
+>>>>>>> 4775803f22c6b3ff75d3585adbe9bdead49670c6
 
 footer div{
 	display:inline-block;
