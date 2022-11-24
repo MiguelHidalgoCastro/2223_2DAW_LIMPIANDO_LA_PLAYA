@@ -75,7 +75,7 @@ nav input#check {
 }
 
 
-.header .btn button {
+.header input[type="submit"].btn {
     font-weight: 700;
     color: #1b3039;
     padding: 9px 25px;
@@ -86,7 +86,7 @@ nav input#check {
     transition: all 0.3s ease 0s;
 }
 
-.header .btn button:hover {
+.header input[type="submit"]:hover.btn {
     background-color: #e2f1f8;
     color: #ffbc0e;
     transform: scale(1.1);
@@ -378,7 +378,7 @@ footer div#rrss img:hover{
     }
 
     .nav-links li a,
-    .btn button {
+    .btn input {
         font-size: 30px;
     }
 
