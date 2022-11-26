@@ -37,12 +37,12 @@ export class VistaAdmin {
         this.labelUsuario.setAttribute('for', 'usuario')
 
 
-        this.inputEmail = document.createElement('input')
-        this.inputEmail.type = 'text'
-        this.inputEmail.name = 'usuario'
-        this.inputEmail.id = 'idInputEmail'
-        this.inputEmail.setAttribute('placeholder', 'example@addres.net')
-        this.inputEmail.setAttribute('required', 'required')
+        this.inputUsuario = document.createElement('input')
+        this.inputUsuario.type = 'text'
+        this.inputUsuario.name = 'usuario'
+        this.inputUsuario.id = 'idInputUsuario'
+        /*this.inputEmail.setAttribute('placeholder', 'example@addres.net')*/
+        this.inputUsuario.setAttribute('required', 'required')
         //this.inputEmail.setAttribute('pattern', '^((?!\.)[\w_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$')
 
         this.labelPassword = document.createElement('label')
@@ -66,7 +66,7 @@ export class VistaAdmin {
         this.etiquetaForm.appendChild(this.divNuevo)
         this.divNuevo.appendChild(this.tituloInicioSesion)
         this.divNuevo.appendChild(this.labelUsuario)
-        this.divNuevo.appendChild(this.inputEmail)
+        this.divNuevo.appendChild(this.inputUsuario)
         this.divNuevo.appendChild(this.labelPassword)
         this.divNuevo.appendChild(this.inputPassword)
         this.divNuevo.appendChild(this.btnSubmit)
@@ -80,12 +80,12 @@ export class VistaAdmin {
      */
     validarCampos() {
         console.log('estoy aqui validadndo');
-        let user = document.getElementById('idInputEmail').value
+        let user = document.getElementById('idInputUsuario').value
         let pass = document.getElementById('idInputPass').value
         let formulario = document.getElementById('formularioLogin')
 
-        if (user.match(/^((?!\.)[\w_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/) == null) {
-            alert('introduce bien el correo')
+        /*if (user.match(/^((?!\.)[\w_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/) == null) {
+            alert('introduce bien el email')
 
         } else if (pass.match(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$/) == null) {
             alert('introduce bien la contraseña')
@@ -93,7 +93,7 @@ export class VistaAdmin {
         }
         else {
             alert('todo bien')
-        }
+        }*/
 
     }
 }
