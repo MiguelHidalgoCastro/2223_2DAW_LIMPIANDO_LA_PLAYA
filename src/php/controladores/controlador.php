@@ -1,6 +1,8 @@
 <?php
 	include("../modelos/modelo.php");
-
+	/**
+	* Contiene el controlador de las vistas del php
+	*/
 	if(isset($_POST['nombre']) && !empty($_POST['nombre']) &&
 			 isset($_POST['pass']) && !empty($_POST['pass'])){
 		

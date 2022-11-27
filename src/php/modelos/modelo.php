@@ -64,6 +64,7 @@ class Modelo {
 	 * Borra el fichero de instalacion cuando este cumple el objetivo de crear un administrador 
 	 *
 	 * @param  mixed $fichero
+	 *
 	 * @return void
 	 */
 	public function borrarFichero($fichero){
