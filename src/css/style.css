@@ -16,12 +16,15 @@
 
 body {
     margin: 0 auto;
-    background-color: #FEDB41;
+    background-image: url('../img/fondo.jpg');
+    background-size: 100%;
     font-family: Ubuntu;
-	position:relative;/* La posición, el min-height y el padding bottom es para que el footer esté siempre abajo haya el contenido que haya en el body*/
-	min-height:100vh;
-	min-width:500px;
-	padding-bottom:40px;
+    position: relative;
+    /* La posición, el min-height y el padding bottom es para que el footer esté siempre abajo haya el contenido que haya en el body*/
+    min-height: 100vh;
+    min-width: 500px;
+    padding-bottom: 40px;
+
 }
 
 
@@ -40,7 +43,7 @@ header.header {
 /*-------------Ajustes main-------------*/
 
 /*-------------FOOTER-------------*/
-footer{
+footer {
     position: absolute;
     bottom: 0px;
     /*height: 8vh;*/
@@ -49,7 +52,7 @@ footer{
     background-color: #383e4c;
     color: #60705e;
     margin-top: 7vh;
-	text-align:center;
+    text-align: center;
     /*MOD*/
 }
 
@@ -196,37 +199,39 @@ main div#juego canvas {
 
 /*** Estilo del formulario del login ***/
 
-main form div#formularioLogin{
+main form div#formularioLogin {
     width: 400px;
-	height:220px;
-	padding: 30px;
-	margin: 50px auto;
-	border-radius: 4px;
-	background-color:#E9FAFF;
+    height: 220px;
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 4px;
+    background-color: #E9FAFF;
     box-shadow: 5px 10px 10px #444A61;
-	border:1px solid #383e4c;
+    border: 1px solid #383e4c;
 }
 
-main form#login h2{
-	text-align:center;
+main form#login h2 {
+    text-align: center;
 }
 
-div#formularioLogin input[type="text"], div#formularioLogin input[type="password"]{
+div#formularioLogin input[type="text"],
+div#formularioLogin input[type="password"] {
     width: 300px;
     height: 30px;
     margin-bottom: 10px;
-	padding-left:10px;
-	display:block;
+    padding-left: 10px;
+    display: block;
 }
 
-div#formularioLogin input[type="text"]:focus, div#formularioLogin input[type="password"]:focus{
-    background-color:#AFDAFF;
-	outline:none;
+div#formularioLogin input[type="text"]:focus,
+div#formularioLogin input[type="password"]:focus {
+    background-color: #AFDAFF;
+    outline: none;
 }
 
-div#formularioLogin button{
+div#formularioLogin button {
     width: 30%;
-	padding:8px;
+    padding: 8px;
     background: #66727e;
     border-radius: 5px;
     border-style: none;
@@ -234,119 +239,122 @@ div#formularioLogin button{
     cursor: pointer;
     text-transform: uppercase;
     color: white;
-	margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
-div#formularioLogin button:hover{
-	opacity:0.8;
-	border:1px silver solid;
+div#formularioLogin button:hover {
+    opacity: 0.8;
+    border: 1px silver solid;
 }
 
 /*** Estilo de la vista de alta ***/
-main form div#formularioAlta{
+main form div#formularioAlta {
     width: 400px;
-	height:280px;
-	padding: 30px;
-	margin: 50px auto;
-	border-radius: 4px;
-	background-color:#E9FAFF;
+    height: 280px;
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 4px;
+    background-color: #E9FAFF;
     box-shadow: 5px 10px 10px #444A61;
-	border:1px solid #383e4c;
+    border: 1px solid #383e4c;
 }
 
-main form#alta h2{
-	text-align:center;
+main form#alta h2 {
+    text-align: center;
 }
 
-div#formularioAlta input[type="text"], div#formularioAlta input[type="password"]{
+div#formularioAlta input[type="text"],
+div#formularioAlta input[type="password"] {
     width: 300px;
     height: 30px;
     margin-bottom: 10px;
-	padding-left:10px;
-	display:block;
+    padding-left: 10px;
+    display: block;
 }
 
-div#formularioAlta input[type="text"]:focus, div#formularioAlta input[type="password"]:focus{
-    background-color:#AFDAFF;
-	outline:none;
+div#formularioAlta input[type="text"]:focus,
+div#formularioAlta input[type="password"]:focus {
+    background-color: #AFDAFF;
+    outline: none;
 }
 
-div#formularioAlta submit{
+div#formularioAlta submit {
     width: 30%;
-	padding:8px;
+    padding: 8px;
     background: #66727e;
     border-radius: 5px;
     border-style: none;
-    display:block;
+    display: block;
     cursor: pointer;
     text-transform: uppercase;
     color: white;
-	margin:0 auto;
+    margin: 0 auto;
 }
 
-div#formularioAlta submit:hover{
-	opacity:0.8;
-	border:1px silver solid;
+div#formularioAlta submit:hover {
+    opacity: 0.8;
+    border: 1px silver solid;
 }
 
 
-div#formularioAlta select{
-	width:130px;
-	height:30px;
-	margin-bottom:10px;
-	display:block;
+div#formularioAlta select {
+    width: 130px;
+    height: 30px;
+    margin-bottom: 10px;
+    display: block;
 }
 
 /*** Estilo de la vista de inicio de administrador ***/
-main p#bienvenida{
-	width:35%;
-	padding:50px;
-	margin:50px auto;
-	border-radius: 4px;
-	background-color:#E9FAFF;
-	box-shadow: 5px 10px 10px #444A61;
-	border:1px solid #383e4c;
-	text-align:center;
-	font-size:20px;
+main p#bienvenida {
+    width: 35%;
+    padding: 50px;
+    margin: 50px auto;
+    border-radius: 4px;
+    background-color: #E9FAFF;
+    box-shadow: 5px 10px 10px #444A61;
+    border: 1px solid #383e4c;
+    text-align: center;
+    font-size: 20px;
 }
 
 
 /*** Estilo de los elementos del footer ***/
-footer div{
-	display:inline-block;
-	margin:10px;
+footer div {
+    display: inline-block;
+    margin: 10px;
 }
 
-footer div#copy{
-	float:left;
+footer div#copy {
+    float: left;
 }
 
-footer div#rrss{
-	float:right;
+footer div#rrss {
+    float: right;
 }
 
-footer div#rrss img:hover{
-	-webkit-transform:scale(1.2);
-	transform:scale(1.2);
+footer div#rrss img:hover {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 
 
 /*-------------Media Query Moviles-------------*/
 @media (max-width: 960px) {
-	body{
-		padding-bottom:120px;
-	}
+    body {
+        padding-bottom: 120px;
+    }
+
     nav label#btnMenu {
         display: block;
     }
 
     /*-------------Ajustes de la navbar-------------*/
-	
-	header.header .logo img {
-		height: 55px;
-	}
-	
+
+    header.header .logo img {
+        height: 55px;
+    }
+
     .nav-links {
         margin-top: 0.4vh;
         position: fixed;
@@ -392,32 +400,34 @@ footer div#rrss img:hover{
     nav input#check:checked~ul {
         left: 0;
     }
-	
-	/*------------- Ajustes del div aviso inicio -------------*/
-	main p#bienvenida{
-		width:35%;
-		padding:10px;
-		margin:50px auto;
-		border-radius: 4px;
-		background-color:#E9FAFF;
-		box-shadow: 5px 10px 10px silver;
-		border:1px solid #383e4c;
-		text-align:center;
-		font-size:12px;
-	}
-	
-	/*------------- Ajustes del footer -------------*/
-	footer div#rrss{
-		float:none;
-	}
-	footer div#copy{
-		float:none;
-	}
-	footer div{
-		display:block;
-	}
-	
-	footer{
-		display:block;
-	}
+
+    /*------------- Ajustes del div aviso inicio -------------*/
+    main p#bienvenida {
+        width: 35%;
+        padding: 10px;
+        margin: 50px auto;
+        border-radius: 4px;
+        background-color: #E9FAFF;
+        box-shadow: 5px 10px 10px silver;
+        border: 1px solid #383e4c;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    /*------------- Ajustes del footer -------------*/
+    footer div#rrss {
+        float: none;
+    }
+
+    footer div#copy {
+        float: none;
+    }
+
+    footer div {
+        display: block;
+    }
+
+    footer {
+        display: block;
+    }
 }
