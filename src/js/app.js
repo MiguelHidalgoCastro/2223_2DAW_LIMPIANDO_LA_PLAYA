@@ -5,6 +5,8 @@
 **/
 
 import { VistaAdmin } from './vistas/vistaadmin.js'
+import { VistaJuego } from "./vistas/vistajuego.js";
+
 
 /**
  * Controlador de la aplicación
@@ -26,13 +28,14 @@ class Controlador {
     iniciar() {
 
         this.nav = document.getElementsByTagName('nav')[0] //Buscamos el elemento nav
-        //this.vistaNav = new VistaNav (this.nav) //Introducimos el elemento en la vista nav
-
 
         this.formularioLogin = document.getElementsByTagName('main')[0]
-        console.log(this.formularioLogin)
-        this.vistaAdmin = new VistaAdmin(this.formularioLogin) //Introducimos el div del formulario en la clase Vista Admin 
+        this.vistaAdmin = new VistaAdmin(this.formularioLogin)
+
+        //juego
+        this.juegoCanvas = document.getElementsByTagName('canvas')[0]
+        this.juegoTower = new VistaJuego(this.juegoCanvas)
     }
 }
 
-const app = new Controlador()
+new Controlador()
