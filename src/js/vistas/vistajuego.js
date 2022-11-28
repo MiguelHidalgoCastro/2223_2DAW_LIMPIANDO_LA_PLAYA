@@ -21,14 +21,15 @@ export class VistaJuego {
 
         const ctx = canvas.getContext('2d')
 
-        // this.dibujarGrid(ctx, canvas)
+
 
         const miEscenario = new Image()
         miEscenario.onload = () => {
             ctx.drawImage(miEscenario, 0, 0)
         }
         miEscenario.src = "../src/img/escenarios/escenariouno.png"
-        this.update(ctx, canvas)
+       
+        
     }
 
     update(ctx, canvas) {
