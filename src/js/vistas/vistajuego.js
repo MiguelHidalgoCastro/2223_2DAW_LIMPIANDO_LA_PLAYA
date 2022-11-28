@@ -21,14 +21,20 @@ export class VistaJuego {
 
         const ctx = canvas.getContext('2d')
 
-        this.dibujarGrid(ctx, canvas)
+        // this.dibujarGrid(ctx, canvas)
+
+        const miEscenario = new Image()
+        miEscenario.onload = () => {
+            ctx.drawImage(miEscenario, 0, 0)
+        }
+        miEscenario.src = "../src/img/escenarios/escenariouno.png"
         this.update(ctx, canvas)
     }
 
     update(ctx, canvas) {
         console.log("Estoy en el udpate");
         ctx.clearRect(0, 0, canvas.width, canvas.height)
-        this.dibujarGrid(ctx, canvas)
+        //this.dibujarGrid(ctx, canvas)
 
         requestAnimationFrame(this.update)
     }
