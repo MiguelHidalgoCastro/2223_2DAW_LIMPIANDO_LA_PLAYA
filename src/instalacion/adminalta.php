@@ -10,7 +10,7 @@
 		$perfil= 'LP';
 		$hass = password_hash($pass, PASSWORD_DEFAULT);
 		
-		$consulta = $mysqli->prepare ("INSERT INTO Administrador (nombre,clave,perfil) VALUES (?,?,?)");
+		$consulta = $mysqli->prepare ("INSERT INTO administrador (nombre,clave,perfil) VALUES (?,?,?)");
 		$consulta->bind_param('sss',$nombre,$hass,$perfil);
 		$consulta->execute();
 		$mysqli->close();
