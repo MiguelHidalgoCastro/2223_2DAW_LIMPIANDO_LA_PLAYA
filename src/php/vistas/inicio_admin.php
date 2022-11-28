@@ -66,7 +66,7 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 			<a target="_blank" title="LinkedIn" href=""><img class="rrss" alt="Icono red social LinkedIn" src="../../img/rrss/linkedinnar1.png"></a>
 		</div>
 	</footer>
-	<script src="../../js/controlador/app.js"></script>
+	<script src="../../js/controlador/controladorAdmin.js"></script>
 </body>
 
 </html>
