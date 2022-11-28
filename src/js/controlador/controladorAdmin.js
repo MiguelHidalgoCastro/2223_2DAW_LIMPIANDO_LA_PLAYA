@@ -4,8 +4,7 @@
     @license GPL-3.0-or-later
 **/
 
-import { VistaAdmin } from './vistas/vistaadmin.js'
-import { VistaJuego } from "./vistas/vistajuego.js";
+import { VistaAdmin } from '../vistas/vistaadmin.js'
 
 
 /**
@@ -19,7 +18,6 @@ class Controlador {
      */
     constructor() {
         window.onload = this.iniciar.bind(this)
-        console.log("estoy aqui");
     }
 
     /**
@@ -32,9 +30,6 @@ class Controlador {
         this.formularioLogin = document.getElementsByTagName('main')[0]
         this.vistaAdmin = new VistaAdmin(this.formularioLogin)
 
-        //juego
-        this.juegoCanvas = document.getElementsByTagName('canvas')[0]
-        this.juegoTower = new VistaJuego(this.juegoCanvas)
     }
 }
 
