@@ -353,6 +353,10 @@ main div#divConfiguracion {
     box-shadow: 5px 10px 10px #444A61;  
 }
 
+main div#divConfiguracion form{
+    font-size: large;
+}
+
 /* El estilo se aplicará al h2 que esta dentro del div con id="divConfiguracion" dentro del main y
 a el h4 que está dentro del formulario, a su vez dentro del div, dentro del main*/
 main div#divConfiguracion h2,
@@ -382,6 +386,43 @@ main div#divConfiguracion form input[type="number"]{
     margin-bottom: 10px;
     padding-left: 10px;
 }
+
+div#divConfiguracion form label.rutar,
+div#divConfiguracion form input.rutar{
+    float: right; /*El elemento se ajusta a la derecha*/
+}
+
+div#divConfiguracion form input.rutar{
+    margin-left: 5px; /*El elemento se ajusta a la derecha*/
+}
+
+div#divConfiguracion form label.centro{
+    margin-left:150px;
+}
+
+/*div#divConfiguracion form input.centro{
+    margin-left: 50px;
+}*/
+
+
+div#divConfiguracion form label.ancho{
+    float: right; /*El elemento se ajusta a la derecha*/
+    margin-right: 40px; /*Tiene un margen por la derechade 40px*/
+}
+
+div#divConfiguracion form input.ancho{
+    float: right;
+    margin-right: 80px;
+}
+
+div#divConfiguracion form label.alto{
+    margin-left: 40px; /*Tiene un margen por la izquierda 40px*/
+}
+
+div#divConfiguracion form input.alto{
+    margin-left: 70px; /*Tiene un margen por la izquierda 70px*/
+}
+
 
 /*-------------Media Query Moviles-------------*/
 @media (max-width: 960px) {

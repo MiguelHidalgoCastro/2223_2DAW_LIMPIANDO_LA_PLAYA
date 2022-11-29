@@ -1,9 +1,9 @@
-<?php
+<?php/*
 session_start();
 if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 	session_destroy();
 	header('Location: inicio_sesion.html');
-}
+}*/
 ?>
 
 <!DOCTYPE html>
@@ -42,14 +42,14 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
                 <h2>AJUSTAR CONFIGURACION</h2><br>
                 <form>
                     <label for="rutaTorre">Ruta torre</label> <input type="text" name="rutaTorre">
-                    <label for="rutaEnemigo">Ruta enemigo</label> <input type="text" name="rutaEnemigo"><br>
-                    <label for="rutaEscenario">Ruta escenario</label> <input type="text" name="rutaEscenario"><br><br><hr><br>
-                    <h4>Medidas de la ventana</h4><br><br>
+                    <input type="text" name="rutaEnemigo" class="rutar"> <label for="rutaEnemigo" class="rutar">Ruta enemigo</label><br>
+                    <label for="rutaEscenario" class="centro">Ruta escenario</label> <input type="text" name="rutaEscenario" class="centro"><br><br><hr><br>
+                    <h4>Medidas de la ventana</h4><br>
                     <!--<label for="medidasVentana" id="medidaVentana">Medidas de la ventana de juego</label><br>-->
-                    <label for="medidaAlto">Alto</label> <label for="medidaAncho">Ancho</label><br>
-                    <input type="number" name="medidaAlto" value="540"> <input type="number" name="medidaAncho" value="980"><br><br><hr><br>
-                    <h4>Filas de la tabla ranking</h4><br><br>
-                    <label for="filasRanking">Jugadores que aparecerán en el ranking</label> <input type="number" value="10">              
+                    <label for="medidaAlto" class="alto">Alto de la pantalla</label> <label for="medidaAncho" class="ancho">Ancho de la pantalla</label><br><br>
+                    <input type="number" name="medidaAlto" value="540" class=alto> <input type="number" name="medidaAncho" value="980" class="ancho"><br><br><hr><br>
+                    <h4>Filas de la tabla ranking</h4><br>
+                    <label for="filasRanking" class="centro">Jugadores que aparecerán en el ranking</label> <input type="number" value="10">              
                 </form>
             </div>
         </main>
