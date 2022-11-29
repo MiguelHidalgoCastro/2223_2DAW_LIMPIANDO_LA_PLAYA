@@ -338,6 +338,50 @@ footer div#rrss img:hover {
 }
 
 
+/*------Estilo del formulario de configuracion. Es el formulario donde se encuentra los datos de configuracion-------*/
+/*FALTAN COMENTARIOS*/
+/*Se refiere al div con id="divConfiguracion" que esta dentro del main*/
+main div#divConfiguracion {
+    width: 700px; /*Ancho del formulario*/
+    /*height: 250px;*/
+    padding: 30px; 
+    margin: 50px auto;
+    background-color: #E9FAFF;  
+    border-radius: 7px;
+    border-color: #383e4c;
+    border: 1px solid #383e4c;
+    box-shadow: 5px 10px 10px #444A61;  
+}
+
+/* El estilo se aplicará al h2 que esta dentro del div con id="divConfiguracion" dentro del main y
+a el h4 que está dentro del formulario, a su vez dentro del div, dentro del main*/
+main div#divConfiguracion h2,
+main div#divConfiguracion form h4{
+    text-align: center;
+}
+
+main div#divConfiguracion form hr{
+    border-color: #afdaff;
+    border-width: 3.5px; 
+}
+
+/*Modificar los inputs*/
+main div#divConfiguracion form input[type="text"]{
+    width: 175px;
+    height: 26px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 4px;
+    /*display: block;*/
+}
+
+main div#divConfiguracion form input[type="number"]{
+    width: 55px;
+    height: 26px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
 
 /*-------------Media Query Moviles-------------*/
 @media (max-width: 960px) {
