@@ -39,7 +39,7 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
         <main>
             <div id="divConfiguracion">
                 <h2>AJUSTAR CONFIGURACION</h2><br>
-                <form action="configuracion.php" method="POST">
+                <form action="configuracion.php" method="POST" id="formConfiguracion">
                     <label for="rutaTorre">Ruta torre</label> <input type="text" name="rutaTorre">
                     <input type="text" name="rutaEnemigo" class="rutar"> <label for="rutaEnemigo" class="rutar">Ruta enemigo</label><br>
                     <label for="rutaEscenario" class="centro">Ruta escenario</label> <input type="text" name="rutaEscenario" class="centro"><br><br><hr><br>
@@ -48,8 +48,8 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
                     <label for="medidaAlto" class="alto">Alto de la pantalla</label> <label for="medidaAncho" class="ancho">Ancho de la pantalla</label><br><br>
                     <input type="number" name="medidaAlto" value="540" class=alto> <input type="number" name="medidaAncho" value="980" class="ancho"><br><br><hr><br>
                     <h4>Filas de la tabla ranking</h4><br>
-                    <label for="filasRanking" class="centro">Jugadores que aparecerán en el ranking</label> <input type="number" value="10"><br>
-                    <input type="submit" value="Guardar cambios" class="submit">             
+                    <label for="filasRanking" class="centro">Jugadores que aparecerán en el ranking</label> <input type="number" value="10"><br><br>
+                    <input type="submit" value="Guardar cambios" >             
                 </form>
             </div>
         </main>

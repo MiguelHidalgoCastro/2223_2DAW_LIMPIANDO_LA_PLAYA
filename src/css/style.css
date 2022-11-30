@@ -344,17 +344,13 @@ footer div#rrss img:hover {
 main div#divConfiguracion {
     width: 700px; /*Ancho del formulario*/
     /*height: 250px;*/
-    padding: 30px; 
+    padding: 40px; 
     margin: 50px auto;
     background-color: #E9FAFF;  
     border-radius: 7px;
     border-color: #383e4c;
     border: 1px solid #383e4c;
     box-shadow: 5px 10px 10px #444A61;  
-}
-
-main div#divConfiguracion form{
-    font-size: large;
 }
 
 /* El estilo se aplicará al h2 que esta dentro del div con id="divConfiguracion" dentro del main y
@@ -423,6 +419,118 @@ div#divConfiguracion form input.alto{
     margin-left: 70px; /*Tiene un margen por la izquierda 70px*/
 }
 
+/*Se modifica el input tipo submit del formulario con id="formConfiguracion*/
+form#formConfiguracion input[type="submit"]{
+    width: 30%;
+    padding: 8px;
+    background: #383e4c;
+    border-radius: 5px;
+    border-style: none;
+    float: right;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 15px;
+}
+
+/*--------FALTA FLEX BOX Y MQ DEL FORMULARIO DE CONFIGURACION------*/
+
+
+
+
+
+
+/*--------Estilo del mokup del listado de enemigos, solo el daministrador podrá verlo -------*/
+
+div#divEnemigos{
+    width: 700px;
+    background-color: #E9FAFF;
+    margin: auto;
+    padding: 25px;
+    border-radius: 7px;
+    border-color: #383E4C;
+    border: 1px solid #383E4C;
+}
+
+div#divEnemigos h1{
+    text-align: center;
+    color: #383E4C;
+}
+div#divEnemigos table#tableEnemigos{
+    width: 600px;
+    text-align: center;
+    border-radius: 5px;
+    border-color: #AFDAFF;
+    border: 2px solid #AFDAFF;
+    margin: auto;
+}
+
+/*Se le aplica estilos a los iconos que aparecen en la tabla*/
+table#tableEnemigos img{
+    width: 20px;
+    height: 20px;
+    color: #383E4C;
+}
+
+div#divEnemigos input[type="submit"]{
+    width: 30%;
+    padding: 8px;
+    background: #383e4c;
+    border-radius: 5px;
+    border-style: none;
+    float: right;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+    /*margin-bottom: 15px;*/
+}
+
+/*--------FALTA HACER FLEX BOX Y MEDIA QUERIS EN LE MOKUP DE LISTAR ENEMIGOS------*/
+
+/*-----Estilo del mokup de añadir un nuevo enemigo-----*/
+div#divNuevoEnemigo{
+    width: 400px;
+    height: 335px;
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 4px;
+    background-color: #E9FAFF;
+    box-shadow: 5px 10px 10px #444A61;
+    border: 1px solid #383e4c;
+}
+
+div#divNuevoEnemigo h2{
+   text-align: center;
+}
+
+div#divNuevoEnemigo form input{
+    background-color: #E9FAFF;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom-color: #AFDAFF;
+    padding-left: 15px;
+}
+
+div#divNuevoEnemigo form input[type="number"]{
+   width: 65px;
+   padding-left: 25px;
+}
+
+div#divNuevoEnemigo form input[type="submit"]{
+    width: 30%;
+    padding: 8px;
+    background: #383e4c;
+    border-radius: 5px;
+    border-style: none;
+    float: right;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+    /*margin-bottom: 15px;*/
+}
+
+/*--------FALTA FLEXBOX Y MQ DEL MOKUP DE AÑADIR UN ENEMIGO------*/
 
 /*-------------Media Query Moviles-------------*/
 @media (max-width: 960px) {
