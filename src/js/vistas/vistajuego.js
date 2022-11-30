@@ -1,16 +1,14 @@
 const WIDTH = 960
 const HEIGHT = 544
 const MEDIDA = 32
-const PRIMERA = 5
-const SEGUNDA = 9
-const TERCERA = 14
 
+import { Torre } from "../objetos/torre.js"
+import { Jugador } from "../objetos/jugador.js"
 export class VistaJuego {
 
     constructor(canvas) {
         this.etiquetaCanvas = canvas
         window.onload = this.iniciar()
-        
     }
 
 
@@ -39,10 +37,22 @@ export class VistaJuego {
         this.startX
         this.startY
 
+        //Creo el jugador
+        this.jugador = new Jugador()
+        this.jugador.asignarPuntos(2000) //Para probar los upgrade
+
+        //Creo las torres
+        let torrelvl1 = new Torre()
+        torrelvl1.asignarEspecificacion(torrelvl1.especificacionlvl1())
+        let torrelvl2 = new Torre()
+        torrelvl2.asignarEspecificacion(torrelvl2.especificacionlvl2())
+        let torrelvl3 = new Torre()
+        torrelvl3.asignarEspecificacion(torrelvl3.especificacionlvl3())
+
         this.torres = []
-        this.torres.push({ x: MEDIDA * 12, y: this.canvas.height - 64, width: 32, height: 32, fill: "#AFDAFF", isDragging: false, radio: 100, vel: 1, lvl: 1, upg: false })
-        this.torres.push({ x: MEDIDA * 16, y: this.canvas.height - 64, width: 32, height: 32, fill: "#ff550d", isDragging: false, radio: 150, vel: 2, lvl: 2, upg: false })
-        this.torres.push({ x: MEDIDA * 20, y: this.canvas.height - 64, width: 32, height: 32, fill: "#444444", isDragging: false, radio: 200, vel: 3, lvl: 3, upg: false })
+        this.torres.push(torrelvl1)
+        this.torres.push(torrelvl2)
+        this.torres.push(torrelvl3)
 
         this.torresColocadas = []
 
@@ -130,6 +140,11 @@ export class VistaJuego {
         this.ctx.fillText("LVL1", MEDIDA * 10 - 16, MEDIDA * 16 - 8)
         this.ctx.fillText("LVL2", MEDIDA * 14 - 16, MEDIDA * 16 - 8)
         this.ctx.fillText("LVL3", MEDIDA * 18 - 16, MEDIDA * 16 - 8)
+
+        this.ctx.fillStyle = 'black'
+        this.ctx.fillText("Puntos: " + this.jugador.puntos, MEDIDA * 20, 32)
+        this.ctx.fillText("Vidas: " + this.jugador.vidas, MEDIDA * 26, 32)
+
         this.ctx.stroke()
         this.ctx.closePath()
 
@@ -339,18 +354,19 @@ export class VistaJuego {
             if (element.x == elemento.x && element.y == elemento.y && element.colocada && element.upg) {
                 //si se puede upgradear y está colocada
                 console.log("encontrado");
-                //Subo el nivel
-                element.lvl++
-                //Cambio el color
-                if (element.lvl == 2)
-                    element.fill = "#ff550d"
-                if (element.lvl == 3) {
-                    element.fill = "#444444"
-                    //Si ahora es nivel 3, no se puede upgradear
-                    element.upg = false
+                //Subo el nivel 
+                if (element.lvl == 1 && this.jugador.puntos >= 100) {
+                    element.lvl++
+                    element.fill = "#ff550d" //cambio el color
+                    this.jugador.quitarPuntos(100)
                 }
 
-
+                else if (element.lvl == 2 && this.jugador.puntos >= 200) {
+                    element.lvl++
+                    element.fill = "#444444" //cambio el color
+                    element.upg = false //lo desactivo ya que es ultimo nivel
+                    this.jugador.quitarPuntos(200)
+                }
             }
 
         });
