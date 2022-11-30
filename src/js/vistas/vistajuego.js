@@ -24,9 +24,18 @@ export class VistaJuego {
         this.offsetX = this.borderBox.left
         this.offsetY = this.borderBox.top
 
+        this.lvl1 = new Image()
+        this.lvl1.src = "img/torres/lvl1.png"
+        this.lvl2 = new Image()
+        this.lvl2.src = "img/torres/lvl2.png"
+        this.lvl3 = new Image()
+        this.lvl3.src = "img/torres/lvl3.png"
+
         this.escenario = new Image()
         this.escenario.src = "img/escenarios/mapa2.png"
         this.escenario.onload = this.continuar.bind(this)
+
+
     }
 
     continuar() {
@@ -60,8 +69,8 @@ export class VistaJuego {
 
         this.canvas.onmousedown = this.pulsar.bind(this)
         this.canvas.onmouseup = this.soltar.bind(this)
-        this.canvas.onmousemove = this.moverPulsado(this)
-
+        this.canvas.onmousemove = this.moverPulsado.bind(this)
+        this.canvas.onmouseover = this.mouseover.bind(this)
         this.dibujar()
     }
     //DIBUJAR TODO
@@ -73,6 +82,14 @@ export class VistaJuego {
         this.ctx.fill()
     }
 
+    dibujarArc(x, y, radio) {
+        this.ctx.beginPath()
+        this.ctx.arc(x + 16, y + 16, radio, 0, 2 * Math.PI, false)
+        this.ctx.fillStyle = "rgba(0, 0, 0, .1)"
+        this.ctx.closePath()
+        this.ctx.fill()
+    }
+
     clear() {
         this.ctx.drawImage(this.escenario, 0, 0)
     }
@@ -80,20 +97,46 @@ export class VistaJuego {
         this.clear()
         //this.dibujarGrid()
         this.dibujarLetras()
-        //DIBUJO EL MENÚ
 
+        //DIBUJO EL MENÚ
         for (let i = 0; i < this.torres.length; i++) {
             let r = this.torres[i];
             this.ctx.fillStyle = r.fill;
             this.dibujarRect(r.x, r.y, r.width, r.height);
+            if (r.lvl == 1)
+                this.ctx.drawImage(this.lvl1, r.x, r.y)
+            if (r.lvl == 2)
+                this.ctx.drawImage(this.lvl2, r.x, r.y)
+            if (r.lvl == 3)
+                this.ctx.drawImage(this.lvl3, r.x, r.y)
         }
+
         //DIBUJO LAS COPIAS
         for (let i = 0; i < this.torresColocadas.length; i++) {
             let r = this.torresColocadas[i]
             this.ctx.fillStyle = r.fill
-            this.dibujarRect(r.x, r.y, r.width, r.height)
+            this.dibujarRect(r.x, r.y, r.width, r.height);
+            if (r.lvl == 1)
+                this.ctx.drawImage(this.lvl1, r.x, r.y)
+            if (r.lvl == 2)
+                this.ctx.drawImage(this.lvl2, r.x, r.y)
+            if (r.lvl == 3)
+                this.ctx.drawImage(this.lvl3, r.x, r.y)
         }
-        this.dibujarZonasAtaque()
+
+        //ZONAS ATAQUE
+        for (let i = 0; i < this.torresColocadas.length; i++) {
+            let r = this.torresColocadas[i]
+            this.ctx.fillStyle = r.fill
+
+            if (r.lvl == 1)
+                this.dibujarArc(r.x, r.y, 100)
+            if (r.lvl == 2)
+                this.dibujarArc(r.x, r.y, 150)
+            if (r.lvl == 3)
+                this.dibujarArc(r.x, r.y, 200)
+
+        }
 
     }
 
@@ -147,21 +190,17 @@ export class VistaJuego {
 
         this.ctx.stroke()
         this.ctx.closePath()
+    }
+    //DIBUJAR RECOGIDOS -- Para cuando funcione el mouseover
+    dibujarRecogidos(coordX, coordY, cuantos) {
+        this.ctx.beginPath()
+        this.ctx.fillStyle = 'white'
+        this.ctx.font = '30px "Press Start 2P"'
+        this.ctx.fillText(cuantos, coordX, coordY)
+        this.ctx.stroke()
+        this.ctx.closePath()
+    }
 
-    }
-    dibujarZonasAtaque() { //no funciona
-        //Circulos de ataque
-        for (let i = 0; i < this.torresColocadas.length; i++) {
-            let r = this.torresColocadas[i];
-            this.ctx.beginPath()
-            this.ctx.fillStyle = "rgba(0, 0, 0, .05)"
-            this.ctx.arc(r.x + 16, r.y + 16, r.radio, 0, 2 * Math.PI, false)
-            this.ctx.lineWidth = .05
-            this.ctx.fill()
-            this.ctx.stroke()
-            this.ctx.closePath()
-        }
-    }
     conseguirZonasDisponibles(array) {
         let matriz = []
         let auxiliar = []
@@ -299,7 +338,23 @@ export class VistaJuego {
             this.startY = my
         }
     }
+    mouseover(e) { // creo que me lo hace una vez porque no tengo el requestframeupdate
+        e.preventDefault()
+        e.stopPropagation()
 
+        // get the current mouse position
+        let mx = parseInt(e.clientX - this.offsetX)
+        let my = parseInt(e.clientY - this.offsetY)
+        console.log("Coords: " + mx + "-" + my);
+        for (let i = 0; i < this.torresColocadas.length; i++) {
+            const element = this.torresColocadas[i];
+            if (mx >= element.x && mx <= element.x + 32
+                && my >= element.y && my <= element.y + 32)
+                console.log("estoy");
+        }
+    }
+
+    /*Comprobaciones */
     comprobarTorreMenu(coordX, coordY) {
         let bandera = false
         this.torres.forEach(element => {

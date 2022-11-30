@@ -15,6 +15,7 @@ export class Torre {
         this.upg
         //cuando sea imagen será la ruta
         this.fill
+        this.recogidos
     }
 
     especificacionlvl1() {
@@ -28,6 +29,7 @@ export class Torre {
             radio: 100, vel: 1,
             lvl: 1,
             upg: false,
+            recogidos: 0
         }
     }
 
@@ -43,6 +45,7 @@ export class Torre {
             vel: 2,
             lvl: 2,
             upg: false,
+            recogidos: 0
         }
     }
 
@@ -58,9 +61,10 @@ export class Torre {
             vel: 3,
             lvl: 3,
             upg: false,
+            recogidos: 0
         }
     }
-    asignarEspecificacion({ x, y, width, height, isDragging, radio, vel, lvl, upg, fill }) {
+    asignarEspecificacion({ x, y, width, height, isDragging, radio, vel, lvl, upg, fill, recogidos }) {
         this.x = x
         this.y = y
         this.width = width
@@ -72,5 +76,6 @@ export class Torre {
         this.upg = upg
 
         this.fill = fill
+        this.recogidos = recogidos
     }
 }
