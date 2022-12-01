@@ -6,7 +6,10 @@ import { Torre } from "../objetos/torre.js"
 import { Jugador } from "../objetos/jugador.js"
 import { Enemigo } from "../objetos/enemigo.js"
 export class VistaJuego {
-
+    /**
+     * Constructor de la Vista Juego, además, inicia el juego
+     * @param {HTMLElement} canvas 
+     */
     constructor(canvas) {
         this.etiquetaCanvas = canvas
         window.onload = this.iniciar()
@@ -53,7 +56,7 @@ export class VistaJuego {
 
         //Creo los enemigos
         this.enemigos = []
-        this.enemyCount = 9
+        this.enemyCount = 4
 
         //Creo las torres
         let torrelvl1 = new Torre()
@@ -75,7 +78,7 @@ export class VistaJuego {
         this.canvas.onmousedown = this.pulsar.bind(this)
         this.canvas.onmouseup = this.soltar.bind(this)
         this.canvas.onmousemove = this.moverPulsado.bind(this)
-        this.canvas.onmouseover = this.mouseover.bind(this)
+        //this.canvas.addEventListener("mouseover", this.mouseover.bind(this))
 
         this.spawnEnemigos()
         this.animar()
@@ -110,7 +113,7 @@ export class VistaJuego {
         }
     }
 
-    
+
     //Aqui es el main para que funcione el juego
     animar() {
         //setInterval(this.animarEnemigos, 30)
@@ -137,9 +140,18 @@ export class VistaJuego {
                 this.spawnEnemigos()
             }
         }
-
+        let comprobar = setInterval(this.comprobarContacto.bind(this), 1000)
     }
 
+    comprobarContacto() { //queda en intento
+        //console.log("primero: " + this.enemigos[0].position.x + "-" + this.enemigos[0].position.y);
+
+        for (let i = 0; i < this.torresColocadas.length; i++) {
+            const element = this.torresColocadas[i];
+            let area = Math.PI * Math.pow(element.radio, 2)
+            //console.log(area); //calcula bien el area de la torres
+        }
+    }
     clear() {
         this.ctx.drawImage(this.escenario, 0, 0)
     }
@@ -181,11 +193,11 @@ export class VistaJuego {
             this.ctx.fillStyle = r.fill
 
             if (r.lvl == 1)
-                this.dibujarArc(r.x, r.y, 100)
+                this.dibujarArc(r.x, r.y, r.radio)
             if (r.lvl == 2)
-                this.dibujarArc(r.x, r.y, 150)
+                this.dibujarArc(r.x, r.y, r.radio)
             if (r.lvl == 3)
-                this.dibujarArc(r.x, r.y, 200)
+                this.dibujarArc(r.x, r.y, r.radio)
 
         }
 
@@ -239,8 +251,8 @@ export class VistaJuego {
 
         //Menu superior derecha
         this.ctx.fillStyle = 'black'
-        this.ctx.fillText("Puntos: " + this.jugador.puntos, MEDIDA * 20, 32)
-        this.ctx.fillText("Vidas: " + this.jugador.vidas, MEDIDA * 26, 32)
+        this.ctx.fillText("Puntos: " + this.jugador.puntos, MEDIDA * 20, 18)
+        this.ctx.fillText("Vidas: " + this.jugador.vidas, MEDIDA * 26, 18)
 
         this.ctx.stroke()
         this.ctx.closePath()
@@ -309,9 +321,9 @@ export class VistaJuego {
                     // if yes, set that rects isDragging=true
                     this.dragok = true;
                     if (r.lvl == 1 || r.lvl == 2)
-                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: true, lvl: r.lvl })
+                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: true, lvl: r.lvl, radio: r.radio })
                     else
-                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: false, lvl: r.lvl })
+                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: false, lvl: r.lvl, radio: r.radio })
                 }
             }
             // save the current mouse position
@@ -354,10 +366,8 @@ export class VistaJuego {
                 }
             }
         }
-        //this.dibujar()
     }
     moverPulsado(e) {
-        //console.log("moviendo")
         // if we're dragging anything...
         if (this.dragok) {
             // tell the browser we're handling this mouse event
@@ -384,9 +394,6 @@ export class VistaJuego {
                 }
 
             }
-            // redraw the scene with the new rect positions
-            // this.dibujar()
-
             // reset the starting mouse position for the next mousemove
             this.startX = mx
             this.startY = my
@@ -415,7 +422,6 @@ export class VistaJuego {
             if (coordX >= element.x && coordX <= (element.x + element.width)
                 && coordY >= element.y && coordY <= (element.y + element.height)) {
                 bandera = true
-                //console.log("torre menu");
             }
         })
         return bandera
@@ -438,7 +444,6 @@ export class VistaJuego {
         elemento.x = parseInt(coordX / MEDIDA) * 32
         elemento.y = parseInt(coordY / MEDIDA) * 32
 
-        //console.log("Elemento: " + elemento.x + "-" + elemento.y);
         return elemento
     }
     comprobarCeldaOcupada(coordX, coordY) {
@@ -467,6 +472,7 @@ export class VistaJuego {
                 if (element.lvl == 1 && this.jugador.puntos >= 100) {
                     element.lvl++
                     element.fill = "#ff550d" //cambio el color
+                    element.radio += 50
                     this.jugador.quitarPuntos(100)
                 }
 
@@ -474,12 +480,12 @@ export class VistaJuego {
                     element.lvl++
                     element.fill = "#444444" //cambio el color
                     element.upg = false //lo desactivo ya que es ultimo nivel
+                    element.radio += 50
                     this.jugador.quitarPuntos(200)
                 }
             }
 
         });
-        //this.dibujar()
     }
 
 }

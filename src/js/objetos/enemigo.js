@@ -40,7 +40,7 @@ export class Enemigo {
 		const distanciaX = waypoint.x - this.centrar.x
 		const angulo = Math.atan2(distanciaY, distanciaX)
 		//Aqui se puede ajustar la rapidez
-		const rapidez = 3
+		const rapidez = .7
 		this.velocidad.x = Math.cos(angulo) * rapidez
 		this.velocidad.y = Math.sin(angulo) * rapidez
 		this.position.x += this.velocidad.x
