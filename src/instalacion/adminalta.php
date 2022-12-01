@@ -18,10 +18,10 @@
 		unlink('adminalta.php');
 		unlink('alta_usuario.html');
 		unlink('conexion.php');
-		$fichero= '../instalacion';
+		$fichero= '../../instalacion';
 		$objeto = new Modelo();
 		$objeto->borrarFichero($fichero);
-		header("Location:../php/vistas/inicio_sesion.html");
+		header("Location:../php/vistas/inicio_sesion.php");
 	}
 	else{
 		header("Location:alta_usuario.html");

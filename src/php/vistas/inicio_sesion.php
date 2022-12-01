@@ -1,3 +1,13 @@
+<?php
+	include('../controladores/controlador.php');
+	$controlador = new Controlador();
+	
+	if(isset($_POST["nombre"]) && !empty($_POST["nombre"]) && isset($_POST["pass"]) && !empty($_POST["pass"])){
+		$nombre = $_POST["nombre"];
+		$pass = $_POST["pass"];
+		$controlador->iniciarSesion($nombre, $pass);
+	}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,16 +32,6 @@
 		</nav>
 	</header>
 	<main>
-		<!--<form id="login" action="sergiomaquina.php">
-				<div id="formularioLogin">
-					<h2>INICIO DE SESIÓN</h2>
-					<label for="usuario">Usuario</label>
-					<input type="text" name="usuario">
-					<label for="password">Contraseña</label>
-					<input type="password" name="password">
-					<button type="submit" value="Entrar">Entrar</button>
-				</div>
-			</form>-->
 	</main>
 	<footer>
 		<div id="copy">

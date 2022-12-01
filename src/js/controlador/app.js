@@ -7,7 +7,6 @@ import { VistaJuego } from "../vistas/vistajuego.js";
  * Controlador de la aplicación
  */
 class Controlador {
-
     /**
      * Constructor de la aplicación
      * Al cargar la página llama a la funcion iniciar
