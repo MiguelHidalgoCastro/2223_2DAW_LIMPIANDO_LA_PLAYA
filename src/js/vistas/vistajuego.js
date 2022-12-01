@@ -51,6 +51,10 @@ export class VistaJuego {
         this.jugador = new Jugador()
         this.jugador.asignarPuntos(2000) //Para probar los upgrade
 
+        //Creo los enemigos
+        this.enemigos = []
+        this.enemyCount = 9
+
         //Creo las torres
         let torrelvl1 = new Torre()
         torrelvl1.asignarEspecificacion(torrelvl1.especificacionlvl1())
@@ -72,7 +76,48 @@ export class VistaJuego {
         this.canvas.onmouseup = this.soltar.bind(this)
         this.canvas.onmousemove = this.moverPulsado.bind(this)
         this.canvas.onmouseover = this.mouseover.bind(this)
+
+        this.spawnEnemigos()
+        this.animarEnemigos()
+        //this.dibujar()
+    }
+
+    animarEnemigos() {
+        //setInterval(this.animarEnemigos, 30)
+        this.animacion = requestAnimationFrame(this.animarEnemigos.bind(this))
         this.dibujar()
+        for (let i = this.enemigos.length - 1; i >= 0; i--) {
+            const enemigo = this.enemigos[i]
+            enemigo.actualizar();
+
+            if (enemigo.position.x > this.canvas.width) {
+                this.jugador.vidas -= 1
+                this.enemigos.splice(i, 1)
+
+                if (this.jugador.vidas === 0) {
+                    this.ctx.font = '40px "Press Start 2P"';
+                    //Que te ponga gameover
+                    this.ctx.fillStyle = 'black'
+                    this.ctx.fillText("Game over", this.canvas.width / 4, this.canvas.height / 2)
+                    cancelAnimationFrame(this.animacion)
+                }
+            }
+            if (this.enemigos.length === 0) {
+                this.enemyCount += 2
+                this.spawnEnemigos()
+            }
+        }
+
+    }
+
+    spawnEnemigos() {
+        for (let i = 1; i < this.enemyCount + 1; i++) {
+            const diferenciaX = i * 100
+            this.enemigos.push(
+                new Enemigo(this.ctx, {
+                    position: { x: waypoints[0].x - diferenciaX, y: waypoints[0].y }
+                }))
+        }
     }
     //DIBUJAR TODO
     dibujarRect(x, y, w, h, color) {
@@ -110,7 +155,7 @@ export class VistaJuego {
             this.ctx.fillStyle = r.fill;
             this.dibujarRect(r.x, r.y, r.width, r.height);
             if (r.lvl == 1)
-                this.ctx.drawImage(this.lvl1, r.x, r.y )
+                this.ctx.drawImage(this.lvl1, r.x, r.y)
             if (r.lvl == 2)
                 this.ctx.drawImage(this.lvl2, r.x, r.y)
             if (r.lvl == 3)
@@ -127,7 +172,7 @@ export class VistaJuego {
             if (r.lvl == 2)
                 this.ctx.drawImage(this.lvl2, r.x, r.y)
             if (r.lvl == 3)
-                this.ctx.drawImage(this.lvl3, r.x, r.y )
+                this.ctx.drawImage(this.lvl3, r.x, r.y)
         }
 
         //ZONAS ATAQUE
@@ -307,7 +352,7 @@ export class VistaJuego {
                 }
             }
         }
-        this.dibujar()
+        //this.dibujar()
     }
     moverPulsado(e) {
         //console.log("moviendo")
@@ -338,7 +383,7 @@ export class VistaJuego {
 
             }
             // redraw the scene with the new rect positions
-            this.dibujar()
+            // this.dibujar()
 
             // reset the starting mouse position for the next mousemove
             this.startX = mx
@@ -432,7 +477,7 @@ export class VistaJuego {
             }
 
         });
-        this.dibujar()
+        //this.dibujar()
     }
 
 }

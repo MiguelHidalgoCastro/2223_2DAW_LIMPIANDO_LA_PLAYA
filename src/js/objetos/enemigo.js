@@ -3,54 +3,57 @@
  */
 
 export class Enemigo {
-    constructor() {
-        this.x
-        this.y
-        this.width = 32
-        this.height = 32
-        this.waypointIndice = 0
-        this.centrar = {
-            x: this.x + this.width / 2,
-            y: this.y + this.height / 2
-        }
-        this.velocidad = {
-            x: 0,
-            y: 0
-        }
-    }
+	constructor(ctx, { position = { x: 0, y: 0 } }) {
+		this.position = position
+		this.width = 32
+		this.height = 32
+		this.waypointIndice = 0
+		this.centrar = {
+			x: this.position.x + this.width / 2,
+			y: this.position.y + this.height / 2
+		}
+		this.velocidad = {
+			x: 0,
+			y: 0
+		}
+		this.ctx = ctx
+	}
 
-    crearEnemigo(coordX, coordY, width, height, velocidad) {
-        this.x = coordX
-        this.y = coordY
-        this.width = width
-        this.height = height
-        this.velocidad.x = velocidad.x
-        this.velocidad.y = velocidad.y
-    }
+	pintar() {
+		this.ctx.fillStyle = 'red'
+		this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
+	}
+	borrar() {
+		this.ctx.clearRect(this.position.x, this.position.y, this.width, this.height)
+	}
 
-    setwaypointindice(waypoint) {
-        this.waypointIndice = waypoint
-    }
+	actualizar() {
+		this.borrar()
+		const waypoint = waypoints[this.waypointIndice]
+		const distanciaY = waypoint.y - this.centrar.y
+		const distanciaX = waypoint.x - this.centrar.x
+		const angulo = Math.atan2(distanciaY, distanciaX)
+		//Aqui se puede ajustar la rapidez
+		const rapidez = 3
+		this.velocidad.x = Math.cos(angulo) * rapidez
+		this.velocidad.y = Math.sin(angulo) * rapidez
+		this.position.x += this.velocidad.x
+		this.position.y += this.velocidad.y
 
-    getwaypointinidice() {
-        return this.waypointIndice
-    }
+		this.centrar = {
+			x: this.position.x + this.width / 2,
+			y: this.position.y + this.height / 2
+		}
 
-    setVelocidad(velX, velY) {
-        this.velocidad.x = velX
-        this.velocidad.y = velY
-    }
-
-    getVelocidad() {
-        return this.velocidad
-    }
-
-    setPosicion(coordX, coordY) {
-        this.x = coordX
-        this.y = coordY
-        this.centrar = {
-            x: this.x + this.width / 2,
-            y: this.y + this.height / 2
-        }
-    }
+		if (
+			Math.abs(Math.round(this.centrar.x) - Math.round(waypoint.x)) <
+			Math.abs(this.velocidad.x) &&
+			Math.abs(Math.round(this.centrar.y) - Math.round(waypoint.y)) <
+			Math.abs(this.velocidad.y) &&
+			this.waypointIndice < waypoints.length - 1
+		) {
+			this.waypointIndice++
+		}
+		this.pintar()
+	}
 }
