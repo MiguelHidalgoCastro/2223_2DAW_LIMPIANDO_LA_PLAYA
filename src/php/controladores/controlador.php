@@ -51,7 +51,7 @@
 		public function modificarConfiguracion($datosConfig){
 			
 			if($this->objeto->updateDatosConfig($datosConfig)){
-				//header('Location: configuracion.php'); //Para que la página se recargue y salgan los datos actualizados en el input.
+				header('Location: configuracion.php'); //Para que la página se recargue y salgan los datos actualizados en el input.
 			}
 			else{
 				return true;
@@ -72,10 +72,13 @@
 		}
 		/**
 		 * Le manda los nuevos datos de enemigo al modelo.
-		 * @param {Array} $datos Array con los nuevos datos
+		 * @param {Array} $datos Array con los nuevos datos.
+		 * @param {Array} $file Array con los datos de un fichero (name, tmp_name, error...).
+		 * @param {String} $rutaImagenEliminar Nombre de la ruta de la imagen antigua asociada al enemigo.
+		 * @param {Integer} $id Id del enemigo que se va a modificar.
 		 */
-		public function modificarEnemigo($datosEnemigo, $id){
-			if($this->objeto->updateDatosEnemigo($datosEnemigo, $id)){
+		public function modificarEnemigo($datosEnemigo, $file, $rutaImagenEliminar, $id){
+			if($this->objeto->updateDatosEnemigo($datosEnemigo, $file, $rutaImagenEliminar, $id)){
 				header('Location: listarenemigos.php'); //Para que la página se recargue y salgan los datos actualizados en la tabla.
 			}
 			else{
@@ -89,6 +92,19 @@
 		public function borrarEnemigo($id){
 			if($this->objeto->borrarDatosEnemigo($id)){
 				header('Location: listarenemigos.php'); //Para que la página se recargue y salgan los datos actualizados en la tabla
+			}
+		}
+		/**
+		 * Le manda los datos del enemigo a crear al modelo.
+		 * @param {Array} $datos Array con los nuevos datos.
+		 * @param {Array} $file Array con los datos de un fichero (name, tmp_name, error...).
+		 */
+		public function altaEnemigo($datosEnemigo, $file){
+			if($this->objeto->altaDatosEnemigo($datosEnemigo, $file)){
+				header('Location: listarenemigos.php'); //Para que la página se recargue y salgan los datos actualizados en la tabla.
+			}
+			else{
+				return true;
 			}
 		}
 	}

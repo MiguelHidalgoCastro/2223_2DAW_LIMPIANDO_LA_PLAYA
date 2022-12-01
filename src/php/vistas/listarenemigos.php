@@ -51,6 +51,7 @@
 			</nav>
 		</header>
 		<main>
+			<button id="anadirenemigo"><a href="anadirenemigos.php">Añadir</a></button>
 			<div id="divTablaEnemigos">
 				<table>
 					<thead>

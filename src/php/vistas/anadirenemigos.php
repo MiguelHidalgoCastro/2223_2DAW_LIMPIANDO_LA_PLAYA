@@ -12,12 +12,10 @@
 	
 	$controlador = new Controlador();
 	
-	$id=$_GET["variable1"];
+	var_dump($_POST);
 	
-	$datos = $controlador->datosEnemigoModificar($id);
-	var_dump($datos[0]["nombreImagen"]);
 	if(isset($_POST) && !empty($_POST)){
-		$vacio=$controlador->modificarEnemigo($_POST, $_FILES ,$datos[0]["nombreImagen"], $id);
+		$vacio=$controlador->altaEnemigo($_POST,$_FILES);
 	}
 	
 	if($vacio){
@@ -33,7 +31,7 @@
 		<meta name="author" content="Grupo Limpiemos La Playa 2DAW 22/23" />
 		<link rel="shortcut icon" href="../../img/logo/logoicon.png">
 		<link rel="stylesheet" href="../../css/style.css">
-		<title>Modificar Enemigos</title>
+		<title>Alta Enemigos</title>
 	</head>
 	<body>
 		<header class="header">
@@ -62,19 +60,18 @@
 		<main>
 			<div id="divConfiguracion">
 				<form enctype="multipart/form-data" action="" id="formularioModificarEnemigo" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este enemigo?.')">
-					<h2>Modificación</h2>
+					<h2>Alta enemigos</h2>
 					<label for="nombre">Nombre enemigo</label>
 					<?php
-						echo 	'<input value="'.$datos[0]["nombre"].'" type="text" name="nombre"/>
+						echo 	'<input type="text" name="nombre"/>
 								<label for="velocidadMov">Velocidad movimiento</label>
-								<input value="'.$datos[0]["velocidadMov"].'" type="text" name="velocidadMov"/>
+								<input type="text" name="velocidadMov"/>
 								<label for="puntos">Puntos</label>
-								<input value="'.$datos[0]["puntos"].'" type="text" name="puntos"/>
+								<input type="text" name="puntos"/>
 								<label for="nombreImagen">Nombre de la imagen</label>
-								<img height="100px width="100px"" src = "'.$datos[0]["nombreImagen"].'"/>
 								<input type="file" name="nombreImagen"/>';
 					?>
-					<input type="submit" value="Modificar"/>
+					<input type="submit" value="Añadir"/>
 				</form>
 			</div>
 		</main>
