@@ -90,7 +90,6 @@ header.header .nav-links li:hover {
 }
 
 header.header .nav-links a {
-    font-size: 700;
     color: #eceff1;
     text-decoration: none;
 }
@@ -130,6 +129,10 @@ nav label#btnMenu {
     /*MOD*/
 }
 
+li a#resalto{
+	color:orange;
+}
+
 
 /*-------------Estilo tabla Vista Ranking-------------*/
 div#tablaRanking {
@@ -144,7 +147,6 @@ div#tablaRanking {
     background-color: #AFDAFF;
     box-shadow: 5px 10px 10px black;
     font-size: 24px;
-
 }
 
 div#tablaRanking>table {
@@ -192,7 +194,7 @@ main div#juego {
 main div#juego canvas {
     width: 960px;
     border: 1px solid black;
-    margin-top: 3vh;
+	margin-top: 3vh;
     /*MOD*/
     background-color: #E9FAFF;
 }
@@ -200,10 +202,10 @@ main div#juego canvas {
 /*** Estilo del formulario del login ***/
 
 main form div#formularioLogin {
-    width: 400px;
-    height: 220px;
-    padding: 30px;
-    margin: 50px auto;
+    width: 29.2825%;/*400px*/
+	height:220px;
+    padding: 4.56vh 2.1961%;
+    margin: 7.6136vh auto;
     border-radius: 4px;
     background-color: #E9FAFF;
     box-shadow: 5px 10px 10px #444A61;
@@ -216,30 +218,28 @@ main form#login h2 {
 
 div#formularioLogin input[type="text"],
 div#formularioLogin input[type="password"] {
-    width: 300px;
-    height: 30px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+    width: 88.2352%; /*300px*/
+    height: 4.56vh;
+    margin: 0 0 2.9411%;
+    padding: 0 0 0 2.9411%;
     display: block;
 }
 
-div#formularioLogin input[type="text"]:focus,
+div#formularioLogin input[type="text"]:focus, 
 div#formularioLogin input[type="password"]:focus {
     background-color: #AFDAFF;
     outline: none;
 }
 
 div#formularioLogin button {
-    width: 30%;
+    width: 100px;
     padding: 8px;
     background: #66727e;
     border-radius: 5px;
     border-style: none;
-    float: right;
     cursor: pointer;
     text-transform: uppercase;
     color: white;
-    margin-bottom: 10px;
 }
 
 div#formularioLogin button:hover {
@@ -249,9 +249,9 @@ div#formularioLogin button:hover {
 
 /*** Estilo de la vista de alta ***/
 main form div#formularioAlta {
-    width: 400px;
-    height: 280px;
-    padding: 30px;
+	width: 29.2825%;
+    height: 220px;
+    padding: 4.56vh 2.1961%;
     margin: 50px auto;
     border-radius: 4px;
     background-color: #E9FAFF;
@@ -265,10 +265,10 @@ main form#alta h2 {
 
 div#formularioAlta input[type="text"],
 div#formularioAlta input[type="password"] {
-    width: 300px;
-    height: 30px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+    width: 88.2352%; /*300px*/
+    height: 4.56vh;
+    margin: 0 0 2.9411%;
+    padding: 0 0 0 2.9411%;
     display: block;
 }
 
@@ -278,8 +278,8 @@ div#formularioAlta input[type="password"]:focus {
     outline: none;
 }
 
-div#formularioAlta submit {
-    width: 30%;
+div#formularioAlta input[type="submit"] {
+    width: 100px;
     padding: 8px;
     background: #66727e;
     border-radius: 5px;
@@ -291,17 +291,9 @@ div#formularioAlta submit {
     margin: 0 auto;
 }
 
-div#formularioAlta submit:hover {
+div#formularioAlta input[type="submit"]:hover {
     opacity: 0.8;
     border: 1px silver solid;
-}
-
-
-div#formularioAlta select {
-    width: 130px;
-    height: 30px;
-    margin-bottom: 10px;
-    display: block;
 }
 
 /*** Estilo de la vista de inicio de administrador ***/
@@ -337,8 +329,6 @@ footer div#rrss img:hover {
     transform: scale(1.2);
 }
 
-
-
 /*-------------Media Query Moviles-------------*/
 @media (max-width: 960px) {
     body {
@@ -348,6 +338,7 @@ footer div#rrss img:hover {
     nav label#btnMenu {
         display: block;
     }
+	
 
     /*-------------Ajustes de la navbar-------------*/
 
@@ -400,6 +391,18 @@ footer div#rrss img:hover {
     nav input#check:checked~ul {
         left: 0;
     }
+	
+	/*------------- Ajustes del div inicio sesión -------------*/
+	main form div#formularioLogin {
+    width: 50%;/*400px*/
+	height:220px;
+    padding: 4.56vh 2.1961%;
+    margin: 7.6136vh auto;
+    border-radius: 4px;
+    background-color: #E9FAFF;
+    box-shadow: 5px 10px 10px #444A61;
+    border: 1px solid #383e4c;
+	}
 
     /*------------- Ajustes del div aviso inicio -------------*/
     main p#bienvenida {
