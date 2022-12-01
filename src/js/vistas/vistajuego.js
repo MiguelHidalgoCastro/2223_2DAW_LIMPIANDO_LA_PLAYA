@@ -4,6 +4,7 @@ const MEDIDA = 32
 
 import { Torre } from "../objetos/torre.js"
 import { Jugador } from "../objetos/jugador.js"
+import { Enemigo } from "../objetos/enemigo.js"
 export class VistaJuego {
 
     constructor(canvas) {
@@ -89,11 +90,16 @@ export class VistaJuego {
         this.ctx.closePath()
         this.ctx.fill()
     }
+    dibujarEnemigos(x, y, w, h) {
+        this.ctx.fillStyle = 'red'
+        this.ctx.fillRect(x, y, w, h)
+    }
 
     clear() {
         this.ctx.drawImage(this.escenario, 0, 0)
     }
     dibujar() {
+
         this.clear()
         //this.dibujarGrid()
         this.dibujarLetras()
@@ -104,7 +110,7 @@ export class VistaJuego {
             this.ctx.fillStyle = r.fill;
             this.dibujarRect(r.x, r.y, r.width, r.height);
             if (r.lvl == 1)
-                this.ctx.drawImage(this.lvl1, r.x, r.y)
+                this.ctx.drawImage(this.lvl1, r.x, r.y )
             if (r.lvl == 2)
                 this.ctx.drawImage(this.lvl2, r.x, r.y)
             if (r.lvl == 3)
@@ -121,7 +127,7 @@ export class VistaJuego {
             if (r.lvl == 2)
                 this.ctx.drawImage(this.lvl2, r.x, r.y)
             if (r.lvl == 3)
-                this.ctx.drawImage(this.lvl3, r.x, r.y)
+                this.ctx.drawImage(this.lvl3, r.x, r.y )
         }
 
         //ZONAS ATAQUE
@@ -139,6 +145,7 @@ export class VistaJuego {
         }
 
     }
+
 
     dibujarGrid() {
         this.ctx.strokeStyle = 'black'
@@ -179,7 +186,7 @@ export class VistaJuego {
     dibujarLetras() {
         this.ctx.beginPath()
         this.ctx.fillStyle = 'white'
-        this.ctx.font = '30px "Press Start 2P"'
+        this.ctx.font = '12px "Press Start 2P"'
         this.ctx.fillText("LVL1", MEDIDA * 10 - 16, MEDIDA * 16 - 8)
         this.ctx.fillText("LVL2", MEDIDA * 14 - 16, MEDIDA * 16 - 8)
         this.ctx.fillText("LVL3", MEDIDA * 18 - 16, MEDIDA * 16 - 8)
@@ -195,7 +202,7 @@ export class VistaJuego {
     dibujarRecogidos(coordX, coordY, cuantos) {
         this.ctx.beginPath()
         this.ctx.fillStyle = 'white'
-        this.ctx.font = '30px "Press Start 2P"'
+        this.ctx.font = '26px "Press Start 2P"'
         this.ctx.fillText(cuantos, coordX, coordY)
         this.ctx.stroke()
         this.ctx.closePath()
@@ -427,4 +434,5 @@ export class VistaJuego {
         });
         this.dibujar()
     }
+
 }
