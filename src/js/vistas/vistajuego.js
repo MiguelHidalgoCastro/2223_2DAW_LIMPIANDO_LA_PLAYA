@@ -78,13 +78,43 @@ export class VistaJuego {
         this.canvas.onmouseover = this.mouseover.bind(this)
 
         this.spawnEnemigos()
-        this.animarEnemigos()
+        this.animar()
         //this.dibujar()
     }
 
-    animarEnemigos() {
+
+    //DIBUJAR TODO
+    dibujarRect(x, y, w, h, color) {
+        this.ctx.beginPath()
+        this.ctx.rect(x, y, w, h)
+        this.ctx.fillStyle = color
+        this.ctx.closePath()
+        this.ctx.fill()
+    }
+
+    dibujarArc(x, y, radio) {
+        this.ctx.beginPath()
+        this.ctx.arc(x + 16, y + 16, radio, 0, 2 * Math.PI, false)
+        this.ctx.fillStyle = "rgba(0, 0, 0, .1)"
+        this.ctx.closePath()
+        this.ctx.fill()
+    }
+
+    spawnEnemigos() {
+        for (let i = 1; i < this.enemyCount + 1; i++) {
+            const diferenciaX = i * 100
+            this.enemigos.push(
+                new Enemigo(this.ctx, {
+                    position: { x: waypoints[0].x - diferenciaX, y: waypoints[0].y }
+                }))
+        }
+    }
+
+    
+    //Aqui es el main para que funcione el juego
+    animar() {
         //setInterval(this.animarEnemigos, 30)
-        this.animacion = requestAnimationFrame(this.animarEnemigos.bind(this))
+        this.animacion = requestAnimationFrame(this.animar.bind(this))
         this.dibujar()
         for (let i = this.enemigos.length - 1; i >= 0; i--) {
             const enemigo = this.enemigos[i]
@@ -108,36 +138,6 @@ export class VistaJuego {
             }
         }
 
-    }
-
-    spawnEnemigos() {
-        for (let i = 1; i < this.enemyCount + 1; i++) {
-            const diferenciaX = i * 100
-            this.enemigos.push(
-                new Enemigo(this.ctx, {
-                    position: { x: waypoints[0].x - diferenciaX, y: waypoints[0].y }
-                }))
-        }
-    }
-    //DIBUJAR TODO
-    dibujarRect(x, y, w, h, color) {
-        this.ctx.beginPath()
-        this.ctx.rect(x, y, w, h)
-        this.ctx.fillStyle = color
-        this.ctx.closePath()
-        this.ctx.fill()
-    }
-
-    dibujarArc(x, y, radio) {
-        this.ctx.beginPath()
-        this.ctx.arc(x + 16, y + 16, radio, 0, 2 * Math.PI, false)
-        this.ctx.fillStyle = "rgba(0, 0, 0, .1)"
-        this.ctx.closePath()
-        this.ctx.fill()
-    }
-    dibujarEnemigos(x, y, w, h) {
-        this.ctx.fillStyle = 'red'
-        this.ctx.fillRect(x, y, w, h)
     }
 
     clear() {
@@ -236,6 +236,8 @@ export class VistaJuego {
         this.ctx.fillText("LVL2", MEDIDA * 14 - 16, MEDIDA * 16 - 8)
         this.ctx.fillText("LVL3", MEDIDA * 18 - 16, MEDIDA * 16 - 8)
 
+
+        //Menu superior derecha
         this.ctx.fillStyle = 'black'
         this.ctx.fillText("Puntos: " + this.jugador.puntos, MEDIDA * 20, 32)
         this.ctx.fillText("Vidas: " + this.jugador.vidas, MEDIDA * 26, 32)

@@ -3,6 +3,12 @@
  */
 
 export class Enemigo {
+	/**
+	 * 
+	 * @param {Context} ctx 
+	 * @param {*} param1 
+	 * 
+	 */
 	constructor(ctx, { position = { x: 0, y: 0 } }) {
 		this.position = position
 		this.width = 32
