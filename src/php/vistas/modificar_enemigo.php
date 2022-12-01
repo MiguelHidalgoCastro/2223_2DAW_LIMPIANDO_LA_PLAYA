@@ -15,7 +15,7 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
     <meta name="author" content="Grupo Limpiemos La Playa 2DAW 22/23" />
     <link rel="shortcut icon" href="../../img/logo/logoicon.png">
     <link rel="stylesheet" href="../../css/style.css">
-    <title>Añadir enemigo</title>
+    <title>Modificar enemigo</title>
 </head>
 
 <body>
@@ -44,13 +44,13 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
     </header>
     <main>
         <div id="divNuevoEnemigo">
-            <h2>Añadir nuevo enemigo</h2><br>
-            <form action="nuevo_enemigo.php" method="POST">
-                <label>Nombre del enemigo: <input type="text" name="nameEnemigo"></label> <br><br><br>
-                <label>Velodidad del enemigo: <input type="number" name="velEnemigo"></label><br><br><br>
-                <label>Puntos del enemigo: <input type="number" name="ptsEnemigo"></label><br><br><br>
-                <label>Nombre de la imagen: <br><br><input type="file" name="nameImgEnemigo"></label> <br><br><br>
-                <input type="submit" value="AÑADIR"><br><br>
+            <h2>Modificar enemigo</h2><br>
+            <form action="modificar_enemigo.php" method="POST">
+                <label>Nombre del enemigo: <input type="text" name="nameEnemigo" value="Botella de plástico"></label> <br><br><br>
+                <label>Velodidad del enemigo: <input type="number" name="velEnemigo" value="50"></label><br><br><br>
+                <label>Puntos del enemigo: <input type="number" name="ptsEnemigo" value="160"></label><br><br><br>
+                <label>Nombre de la imagen: <br><br><input type="file" name="nameImgEnemigo" value="<img src=>"></label> <br><br><br>
+                <input type="submit" value="MODIFICAR"><br><br>
 
                 <!--Para saber como se debe generar los inputs correctamente
                 <label>Ejemplo<input type="text"></label>

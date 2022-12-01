@@ -14,7 +14,7 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 		<meta name="author" content="Grupo Limpiemos La Playa 2DAW 22/23" />
 		<link rel="shortcut icon" href="../../img/logo/logoicon.png">
 		<link rel="stylesheet" href="../../css/style.css">
-		<title>Gestion de enemigos</title>
+		<title>Gestion de torres</title>
 	</head>
 	<body>
 		<header class="header">
@@ -42,21 +42,21 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 		</header><br>
 		<main>
 			<div id="divEnemigos">
-				<h1>Listado de enemigos</h1><br>
+				<h1>Listado de torres</h1><br>
 				<table id="tableEnemigos">               
 					<tr>
 						<th>Nombre</th>
-						<th>Velocidad</th>
-						<th>Puntos</th>
+						<th>Radio de actuación</th>
+						<th>Velocidad de recorrido</th>
 						<th>Nombre img</th>
 						<th>Procesos</th>
 					</tr>
 					<tr>
-						<td>Botella de plático</td>
-						<td>10</td>
-						<td>100</td>
+						<td>Pescador solitario</td>
+						<td>150</td>
+						<td>20 seg</td>
 						<td>Nose</td>
-						<td><a href="modificar_enemigo.php"><img src="../../img/iconos/edit.png"></a> <a href="gestion_enemigos.php"><img src="../../img/iconos/delete.png"></a></td>
+						<td><a href="modificar_torre.php"><img src="../../img/iconos/edit.png"></a> <a href="gestion_torres.php"><img src="../../img/iconos/delete.png"></a></td>
 					</tr>
 					<!--
 					<tr>
@@ -75,7 +75,7 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 					</tr>
 					-->
 				</table><br>
-				<a href="nuevo_enemigo.php"><input type="submit" value="AÑADIR ENEMIGO"></a><br>
+				<a href="nueva_torre.php"><input type="submit" value="AÑADIR TORRE"></a><br>
 			</div>
 		</main>
 		<footer>
@@ -94,7 +94,6 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 				<a target="_blank" title="Instagram" href=""><img class="rrss" alt="Icono red social Instagram" src="../../img/rrss/instagramnar1.png"></a>
 				<a target="_blank" title="LinkedIn" href=""><img class="rrss" alt="Icono red social LinkedIn" src="../../img/rrss/linkedinnar1.png"></a>
 			</div>
-		</footer>
-		
+		</footer>	
 	</body>
 </html>
