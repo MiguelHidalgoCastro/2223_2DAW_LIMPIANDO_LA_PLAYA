@@ -48,7 +48,7 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
             <form action="modificar_enemigo.php" method="POST">
                 <label>Nombre del enemigo: <input type="text" name="nameEnemigo" value="Botella de plástico"></label> <br><br><br>
                 <label>Velodidad del enemigo: <input type="number" name="velEnemigo" value="50"></label><br><br><br>
-                <label>Puntos del enemigo: <input type="number" name="ptsEnemigo" value="160"></label><br><br><br>
+                <label>Puntos del enemigo: <input type="number" name="ptsEnemigo" value="100"></label><br><br><br>
                 <label>Nombre de la imagen: <br><br><input type="file" name="nameImgEnemigo" value="<img src=>"></label> <br><br><br>
                 <input type="submit" value="MODIFICAR"><br><br>
 

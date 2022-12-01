@@ -23,18 +23,24 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
             <div class="logo">
                 <img src="../../img/logo/logodefinitivo1.png" alt="Logo Limpiemos La Playa" id="logo" />
             </div>
-            <ul class="nav-links">
-				<li><a href="inicio_admin.php">Inicio</a></li>
-				<li><a href="#">Configuración</a></li>
-				<li><a href="#">Escenarios</a></li>
-				<li><a href="#">Defensas</a></li>
-				<li><a href="#">Enemigos</a></li>
-				<li>
-					<form action="" method="POST">
-						<input class="btn" type="submit" name="cerrarSesion" value="Cerrar Sesión" />
-					</form>
-				</li>
-			</ul>
+            <nav id="flex-container">
+                 <input type="checkbox" id="check" />
+				<label for="check" id="btnMenu">
+					<img src="../../img/iconos/menu.png" alt="Icono de menú" />
+				</label>
+                <ul class="nav-links">
+                    <li id="item1"><a href="inicio_admin.php">Inicio</a></li>
+                    <li id="item2"><a href="#">Configuración</a></li>
+                    <li id="item3"><a href="#">Escenarios</a></li>
+                    <li id="item4"><a href="#">Defensas</a></li>
+                    <li id="item5"><a href="#">Enemigos</a></li>
+                    <li id="item6">
+                        <form action="" method="POST">
+                            <input class="btn" type="submit" name="cerrarSesion" value="Cerrar Sesión" />
+                        </form>
+                    </li>
+                </ul>
+                </nav>
         </header>
         <main>
             <div id="divConfiguracion">

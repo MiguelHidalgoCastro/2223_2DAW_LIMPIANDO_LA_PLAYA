@@ -130,6 +130,35 @@ nav label#btnMenu {
     /*MOD*/
 }
 
+/*Estilo del contenedor*/
+#flex-container{
+    display: flex;
+}
+
+/*Estilo de los items*/
+#item1{
+    flex-grow: 1;
+}
+
+#item2{
+    flex-shrink: 0;
+    flex-grow: 2;
+}
+#item3{
+    flex-grow: 1;
+}
+
+#item4{
+    flex-grow: 1;
+}
+#item5{
+    flex-grow: 1;
+}
+
+#item6{
+    flex-grow: 1;
+}
+
 
 /*-------------Estilo tabla Vista Ranking-------------*/
 div#tablaRanking {
@@ -342,9 +371,9 @@ footer div#rrss img:hover {
 
 /*Se refiere al div con id="divConfiguracion" que esta dentro del main*/
 main div#divConfiguracion {
-    width: 810px; /*Ancho del formulario*/
+    width: 53.77164973%; /*Ancho del formulario 810px y su contenedor 1506.37px*/
     /*height: 250px;*/
-    padding: 40px; 
+    padding: 40px; /*Ancho del padding 40px y su contenedor 807.737px*/
     margin: 50px auto;
     background-color: #E9FAFF;  
     border-radius: 7px;
@@ -368,7 +397,7 @@ main div#divConfiguracion form hr{
 
 /*Modificar los inputs type="text" que estan el en formulario de configuracion*/
 main div#divConfiguracion form input[type="text"]{
-    width: 175px;
+    width: 24.04615763%; /*Contenido width= 175px contenedor width= 727.767*/
     height: 26px;
     margin-bottom: 10px;
     padding-left: 10px;
@@ -378,7 +407,7 @@ main div#divConfiguracion form input[type="text"]{
 
 /*Modificar los inputs type="number" que estan el en formulario de configuracion*/
 main div#divConfiguracion form input[type="number"]{
-    width: 55px;
+    width: 7.557363827%;/*Contenido width= 55px contenedor width= 727.767*/
     height: 26px;
     text-align: center;
     margin-bottom: 10px;
@@ -449,7 +478,7 @@ form#formConfiguracion input[type="submit"]{
 
 /*Se aplica el estilo al div con id="divEnemigos", es el div del listado de los enemigos que hay*/
 div#divEnemigos{
-    width: 800px;
+    width: 58.92481848%;/*Eran 900px y su contenedor 1525,37=100%*/
     background-color: #E9FAFF;
     margin: auto;
     padding: 25px;
@@ -466,7 +495,7 @@ div#divEnemigos h1{
 
 /*Se le aplican estilos a la tabla del listado de enemigos que estan en el div con id="divEnemigos"*/
 div#divEnemigos table#tableEnemigos{
-    width: 700px;
+    width: 89.22755704%; /*Su anchira era 800px y siu contenedor 896,584*/
     text-align: center;
     border-radius: 5px;
     border-color: #AFDAFF;
@@ -504,7 +533,7 @@ div#divEnemigos input[type="submit"]{
 
 /*Aplicamos estilo al div con id="divNuevoEnemigo"*/
 div#divNuevoEnemigo{
-    width: 500px;
+    width: 33.19215603%; /*Su ancbhira era de 500px y su contenedor de 1525.37px*/
     height: 375px;
     padding: 30px;
     margin: 50px auto;
@@ -531,8 +560,8 @@ div#divNuevoEnemigo form input{
 
 /*Se le aplica estilos a los inputs type="number" que estan en el div con id="divNuevoEnemigo"*/
 div#divNuevoEnemigo form input[type="number"]{
-   width: 65px;
-   padding-left: 25px;
+   width: 14.84808129%;/*Su ancbhira era de 65px y su contenedor de 437.767px*/
+   padding-left: 25px;/*Su ancbhira era de 25px y su contenedor de 64.9833px*/
 }
 
 /*Se le aplica estilos a los inputs type="sumbit" que estan en el div con id="divNuevoEnemigo"
@@ -553,22 +582,23 @@ div#divNuevoEnemigo form input[type="submit"]{
 /*--------FALTA FLEXBOX Y MQ DEL MOKUP DE AÑADIR UN ENEMIGO------*/
 
 /*-------------Media Query Moviles-------------*/
-@media (max-width: 960px) {
+@media (max-width: 960px) { /*Los siguientes estilos se aplican cuando el ancho de la páfina es inferior a 960px*/
     body {
         padding-bottom: 120px;
     }
 
     nav label#btnMenu {
-        display: block;
+        display: block; /*El btonos de cerrar sesion de coloca en la siguiente linea 
+        comportandose como un elemento en bloque*/
     }
 
     /*-------------Ajustes de la navbar-------------*/
 
-    header.header .logo img {
+    header.header .logo img { /*Se modifica el tamaño del logo*/
         height: 55px;
     }
 
-    .nav-links {
+    .nav-links { /*Se modifican los li del nav*/
         margin-top: 0.4vh;
         position: fixed;
         width: 100%;
@@ -585,7 +615,7 @@ div#divNuevoEnemigo form input[type="submit"]{
         padding-left: 20px;
     }
 
-    main div#juego canvas {
+    main div#juego canvas { /*Desaparece el div del juego*/
         display: none;
     }
 
@@ -600,7 +630,7 @@ div#divNuevoEnemigo form input[type="submit"]{
     }
 
     .nav-links li a,
-    .btn input {
+    .btn input { /*Aparece el icono para mostrar el menu vertical*/
         font-size: 30px;
     }
 
@@ -628,7 +658,7 @@ div#divNuevoEnemigo form input[type="submit"]{
     }
 
     /*------------- Ajustes del footer -------------*/
-    footer div#rrss {
+    footer div#rrss { /*Los elementos dle footer se colcan uno debajo de otros como elementos en bloque*/
         float: none;
     }
 

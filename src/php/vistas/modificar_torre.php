@@ -44,8 +44,8 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
             <div id="divNuevoEnemigo">
                 <h2>Modificar torre</h2><br>
                 <form action="modificar_torre" method="POST"><!--El actionm todavía no se usa-->
-                    <label>Nombre de la torre: <input type="text" name="nameTorre" value="Torre de dos pescadores"></label> <br><br><br>
-                    <label>Radio de actuación: <input type="number" name="radioTorre" value="200"></label><br><br><br>
+                    <label>Nombre de la torre: <input type="text" name="nameTorre" value="Pescador solitario"></label> <br><br><br>
+                    <label>Radio de actuación: <input type="number" name="radioTorre" value="150"></label><br><br><br>
                     <label>Velocidad de recorrido: <input type="number" name="velTorre" value="20"></label><br><br><br>
                     <label>Nombre de la imagen: <br><br><input type="file" name="nameImgTorre" value="<img src=>"></label> <br><br><br>
                     <input type="submit" value="MODIFICAR"><br><br>

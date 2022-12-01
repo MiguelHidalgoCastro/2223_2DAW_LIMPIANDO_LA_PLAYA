@@ -53,7 +53,7 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 					</tr>
 					<tr>
 						<td>Botella de plático</td>
-						<td>10</td>
+						<td>50</td>
 						<td>100</td>
 						<td>Nose</td>
 						<td><a href="modificar_enemigo.php"><img src="../../img/iconos/edit.png"></a> <a href="gestion_enemigos.php"><img src="../../img/iconos/delete.png"></a></td>
