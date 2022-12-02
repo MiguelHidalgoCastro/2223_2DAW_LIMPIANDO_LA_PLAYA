@@ -1,12 +1,12 @@
 /**
- * author: Sergio Rivera Salgado
+ * @author: Sergio Rivera Salgado
+ * Class Enemigo
  */
-
 export class Enemigo {
 	/**
-	 * 
+	 * Enemigo's Constructor
 	 * @param {Context} ctx 
-	 * @param {*} param1 
+	 * @param {element} param1 Position
 	 * 
 	 */
 	constructor(ctx, { position = { x: 0, y: 0 } }) {
@@ -24,15 +24,22 @@ export class Enemigo {
 		}
 		this.ctx = ctx
 	}
-
+	/**
+	 * Draw Enemy
+	 */
 	pintar() {
 		this.ctx.fillStyle = 'red'
 		this.ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
 	}
+	/**
+	 * Delete Enemy
+	 */
 	borrar() {
 		this.ctx.clearRect(this.position.x, this.position.y, this.width, this.height)
 	}
-
+	/**
+	 * Update Enemy
+	 */
 	actualizar() {
 		this.borrar()
 		const waypoint = waypoints[this.waypointIndice]
