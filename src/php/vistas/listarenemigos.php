@@ -3,7 +3,7 @@
 	session_start();
 	if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 		session_destroy();
-		header('Location: inicio_sesion.php');
+		header('Location:inicio_sesion.php');
 	}
 	
 	include('../controladores/controlador.php');
@@ -41,7 +41,7 @@
 					<li><a href="configuracion.php">Configuración</a></li>
 					<li><a href="#">Escenarios</a></li>
 					<li><a href="#">Defensas</a></li>
-					<li><a id="resalto" href="listarEnemigos.php">Enemigos</a></li>
+					<li><a id="resalto" href="listarenemigos.php">Enemigos</a></li>
 					<li>
 						<form action="" method="POST">
 							<input class="btn" type="submit" name="cerrarSesion" value="Cerrar Sesión" />

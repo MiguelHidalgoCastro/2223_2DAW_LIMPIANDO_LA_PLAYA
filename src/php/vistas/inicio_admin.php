@@ -2,10 +2,10 @@
 	session_start();
 	if (isset($_POST['cerrarSesion'])){
 		session_destroy();
-		header('Location: inicio_sesion.php');
+		header('Location:inicio_sesion.php');
 	}
-	if (!$_SESSION) {
-		header('Location: manolito.html');
+	if (!$_SESSION){
+		header('Location:manolito.html');
 	}
 ?>
 <!DOCTYPE html>

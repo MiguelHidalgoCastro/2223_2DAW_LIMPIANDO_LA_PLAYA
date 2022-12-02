@@ -1,11 +1,19 @@
+/*DROP TABLE IF EXISTS administrador;
+DROP TABLE IF EXISTS configuracion;
+DROP TABLE IF EXISTS escenario;
+DROP TABLE IF EXISTS dificultad;
+DROP TABLE IF EXISTS torres;
+DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS enemigos;
+DROP TABLE IF EXISTS ranking;*/
+
 CREATE TABLE configuracion (
 	rutaTorre VARCHAR(30) NOT NULL DEFAULT "img/torres",
 	rutaEnemigo VARCHAR(30) NOT NULL DEFAULT "img/enemigos",
 	rutaEscenario VARCHAR(30) NOT NULL DEFAULT "img/escenarios",
-	medidaVentanaJuego VARCHAR(30) NOT NULL DEFAULT "960*540",
+	medidaVentanaJuego VARCHAR(30) NOT NULL DEFAULT "960*544",
 	filasRanking TINYINT UNSIGNED NOT NULL DEFAULT 50
 );
-
 
 CREATE TABLE administrador(
 	id TINYINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -32,7 +40,7 @@ CREATE TABLE torres(
 
 CREATE TABLE dificultad(
 	id TINYINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	nombre CHAR(6) NOT NULL
+	nombre CHAR(7) NOT NULL
 );
 
 CREATE TABLE escenario(
@@ -40,11 +48,19 @@ CREATE TABLE escenario(
 	nombre VARCHAR(90) NOT NULL UNIQUE,
 	nombreImagen VARCHAR(50) UNIQUE NOT NULL,
 	idDificultad TINYINT UNSIGNED NOT NULL,
-	CONSTRAINT FK_idDificultad FOREIGN KEY (idDificultad) REFERENCES dificultad (id)escenario 
+	CONSTRAINT FK_idDificultad FOREIGN KEY (idDificultad) REFERENCES dificultad (id)
 );
 
 CREATE TABLE ranking(
 	id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	alias VARCHAR(20) NOT NULL,
 	puntos INT UNSIGNED NOT NULL
-); 
+);
+
+INSERT INTO configuracion (rutaTorre, rutaEnemigo, rutaEscenario, medidaVentanaJuego, filasRanking)
+				VALUES(DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+ 				
+INSERT INTO dificultad(nombre)
+				VALUES	('Fácil'),
+						('Media'),
+						('Difícil');

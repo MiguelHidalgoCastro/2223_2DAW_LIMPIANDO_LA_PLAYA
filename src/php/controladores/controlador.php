@@ -7,10 +7,8 @@
 		private $objeto;
 		/**
 		 * Constructor del modelo que contiene la conexion con el servidor de base de datos
-		 * 
 		 * @return void
 		 */
-		 
 		public function __construct(){
 			$this->objeto = new Modelo();
 		}
@@ -22,20 +20,18 @@
 		 */
 		public function iniciarSesion($nombre, $pass){
 			if(isset($nombre) && !empty($nombre) && isset($pass) && !empty($pass)){
-				
 				if($this->objeto->validarUsuario($nombre , $pass)){
 					header("Location:../vistas/inicio_admin.php");
+					var_dump($nombre);
 				}
 				else
 				{
-					echo "<h1>Login incorrecto</h1>";
-					include ("../vistas/inicio_sesion.html");
+					header("../vistas/inicio_sesion.html");
 				}
 			}
 			else
 			{
-				echo "<h1>Debes introducir el usuario y la contraseña</h1>";
-				include ("../vistas/inicio_sesion.html");
+				header("../vistas/inicio_sesion.html");
 			}
 		}
 		/**
@@ -91,7 +87,7 @@
 		 */
 		public function borrarEnemigo($id){
 			if($this->objeto->borrarDatosEnemigo($id)){
-				header('Location:listarEnemigos.php');
+				header('Location:listarenemigos.php');
 			}
 		}
 		/**

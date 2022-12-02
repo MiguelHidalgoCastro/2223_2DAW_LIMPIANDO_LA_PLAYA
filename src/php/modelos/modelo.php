@@ -31,7 +31,6 @@ class Modelo {
     public function validarUsuario($nombre, $pass){
 		
         if(!empty($nombre) && !empty($pass)){
-			
 			$perfil="LP";
            
 			$consulta =  $this->mysqli->prepare ("SELECT * FROM administrador where nombre = ? and perfil = ?");
