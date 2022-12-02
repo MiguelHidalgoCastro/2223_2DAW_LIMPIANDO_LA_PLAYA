@@ -67,7 +67,7 @@
 						echo 	'<label>Nombre del enemigo: <input type="text" name="nombre" value="'.$datos[0]["nombre"].'"></label> <br><br><br>
 								<label>Velodidad del enemigo: <input type="number" name="velocidadMov" value="'.$datos[0]["velocidadMov"].'"></label><br><br><br>
 								<label>Puntos del enemigo: <input type="number" name="puntos" value="'.$datos[0]["puntos"].'"></label><br><br><br>
-								<label>Imágen del enemigo: <img height="100px" width="100px" src = "'.$datos[0]["nombreImagen"].'"> <br><br><input type="file" name="nombreImagen"></label> <br><br><br>';
+								<label>Imágen del enemigo: <img height="100px" width="100px" src = "'.$datos[0]["nombreImagen"].'"> <br><br><input type="file" accept="image/png, image/jpg"  name="nombreImagen"></label> <br><br><br>';
 					?>
 					
 					<input type="submit" value="MODIFICAR"/>
