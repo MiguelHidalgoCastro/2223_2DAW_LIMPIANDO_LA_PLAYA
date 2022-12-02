@@ -36,7 +36,7 @@
 				<li><a href="configuracion.php">Configuración</a></li>
 				<li><a href="#">Escenarios</a></li>
 				<li><a href="#">Defensas</a></li>
-				<li><a href="#">Enemigos</a></li>
+				<li><a href="listarenemigos.php">Enemigos</a></li>
 				<li>
 					<form action="" method="POST">
 						<input class="btn" type="submit" name="cerrarSesion" value="Cerrar Sesión" />

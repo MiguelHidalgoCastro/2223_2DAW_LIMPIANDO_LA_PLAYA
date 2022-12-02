@@ -3,7 +3,7 @@
 	session_start();
 	if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 		session_destroy();
-		header('Location: inicio_sesion.html');
+		header('Location: inicio_sesion.php');
 	}
 	
 	include('../controladores/controlador.php');
@@ -15,7 +15,7 @@
 	$id=$_GET["variable1"];
 	
 	$datos = $controlador->datosEnemigoModificar($id);
-	var_dump($datos[0]["nombreImagen"]);
+
 	if(isset($_POST) && !empty($_POST)){
 		$vacio=$controlador->modificarEnemigo($_POST, $_FILES ,$datos[0]["nombreImagen"], $id);
 	}
@@ -60,22 +60,19 @@
 			</nav>
 		</header>
 		<main>
-			<div id="divConfiguracion">
+			<div id="divNuevoEnemigo">
+				<h2>Modificar enemigo</h2><br>
 				<form enctype="multipart/form-data" action="" id="formularioModificarEnemigo" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este enemigo?.')">
-					<h2>Modificación</h2>
-					<label for="nombre">Nombre enemigo</label>
 					<?php
-						echo 	'<input value="'.$datos[0]["nombre"].'" type="text" name="nombre"/>
-								<label for="velocidadMov">Velocidad movimiento</label>
-								<input value="'.$datos[0]["velocidadMov"].'" type="text" name="velocidadMov"/>
-								<label for="puntos">Puntos</label>
-								<input value="'.$datos[0]["puntos"].'" type="text" name="puntos"/>
-								<label for="nombreImagen">Nombre de la imagen</label>
-								<img height="100px width="100px"" src = "'.$datos[0]["nombreImagen"].'"/>
-								<input type="file" name="nombreImagen"/>';
+						echo 	'<label>Nombre del enemigo: <input type="text" name="nombre" value="'.$datos[0]["nombre"].'"></label> <br><br><br>
+								<label>Velodidad del enemigo: <input type="number" name="velocidadMov" value="'.$datos[0]["velocidadMov"].'"></label><br><br><br>
+								<label>Puntos del enemigo: <input type="number" name="puntos" value="'.$datos[0]["puntos"].'"></label><br><br><br>
+								<label>Imágen del enemigo: <img height="100px" width="100px" src = "'.$datos[0]["nombreImagen"].'"> <br><br><input type="file" name="nombreImagen"></label> <br><br><br>';
 					?>
-					<input type="submit" value="Modificar"/>
+					
+					<input type="submit" value="MODIFICAR"/>
 				</form>
+				<a href="listarenemigos.php"><button>CANCELAR</button></a>
 			</div>
 		</main>
 		<footer>

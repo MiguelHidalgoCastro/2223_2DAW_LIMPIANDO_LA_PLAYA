@@ -91,7 +91,6 @@ class Modelo {
 	 * @param {Array} $datos Lista de datos que han sido introducidos en el formulario de configuración.
 	 */
 	public function updateDatosConfig($datos){
-		var_dump($datos["rutaDefensa"]);
 		if(isset($datos["rutaDefensa"]) && !empty($datos["rutaDefensa"]) 
 		&& isset($datos["rutaEnemigo"]) && !empty($datos["rutaEnemigo"])
 		&& isset($datos["rutaEscenario"]) && !empty($datos["rutaEscenario"])
@@ -118,6 +117,7 @@ class Modelo {
 	 * Muestra los valores de todos los enemigos en la tabla de la vista de enemigos.
 	 */
 	public function selectDatosEnemigos($id){
+		$datos=null;
 		
 		if(!isset($id))
 			$consulta = $this->mysqli->query("SELECT * FROM enemigos");
@@ -127,7 +127,9 @@ class Modelo {
 		while($filas=$consulta->fetch_assoc()){
 			$datos[]=$filas;
 		}
+		
 		return $datos;
+		
 	}
 	/**
 	 * Actualiza los datos del enemigo seleccionado en la base de datos.
@@ -136,13 +138,9 @@ class Modelo {
 	public function updateDatosEnemigo($datosEnemigo, $file, $rutaImagenEliminar, $id){
 		if(isset($datosEnemigo["nombre"]) && !empty($datosEnemigo["nombre"])
 		&& isset($datosEnemigo["velocidadMov"]) && !empty($datosEnemigo["velocidadMov"])
-		&& isset($datosEnemigo["puntos"]) && !empty($datosEnemigo["puntos"])){
+		&& isset($datosEnemigo["puntos"]) && !empty($datosEnemigo["puntos"])
+		&& isset($file["nombreImagen"]["name"]) && !empty($file["nombreImagen"]["name"])){
 			
-			
-			/*$consultaSelect = $this->mysqli->query("SELECT nombreImagen FROM enemigos WHERE id=".$id."");
-			$nombreImagenBorrar = $consultaSelect->fetch_assoc();
-			var_dump($nombreImagenBorrar["nombreImagen"]);*/
-			var_dump($rutaImagenEliminar);
 			unlink(realpath($rutaImagenEliminar));
 
 			$nombreImagen = $file["nombreImagen"]["name"];
@@ -174,6 +172,7 @@ class Modelo {
 		$consulta->bind_param("i",$id);
 		$consulta->execute();
 		$consulta->close();
+		return true;
 	}
 	/**
 	 * Alta del enemigo.
@@ -182,8 +181,8 @@ class Modelo {
 	public function altaDatosEnemigo($datosEnemigo,$file){
 		if(isset($datosEnemigo["nombre"]) && !empty($datosEnemigo["nombre"]) 
 		&& isset($datosEnemigo["velocidadMov"]) && !empty($datosEnemigo["velocidadMov"])
-		&& isset($datosEnemigo["puntos"]) && !empty($datosEnemigo["puntos"])){
-			var_dump($datosEnemigo);
+		&& isset($datosEnemigo["puntos"]) && !empty($datosEnemigo["puntos"])
+		&& isset($file["nombreImagen"]["name"]) && !empty($file["nombreImagen"]["name"])){
 			$nombreImagen = $_FILES["nombreImagen"]["name"];
 			$rutaImagen = "../../img/subidas/enemigos/".$nombreImagen;
 			$archivo = $_FILES["nombreImagen"]["tmp_name"];

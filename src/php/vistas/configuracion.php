@@ -3,7 +3,7 @@
 	session_start();
 	if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 		session_destroy();
-		header('Location: inicio_sesion.html');
+		header('Location: inicio_sesion.php');
 	}
 	
 	include('../controladores/controlador.php');
@@ -23,6 +23,7 @@
 	}
 	
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -60,11 +61,11 @@
 		</header>
 		<main>
 			<div id="divConfiguracion">
-				<form action="" id="formularioConfig" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar la configuración?. El juego podría dejar de funcionar')">
-					<h2>CONFIGURACIÓN</h2>
+				<h2>AJUSTAR CONFIGURACION</h2><br>
+				<form action="" id="formConfiguracion" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar la configuración?. El juego podría dejar de funcionar')">
 					<label for="rutaDefensa">Ruta defensa</label>
 					<?php
-						echo 	'<input value="'.$datos["rutaTorre"].'" type="text" name="rutaDefensa"/>
+						/*echo 	'<input value="'.$datos["rutaTorre"].'" type="text" name="rutaDefensa"/>
 								<label for="rutaEnemigo">Ruta enemigo</label>
 								<input value="'.$datos["rutaEnemigo"].'" type="text" name="rutaEnemigo"/>
 								<label for="rutaEscenario">Ruta escenario</label>
@@ -72,7 +73,18 @@
 								<label for="dimensiones">Dimensiones de la pantalla de juego</label>
 								<input readonly value="'.$datos["medidaVentanaJuego"].'" type="text" name="medVentana"/>
 								<label for="numeroRanking">Números de usuarios mostrados en el ránking</label>
-								<input value="'.$datos["filasRanking"].'" type="text" name="numFilas"/>';
+								<input value="'.$datos["filasRanking"].'" type="text" name="numFilas"/>*/
+								
+								
+						echo	'<label>Ruta torre <input value="'.$datos["rutaTorre"].'" type="text" name="rutaDefensa"></label> 
+								<input value="'.$datos["rutaEnemigo"].'" type="text" name="rutaEnemigo" class="rutar"> <label for="rutaEnemigo" class="rutar">Ruta enemigo</label><br>
+								<label class="centro">Ruta escenario <input value="'.$datos["rutaEscenario"].'" type="text" name="rutaEscenario" class="centro"></label><br><br><hr><br>
+								<h4>Medidas de la ventana</h4><br>
+								<!--<label for="medidasVentana" id="medidaVentana">Medidas de la ventana de juego</label><br>-->
+								<label for="dimensiones" class="alto">Dimensiones de la pantalla de juego</label><br><br>
+								<input readonly type="text" name="medVentana" value="'.$datos["medidaVentanaJuego"].'" class=alto><br><br><hr><br>
+								<h4>Filas de la tabla ranking</h4><br>
+								<label class="centro">Jugadores que aparecerán en el ranking <input type="number" value="'.$datos["filasRanking"].'" name="numFilas"></label><br><br>';
 					?>
 					<input type="submit" value="Modificar"/>
 				</form>

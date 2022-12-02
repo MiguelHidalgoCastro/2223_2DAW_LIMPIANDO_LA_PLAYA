@@ -3,7 +3,7 @@
 	session_start();
 	if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 		session_destroy();
-		header('Location: inicio_sesion.html');
+		header('Location: inicio_sesion.php');
 	}
 	
 	include('../controladores/controlador.php');
@@ -12,10 +12,8 @@
 	
 	$controlador = new Controlador();
 	
-	var_dump($_POST);
-	
 	if(isset($_POST) && !empty($_POST)){
-		$vacio=$controlador->altaEnemigo($_POST,$_FILES);
+		$vacio=$controlador->altaEnemigo($_POST, $_FILES);
 	}
 	
 	if($vacio){
@@ -58,21 +56,18 @@
 			</nav>
 		</header>
 		<main>
-			<div id="divConfiguracion">
-				<form enctype="multipart/form-data" action="" id="formularioModificarEnemigo" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este enemigo?.')">
-					<h2>Alta enemigos</h2>
-					<label for="nombre">Nombre enemigo</label>
+			<div id="divNuevoEnemigo">
+				<h2>Añadir nuevo enemigo</h2><br>
+				<form enctype="multipart/form-data" action="" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este enemigo?.')">
 					<?php
-						echo 	'<input type="text" name="nombre"/>
-								<label for="velocidadMov">Velocidad movimiento</label>
-								<input type="text" name="velocidadMov"/>
-								<label for="puntos">Puntos</label>
-								<input type="text" name="puntos"/>
-								<label for="nombreImagen">Nombre de la imagen</label>
-								<input type="file" name="nombreImagen"/>';
+						echo 	'<label>Nombre del enemigo: <input type="text" name="nombre"></label> <br><br><br>
+								<label>Velodidad del enemigo: <input type="number" name="velocidadMov"></label><br><br><br>
+								<label>Puntos del enemigo: <input type="number" name="puntos"></label><br><br><br>
+								<label>Imágen del enemigo: <br><br><input type="file" name="nombreImagen"></label> <br><br><br>';
 					?>
-					<input type="submit" value="Añadir"/>
+					<input type="submit" value="AÑADIR">
 				</form>
+				<a href="listarenemigos.php"><button>CANCELAR</button></a>
 			</div>
 		</main>
 		<footer>

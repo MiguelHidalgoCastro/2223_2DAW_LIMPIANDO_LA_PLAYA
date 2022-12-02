@@ -61,7 +61,7 @@
 		 * Le pide al modelo los datos de los enemigos y los devuelve a la vista.
 		 */
 		public function datosEnemigos(){
-			return $this->objeto->selectDatosEnemigos(null);
+			return $this->objeto->selectDatosEnemigos(null);//null porque este método del modelo también se utiliza en el modificar.
 		}
 		/**
 		 * Le pide al modelo los datos del enemigo que se quiera modificar y los devuelve a la vista.
@@ -91,7 +91,7 @@
 		 */
 		public function borrarEnemigo($id){
 			if($this->objeto->borrarDatosEnemigo($id)){
-				header('Location: listarenemigos.php'); //Para que la página se recargue y salgan los datos actualizados en la tabla
+				header('Location:listarEnemigos.php');
 			}
 		}
 		/**

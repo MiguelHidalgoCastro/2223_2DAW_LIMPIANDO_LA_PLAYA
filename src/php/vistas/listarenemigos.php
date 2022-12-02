@@ -3,7 +3,7 @@
 	session_start();
 	if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 		session_destroy();
-		header('Location: inicio_sesion.html');
+		header('Location: inicio_sesion.php');
 	}
 	
 	include('../controladores/controlador.php');
@@ -51,33 +51,39 @@
 			</nav>
 		</header>
 		<main>
-			<button id="anadirenemigo"><a href="anadirenemigos.php">Añadir</a></button>
-			<div id="divTablaEnemigos">
-				<table>
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Nombre</th>
-							<th>Puntos</th>
-							<th>Operaciones</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php
+			<div id="divEnemigos">
+				<h1>Listado de enemigos</h1><br>
+				<table id="tableEnemigos">  
+					<tr>
+						<th>Nombre</th>
+						<th>Velocidad</th>
+						<th>Puntos</th>
+						<th>Nombre img</th>
+						<th>Procesos</th>
+					</tr>
+					<?php
+						if($datos){
 							foreach($datos as $dato){ //Una vez que recorre la primera fila y la mete en un array, el puntero apunta al siguiente.
 								echo "<tr>
-										<td>".$dato["id"]."</td>
 										<td>".$dato["nombre"]."</td>
+										<td>".$dato["velocidadMov"]."</td>
 										<td>".$dato["puntos"]."</td>
+										<td><img class=imgTabla src=".$dato["nombreImagen"]."></td>
 										<td>
-											<a href=listarenemigos.php?variable1=".$dato["id"]."&variable2=borrar><img src=imagenes/delete.svg title='borrar'></a>
-											<a href=modificarenemigos.php?variable1=".$dato["id"]."><img src=imagenes/edit.svg title='modificar'></a>
+											<a href=listarenemigos.php?variable1=".$dato["id"]."&variable2=borrar><img src=../../img/iconos/delete.png title='borrar'></a>
+											<a href=modificarenemigos.php?variable1=".$dato["id"]."><img src=../../img/iconos/edit.png title='modificar'></a>
 										</td>
 									</tr>";
 							}
-						?>
-					</tbody>
-				</table>
+						}
+						else{
+							echo '<tr>
+									<td colspan=5>No hay ningún enemigo registrado<td>
+								<tr>';
+						}
+					?>
+				</table><br>
+				<a href="anadirenemigos.php"><input type="submit" value="AÑADIR ENEMIGO"></a><br>
 			</div>
 		</main>
 		<footer>
