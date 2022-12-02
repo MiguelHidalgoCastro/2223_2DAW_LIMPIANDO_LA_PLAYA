@@ -1,21 +1,36 @@
-const WIDTH = 960
-const HEIGHT = 544
-const MEDIDA = 32
-
 import { Torre } from "../objetos/torre.js"
 import { Jugador } from "../objetos/jugador.js"
 import { Enemigo } from "../objetos/enemigo.js"
+/** 
+ * Constant for width of canvas
+ * @type {number} 
+*/
+const WIDTH = 960
+/** 
+ * Constant for height of canvas
+ * @type {number} 
+ */
+const HEIGHT = 544
+/**
+ * Constant for the measure of each cell
+ * @type{number} 
+ */
+const MEDIDA = 32
+
+
 export class VistaJuego {
     /**
-     * Constructor de la Vista Juego, además, inicia el juego
-     * @param {HTMLElement} canvas 
+     * Constructor of VistaJuego
+     * @param {HTMLElement} canvas tag html
      */
     constructor(canvas) {
         this.etiquetaCanvas = canvas
         window.onload = this.iniciar()
     }
 
-
+    /**
+     * Function that starts when the web has been loaded
+     */
     iniciar() {
         //Canvas
         this.canvas = document.getElementsByTagName("canvas")[0]
@@ -41,7 +56,10 @@ export class VistaJuego {
 
 
     }
-
+    /**
+     * Function that starts when the images has been loaded
+     * Asynchronous call
+     */
     continuar() {
         this.ctx.beginPath()
         this.ctx.drawImage(this.escenario, 0, 0)
@@ -86,7 +104,14 @@ export class VistaJuego {
     }
 
 
-    //DIBUJAR TODO
+    /**
+     * Function to draws a rectangle
+     * @param {number} x coord X
+     * @param {number} y coord Y
+     * @param {number} w width
+     * @param {number} h height
+     * @param {color} color color
+     */
     dibujarRect(x, y, w, h, color) {
         this.ctx.beginPath()
         this.ctx.rect(x, y, w, h)
@@ -94,7 +119,12 @@ export class VistaJuego {
         this.ctx.closePath()
         this.ctx.fill()
     }
-
+    /**
+     * Function to draws a circle
+     * @param {number} x coord X
+     * @param {number} y coord Y
+     * @param {number} radio radio
+     */
     dibujarArc(x, y, radio) {
         this.ctx.beginPath()
         this.ctx.arc(x + 16, y + 16, radio, 0, 2 * Math.PI, false)
@@ -102,7 +132,9 @@ export class VistaJuego {
         this.ctx.closePath()
         this.ctx.fill()
     }
-
+    /**
+     * Function to spawn enemies
+     */
     spawnEnemigos() {
         for (let i = 1; i < this.enemyCount + 1; i++) {
             const diferenciaX = i * 100
@@ -114,7 +146,9 @@ export class VistaJuego {
     }
 
 
-    //Aqui es el main para que funcione el juego
+    /**
+     * Main function to animate the game
+     */
     animar() {
         //setInterval(this.animarEnemigos, 30)
         this.animacion = requestAnimationFrame(this.animar.bind(this))
@@ -142,7 +176,9 @@ export class VistaJuego {
         }
         let comprobar = setInterval(this.comprobarContacto.bind(this), 1000)
     }
-
+    /**
+     * Function to check that the enemy is in the radius of the tower
+     */
     comprobarContacto() { //queda en intento
         //console.log("primero: " + this.enemigos[0].position.x + "-" + this.enemigos[0].position.y);
 
@@ -152,9 +188,17 @@ export class VistaJuego {
             //console.log(area); //calcula bien el area de la torres
         }
     }
+
+    /**
+     * Redraw scenary
+     */
     clear() {
         this.ctx.drawImage(this.escenario, 0, 0)
     }
+
+    /**
+     * Main Function to redraw towers and their attack zones, letters & scenary
+     */
     dibujar() {
 
         this.clear()
@@ -203,31 +247,33 @@ export class VistaJuego {
 
     }
 
-
+    /**
+     * Helper function to draw a grid
+     */
     dibujarGrid() {
         this.ctx.strokeStyle = 'black'
         this.ctx.lineWidth = 4
         this.ctx.strokeRect(0, 0, WIDTH, HEIGHT)
-        /*
-                //lineas horizontales
-                for (let index = 32; index < this.canvas.height; index += 32) {
-                    this.ctx.beginPath()
-                    this.ctx.lineWidth = .5
-                    this.ctx.moveTo(0, index)
-                    this.ctx.lineTo(this.canvas.width, index)
-                    this.ctx.stroke()
-                    this.ctx.closePath()
-        
-                }
-                //lineas verticales
-                for (let index = 32; index < this.canvas.width; index += 32) {
-                    this.ctx.beginPath()
-                    this.ctx.moveTo(index, 0)
-                    this.ctx.lineTo(index, this.canvas.height)
-                    this.ctx.stroke()
-                    this.ctx.closePath()
-                }
-        */
+
+        //lineas horizontales
+        for (let index = 32; index < this.canvas.height; index += 32) {
+            this.ctx.beginPath()
+            this.ctx.lineWidth = .5
+            this.ctx.moveTo(0, index)
+            this.ctx.lineTo(this.canvas.width, index)
+            this.ctx.stroke()
+            this.ctx.closePath()
+
+        }
+        //lineas verticales
+        for (let index = 32; index < this.canvas.width; index += 32) {
+            this.ctx.beginPath()
+            this.ctx.moveTo(index, 0)
+            this.ctx.lineTo(index, this.canvas.height)
+            this.ctx.stroke()
+            this.ctx.closePath()
+        }
+
         //Resaltar zonas disponibles
         for (let i = 0; i < this.arrayZonasDisponibles2.length; i++) {
             this.ctx.strokeStyle = 'blue'
@@ -239,7 +285,9 @@ export class VistaJuego {
         }
     }
 
-    //DIBUJAR LETRAS
+    /**
+     * Function to draw various game texts
+     */
     dibujarLetras() {
         this.ctx.beginPath()
         this.ctx.fillStyle = 'white'
@@ -257,7 +305,14 @@ export class VistaJuego {
         this.ctx.stroke()
         this.ctx.closePath()
     }
-    //DIBUJAR RECOGIDOS -- Para cuando funcione el mouseover
+
+    /**
+     *  DIBUJAR RECOGIDOS -- Para cuando funcione el mouseover
+     * 
+     * @param {number} coordX 
+     * @param {number} coordY 
+     * @param {number} cuantos 
+     */
     dibujarRecogidos(coordX, coordY, cuantos) {
         this.ctx.beginPath()
         this.ctx.fillStyle = 'white'
@@ -266,7 +321,11 @@ export class VistaJuego {
         this.ctx.stroke()
         this.ctx.closePath()
     }
-
+    /**
+     * Function that returns all the cells that you can use for the towers
+     * @param {array} array Array of coordenadas.js 
+     * @returns {array} Array with the available cells
+     */
     conseguirZonasDisponibles(array) {
         let matriz = []
         let auxiliar = []
@@ -301,6 +360,11 @@ export class VistaJuego {
     }
 
     //EVENTOS
+
+    /**
+     * Event of onmousedown
+     * @param {event} e 
+     */
     pulsar(e) {
         // console.log("pulsando");
         // tell the browser we're handling this mouse event
@@ -335,7 +399,10 @@ export class VistaJuego {
         this.upgrade(mx, my)
 
     }
-
+    /**
+     * Event of onmouseup
+     * @param {even} e 
+     */
     soltar(e) {
         //console.log("soltado")
         // tell the browser we're handling this mouse event
@@ -367,6 +434,10 @@ export class VistaJuego {
             }
         }
     }
+    /**
+     * Event of onmousemove
+     * @param {event} e 
+     */
     moverPulsado(e) {
         // if we're dragging anything...
         if (this.dragok) {
@@ -399,7 +470,13 @@ export class VistaJuego {
             this.startY = my
         }
     }
-    mouseover(e) { // creo que me lo hace una vez porque no tengo el requestframeupdate
+
+    /**
+     * !IT DOES NOT WORK
+     * Event of mouseover
+     * @param {event} e 
+     */
+    mouseover(e) {
         e.preventDefault()
         e.stopPropagation()
 
@@ -415,7 +492,14 @@ export class VistaJuego {
         }
     }
 
-    /*Comprobaciones */
+    /*CHECKS*/
+
+    /**
+     * Check if the tower is in the towers menu
+     * @param {number} coordX 
+     * @param {number} coordY 
+     * @returns {boolean}
+     */
     comprobarTorreMenu(coordX, coordY) {
         let bandera = false
         this.torres.forEach(element => {
@@ -426,6 +510,13 @@ export class VistaJuego {
         })
         return bandera
     }
+
+    /**
+     * Check if the tower can be placed where I want to drop it
+     * @param {number} coordX 
+     * @param {number} coordY 
+     * @returns {boolean}
+     */
     comprobarZonaValida(coordX, coordY) {
         let bandera = false
         this.arrayZonasDisponibles2.forEach(element => {
@@ -437,7 +528,12 @@ export class VistaJuego {
         })
         return bandera
     }
-
+    /**
+     * Returns the top left coordinate of the cell
+     * @param {number} coordX 
+     * @param {number} coordY 
+     * @returns {element} Returns coordinate
+     */
     devolverCoordenada(coordX, coordY) {
         let elemento = { x: 0, y: 0 }
 
@@ -446,6 +542,13 @@ export class VistaJuego {
 
         return elemento
     }
+
+    /**
+     * Check if cell is busy
+     * @param {number} coordX 
+     * @param {number} coordY 
+     * @returns {boolean}
+     */
     comprobarCeldaOcupada(coordX, coordY) {
         let bandera = false
         for (let i = 0; i < this.torresColocadas.length; i++) {
@@ -458,7 +561,11 @@ export class VistaJuego {
     }
 
     //upgrade torres
-
+    /**
+     * Function to upgrade towers
+     * @param {number} coordX 
+     * @param {number} coordY 
+     */
     upgrade(coordX, coordY) {
         //En éste elemento tengo la coordenada de arriba izquierda de donde estoy pulsando
         // Tengo que buscar si está en el array de torres colocadas
