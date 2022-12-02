@@ -30,7 +30,7 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 				</label>
                 <ul class="nav-links">
                     <li id="item1"><a href="inicio_admin.php">Inicio</a></li>
-                    <li id="item2"><a href="#">Configuración</a></li>
+                    <li><a href="#" id="item2">Configuración</a></li>
                     <li id="item3"><a href="#">Escenarios</a></li>
                     <li id="item4"><a href="#">Defensas</a></li>
                     <li id="item5"><a href="#">Enemigos</a></li>

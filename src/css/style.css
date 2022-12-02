@@ -22,7 +22,7 @@ body {
     position: relative;
     /* La posición, el min-height y el padding bottom es para que el footer esté siempre abajo haya el contenido que haya en el body*/
     min-height: 100vh;
-    min-width: 500px;
+    min-width: 600px;
     padding-bottom: 40px;
 
 }
@@ -130,34 +130,7 @@ nav label#btnMenu {
     /*MOD*/
 }
 
-/*Estilo del contenedor*/
-#flex-container{
-    display: flex;
-}
 
-/*Estilo de los items*/
-#item1{
-    flex-grow: 1;
-}
-
-#item2{
-    flex-shrink: 0;
-    flex-grow: 2;
-}
-#item3{
-    flex-grow: 1;
-}
-
-#item4{
-    flex-grow: 1;
-}
-#item5{
-    flex-grow: 1;
-}
-
-#item6{
-    flex-grow: 1;
-}
 
 
 /*-------------Estilo tabla Vista Ranking-------------*/
@@ -373,7 +346,8 @@ footer div#rrss img:hover {
 main div#divConfiguracion {
     width: 53.77164973%; /*Ancho del formulario 810px y su contenedor 1506.37px*/
     /*height: 250px;*/
-    padding: 40px; /*Ancho del padding 40px y su contenedor 807.737px*/
+    /*max-width: 600px;*/
+    padding: 3%; /*Ancho del padding 40px y su contenedor 551.311px*/
     margin: 50px auto;
     background-color: #E9FAFF;  
     border-radius: 7px;
@@ -407,7 +381,7 @@ main div#divConfiguracion form input[type="text"]{
 
 /*Modificar los inputs type="number" que estan el en formulario de configuracion*/
 main div#divConfiguracion form input[type="number"]{
-    width: 7.557363827%;/*Contenido width= 55px contenedor width= 727.767*/
+    width: 8.557363827%;/*Contenido width= 55px contenedor width= 727.767*/
     height: 26px;
     text-align: center;
     margin-bottom: 10px;
@@ -425,7 +399,7 @@ div#divConfiguracion form input.rutar{
 }
 
 div#divConfiguracion form label.centro{
-    margin-left:190px;
+   padding-left:150px; /*150px*/
 }
 
 /*div#divConfiguracion form input.centro{
@@ -560,8 +534,8 @@ div#divNuevoEnemigo form input{
 
 /*Se le aplica estilos a los inputs type="number" que estan en el div con id="divNuevoEnemigo"*/
 div#divNuevoEnemigo form input[type="number"]{
-   width: 14.84808129%;/*Su ancbhira era de 65px y su contenedor de 437.767px*/
-   padding-left: 25px;/*Su ancbhira era de 25px y su contenedor de 64.9833px*/
+   width: 16.84808129%;/*Su ancbhira era de 65px y su contenedor de 437.767px*/
+   padding-left: 20px;/*Su ancbhira era de 25px y su contenedor de 64.9833px*/
 }
 
 /*Se le aplica estilos a los inputs type="sumbit" que estan en el div con id="divNuevoEnemigo"
@@ -673,4 +647,33 @@ div#divNuevoEnemigo form input[type="submit"]{
     footer {
         display: block;
     }
+}
+
+/*Flex box*/
+
+/*Estilo del contenedor*/
+
+
+/*Estilo de los items*/
+#item1{
+    flex-grow: 1;
+}
+
+#item2{
+    flex-shrink: 0;
+    flex-grow: 2;
+}
+#item3{
+    flex-grow: 1;
+}
+
+#item4{
+    flex-grow: 1;
+}
+#item5{
+    flex-grow: 1;
+}
+
+#item6{
+    flex-grow: 1;
 }
