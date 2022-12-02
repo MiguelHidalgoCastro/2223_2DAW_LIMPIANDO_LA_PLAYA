@@ -90,7 +90,6 @@ header.header .nav-links li:hover {
 }
 
 header.header .nav-links a {
-    font-size: 700;
     color: #eceff1;
     text-decoration: none;
 }
@@ -130,6 +129,10 @@ nav label#btnMenu {
     /*MOD*/
 }
 
+li a#resalto{
+	color:orange;
+}
+
 
 /*-------------Estilo tabla Vista Ranking-------------*/
 div#tablaRanking {
@@ -144,7 +147,6 @@ div#tablaRanking {
     background-color: #AFDAFF;
     box-shadow: 5px 10px 10px black;
     font-size: 24px;
-
 }
 
 div#tablaRanking>table {
@@ -192,18 +194,18 @@ main div#juego {
 main div#juego canvas {
     width: 960px;
     border: 1px solid black;
-    margin-top: 3vh;
+	margin-top: 3vh;
     /*MOD*/
-   
+    background-color: #E9FAFF;
 }
 
 /*** Estilo del formulario del login ***/
 
 main form div#formularioLogin {
-    width: 400px;
-    height: 220px;
-    padding: 30px;
-    margin: 50px auto;
+    width: 29.2825%;/*400px*/
+	height:220px;
+    padding: 4.56vh 2.1961%;
+    margin: 7.6136vh auto;
     border-radius: 4px;
     background-color: #E9FAFF;
     box-shadow: 5px 10px 10px #444A61;
@@ -216,30 +218,28 @@ main form#login h2 {
 
 div#formularioLogin input[type="text"],
 div#formularioLogin input[type="password"] {
-    width: 300px;
-    height: 30px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+    width: 88.2352%; /*300px*/
+    height: 4.56vh;
+    margin: 0 0 2.9411%;
+    padding: 0 0 0 2.9411%;
     display: block;
 }
 
-div#formularioLogin input[type="text"]:focus,
+div#formularioLogin input[type="text"]:focus, 
 div#formularioLogin input[type="password"]:focus {
     background-color: #AFDAFF;
     outline: none;
 }
 
 div#formularioLogin button {
-    width: 30%;
+    width: 100px;
     padding: 8px;
     background: #66727e;
     border-radius: 5px;
     border-style: none;
-    float: right;
     cursor: pointer;
     text-transform: uppercase;
     color: white;
-    margin-bottom: 10px;
 }
 
 div#formularioLogin button:hover {
@@ -249,9 +249,9 @@ div#formularioLogin button:hover {
 
 /*** Estilo de la vista de alta ***/
 main form div#formularioAlta {
-    width: 400px;
-    height: 280px;
-    padding: 30px;
+	width: 29.2825%;
+    height: 220px;
+    padding: 4.56vh 2.1961%;
     margin: 50px auto;
     border-radius: 4px;
     background-color: #E9FAFF;
@@ -265,10 +265,10 @@ main form#alta h2 {
 
 div#formularioAlta input[type="text"],
 div#formularioAlta input[type="password"] {
-    width: 300px;
-    height: 30px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+    width: 88.2352%; /*300px*/
+    height: 4.56vh;
+    margin: 0 0 2.9411%;
+    padding: 0 0 0 2.9411%;
     display: block;
 }
 
@@ -278,8 +278,8 @@ div#formularioAlta input[type="password"]:focus {
     outline: none;
 }
 
-div#formularioAlta submit {
-    width: 30%;
+div#formularioAlta input[type="submit"] {
+    width: 100px;
     padding: 8px;
     background: #66727e;
     border-radius: 5px;
@@ -291,17 +291,9 @@ div#formularioAlta submit {
     margin: 0 auto;
 }
 
-div#formularioAlta submit:hover {
+div#formularioAlta input[type="submit"]:hover {
     opacity: 0.8;
     border: 1px silver solid;
-}
-
-
-div#formularioAlta select {
-    width: 130px;
-    height: 30px;
-    margin-bottom: 10px;
-    display: block;
 }
 
 /*** Estilo de la vista de inicio de administrador ***/
@@ -338,6 +330,251 @@ footer div#rrss img:hover {
 }
 
 
+/*------Estilo del formulario de configuracion. Es el formulario donde se encuentra los datos de configuracion-------*/
+
+/*Se refiere al div con id="divConfiguracion" que esta dentro del main*/
+main div#divConfiguracion {
+    width: 53.771649%; /*Ancho del formulario*/
+    /*height: 250px;*/
+    padding: 3%; 
+    margin: 50px auto;
+    background-color: #E9FAFF;  
+    border-radius: 7px;
+    border-color: #383e4c;
+    border: 1px solid #383e4c;
+    box-shadow: 5px 10px 10px #444A61;  
+}
+
+/* El estilo se aplicará al h2 que esta dentro del div con id="divConfiguracion" dentro del main y
+a el h4 que está dentro del formulario, a su vez dentro del div, dentro del main*/
+main div#divConfiguracion h2,
+main div#divConfiguracion form h4{
+    text-align: center;
+}
+
+/*Estilo a los hr que estan en formularuio dentro del div con id="divConfiguracion"*/
+main div#divConfiguracion form hr{
+    border-color: #afdaff;
+    border-width: 3.5px; 
+}
+
+/*Modificar los inputs type="text" que estan el en formulario de configuracion*/
+main div#divConfiguracion form input[type="text"]{
+    width: 24.0461%;
+    height: 26px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 4px;
+    /*display: block;*/
+}
+
+/*Modificar los inputs type="number" que estan el en formulario de configuracion*/
+main div#divConfiguracion form input[type="number"]{
+    width: 8.5573%;
+    height: 26px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+/*Se aplica estilos a los labels que tienen la clase rutar dentro del formulario de configuracion*/
+div#divConfiguracion form label.rutar,
+div#divConfiguracion form input.rutar{
+    float: right; /*El elemento se ajusta a la derecha*/
+}
+
+div#divConfiguracion form input.rutar{
+    margin-left: 5px; /*El elemento se ajusta a la derecha*/
+}
+
+div#divConfiguracion form label.centro{
+    margin-left:190px;
+}
+
+/*div#divConfiguracion form input.centro{
+    margin-left: 50px;
+}*/
+
+/*Se aplica estilos a los labels que tienen la clase ancho dentro del formulario de configuracion*/
+div#divConfiguracion form label.ancho{
+    float: right; /*El elemento se ajusta a la derecha*/
+    margin-right: 40px; /*Tiene un margen por la derechade 40px*/
+}
+
+/*Se aplica estilos a los inputss que tienen la clase ancho dentro del formulario de configuracion*/
+div#divConfiguracion form input.ancho{
+    float: right;
+    margin-right: 80px;
+}
+
+div#divConfiguracion form label.alto{
+    margin-left: 40px; /*Tiene un margen por la izquierda 40px*/
+}
+
+div#divConfiguracion form input.alto{
+    margin-left: 70px; /*Tiene un margen por la izquierda 70px*/
+}
+
+/*Se modifica el input tipo submit del formulario con id="formConfiguracion*/
+form#formConfiguracion input[type="submit"]{
+    width: 30%;
+    padding: 8px;
+    background: #383e4c;
+    border-radius: 5px;
+    border-style: none;
+    float: right;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 15px;
+}
+
+form#formConfiguracion input[type="submit"]:hover {
+    opacity: 0.8;
+    border: 1px silver solid;
+}
+
+/*--------FALTA FLEX BOX Y MQ DEL FORMULARIO DE CONFIGURACION------*/
+
+
+
+
+
+
+/*--------Estilo del mokup del listado de enemigos, solo el daministrador podrá verlo--------------
+----------Estilo del mockup del listado de torres, solo el daministrador podrá verlo-------*/
+
+/*Se aplica el estilo al div con id="divEnemigos", es el div del listado de los enemigos que hay*/
+div#divEnemigos{
+    width: 58.9248%;
+    background-color: #E9FAFF;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 7px;
+    border-color: #383E4C;
+    border: 1px solid #383E4C;
+}
+
+/*Añadimos estilo al h1 del div con id="divEnemigos"*/
+div#divEnemigos h1{
+    text-align: center;
+    color: #383E4C;
+}
+
+/*Se le aplican estilos a la tabla del listado de enemigos que estan en el div con id="divEnemigos"*/
+div#divEnemigos table#tableEnemigos{
+    width: 89.2275%;
+    text-align: center;
+    border-radius: 5px;
+    border-color: #AFDAFF;
+    border: 2px solid #AFDAFF;
+    margin: auto;
+}
+
+/*Se le aplica estilos a los iconos que aparecen en la tabla*/
+table#tableEnemigos img{
+    width: 20px;
+    height: 20px;
+    color: #383E4C;
+}
+
+/*Estilo del input type="submit" que se encuentra para añadir un enemigo*/
+div#divEnemigos input[type="submit"]{
+    width: 30%;
+    padding: 8px;
+    background: #383e4c;
+    border-radius: 5px;
+    border-style: none;
+    float: right;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+    /*margin-bottom: 15px;*/
+}
+
+div#divEnemigos input[type="submit"]:hover {
+    opacity: 0.8;
+    border: 1px silver solid;
+}
+
+table#tableEnemigos img.imgTabla:hover{
+    width: 200px;
+    height: 200px;
+	border:1px solid black;
+}
+
+/*--------FALTA HACER FLEX BOX Y MEDIA QUERIS EN LE MOKUP DE LISTAR ENEMIGOS Y TORRES------*/
+
+/*-----Estilo del mokup de añadir un nuevo enemigo-----
+-------Estilo del mockup de añadir una nueva torre-----
+-------Estilo del mokup de modificar un nuevo enemigo-----
+-------Estilo del mokup de añadir un nuevo enemigo----*/
+
+/*Aplicamos estilo al div con id="divNuevoEnemigo"*/
+div#divNuevoEnemigo{
+    width: 33.1921%;
+    height: 470px;
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 4px;
+    background-color: #E9FAFF;
+    box-shadow: 5px 10px 10px #444A61;
+    border: 1px solid #383e4c;
+}
+
+/*Para los el h2 que aparece en el div*/
+div#divNuevoEnemigo h2{
+   text-align: center;
+}
+
+/*Inputs que esatn en el formulario dentto del div con id="divNuevoEnemigo"*/
+div#divNuevoEnemigo form input{
+    background-color: #E9FAFF;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom-color: #AFDAFF;
+    padding-left: 15px;
+}
+
+/*Se le aplica estilos a los inputs type="number" que estan en el div con id="divNuevoEnemigo"*/
+div#divNuevoEnemigo form input[type="number"]{
+   width: 16.8480%;
+   padding-left: 25px;
+}
+
+/*Se le aplica estilos a los inputs type="sumbit" que estan en el div con id="divNuevoEnemigo"
+Son los inputs de añadir y modificar enemigso y torres*/
+div#divNuevoEnemigo form input[type="submit"]{
+    width: 30%;
+    padding: 8px;
+    background: #383e4c;
+    border-radius: 5px;
+    border-style: none;
+    float: right;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+    /*margin-bottom: 15px;*/
+}
+
+div#divNuevoEnemigo form input[type="submit"]:hover, div#divNuevoEnemigo button:hover{
+    opacity: 0.8;
+    border: 1px silver solid;
+}
+
+div#divNuevoEnemigo button {
+    width: 30%;
+    padding: 8px;
+    background: #383e4c;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+}
+
+/*--------FALTA FLEXBOX Y MQ DEL MOKUP DE AÑADIR UN ENEMIGO------*/
 
 /*-------------Media Query Moviles-------------*/
 @media (max-width: 960px) {
@@ -348,6 +585,7 @@ footer div#rrss img:hover {
     nav label#btnMenu {
         display: block;
     }
+	
 
     /*-------------Ajustes de la navbar-------------*/
 
@@ -400,6 +638,18 @@ footer div#rrss img:hover {
     nav input#check:checked~ul {
         left: 0;
     }
+	
+	/*------------- Ajustes del div inicio sesión -------------*/
+	main form div#formularioLogin {
+    width: 50%;/*400px*/
+	height:220px;
+    padding: 4.56vh 2.1961%;
+    margin: 7.6136vh auto;
+    border-radius: 4px;
+    background-color: #E9FAFF;
+    box-shadow: 5px 10px 10px #444A61;
+    border: 1px solid #383e4c;
+	}
 
     /*------------- Ajustes del div aviso inicio -------------*/
     main p#bienvenida {
