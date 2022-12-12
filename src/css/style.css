@@ -17,7 +17,7 @@
 body {
     margin: 0 auto;
     background-image: url('../img/fondo.jpg');
-    background-size: 100%;
+    background-size: cover;
     font-family: Ubuntu;
     position: relative;
     /* La posición, el min-height y el padding bottom es para que el footer esté siempre abajo haya el contenido que haya en el body*/
