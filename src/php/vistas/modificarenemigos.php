@@ -12,7 +12,7 @@
 	
 	$controlador = new Controlador();
 	
-	$id=$_GET["variable1"];
+	$id=$_GET["id"];
 	
 	$datos = $controlador->datosEnemigoModificar($id);
 

@@ -1,13 +1,26 @@
 <?php
-	session_start();
-	if (isset($_POST['cerrarSesion'])){
-		session_destroy();
-		header('Location:inicio_sesion.php');
-	}
-	if (!$_SESSION){
-		header('Location:manolito.html');
-	}
+session_start();
+if (isset($_POST['cerrarSesion']) || !$_SESSION) {
+	session_destroy();
+	header('Location: inicio_sesion.php');
+}
+
+require_once('../controladores/controladorescenario.php');
+
+$controlador = new ControladorEscenario();
+$vacio = false;
+$escenario = $controlador->getEscenario($_GET['id']);
+
+if (isset($_POST) && !empty($_POST)) {
+	$vacio = $controlador->updateEscenario($_POST, $_FILES, $escenario["nombreImagen"], $_GET['id']); // cambiar variables luego
+}
+
+if ($vacio) {
+	echo '<script>alert("Todos los campos han de estar rellenados")</script>';
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,7 +31,7 @@
 	<meta name="author" content="Grupo Limpiemos La Playa 2DAW 22/23" />
 	<link rel="shortcut icon" href="../../img/logo/logoicon.png">
 	<link rel="stylesheet" href="../../css/style.css">
-	<title>Inicio</title>
+	<title>Modificar Enemigos</title>
 </head>
 
 <body>
@@ -32,9 +45,9 @@
 				<img src="../../img/iconos/menu.png" alt="Icono de menú" />
 			</label>
 			<ul class="nav-links">
-				<li><a id="resalto" href="inicio_admin.php">Inicio</a></li>
+				<li><a href="inicio_admin.php">Inicio</a></li>
 				<li><a href="configuracion.php">Configuración</a></li>
-				<li><a href="listaescenarios.php">Escenarios</a></li>
+				<li><a id="resalto" href="listaescenarios.php">Escenarios</a></li>
 				<li><a href="#">Defensas</a></li>
 				<li><a href="listarenemigos.php">Enemigos</a></li>
 				<li>
@@ -46,10 +59,20 @@
 		</nav>
 	</header>
 	<main>
-		<div id="inicioAdmin">
-			<p id="bienvenida">
-				La sesión ha sido iniciada con éxito. Bienvenido a la app de administrador.
-			</p>
+		<div id="divNuevoEnemigo">
+			<h2>Modificar Escenario</h2><br>
+			<form enctype="multipart/form-data" action="" id="formularioModificarEscenario" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este escenario?.')">
+				<?php
+				echo 	'<label>Nombre: <input type="text" name="nombre" value="' . $escenario["nombre"] . '"></label> <br><br><br>
+								<label>Dificultad: <input type="number" name="dificultad" value="' . $escenario["idDificultad"] . '"></label><br><br><br>
+								<label>Waypoint: <input type="text" name="waypoint" value="' . $escenario["waypoints"] . '"></label><br><br><br>
+								<label>Coordenadas: <input type="text" name="coords" value="' . $escenario["coordenadas"] . '"></label><br><br><br>
+								<label>Imagen del escenario: <img height="100px" width="100px" src = "' . $escenario["nombreImagen"] . '"> <br><br><input type="file" accept="image/png, image/jpg"  name="nombreImagen"></label> <br><br><br>';
+				?>
+
+				<input type="submit" value="MODIFICAR" />
+			</form>
+			<a href="listaescenarios.php"><button>CANCELAR</button></a>
 		</div>
 	</main>
 	<footer>
@@ -69,7 +92,6 @@
 			<a target="_blank" title="LinkedIn" href=""><img class="rrss" alt="Icono red social LinkedIn" src="../../img/rrss/linkedinnar1.png"></a>
 		</div>
 	</footer>
-	<!--<script type=module src="../../js/controlador/controladorAdmin.js"></script>-->
 </body>
 
 </html>
