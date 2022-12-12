@@ -26,7 +26,7 @@ export class VistaAdmin {
         this.etiquetaForm = document.createElement('form')
         this.etiquetaForm.setAttribute('id', 'login')
 		this.etiquetaForm.setAttribute('method', 'POST')
-		this.etiquetaForm.setAttribute('action', '')
+		this.etiquetaForm.setAttribute('action', '../../php/controladores/controlador.php')
 
         this.divNuevo = document.createElement('div')
         this.divNuevo.setAttribute('id', 'formularioLogin')
