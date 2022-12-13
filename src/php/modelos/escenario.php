@@ -5,6 +5,11 @@ include('../config/conexion.php');
 class Escenario
 {
     private $conexion;
+    public $nombre;
+    public $idDificultad;
+    public $waypoints;
+    public $coords;
+    public $rutaImagen;
 
     public function __construct()
     {
@@ -28,14 +33,24 @@ class Escenario
         return $result->fetch_assoc();
     }
 
-    public function add() //el nombre lo añado cuando creo el objeto escenario
+    public function add($post, $files) 
     {
+        $this->nombre = $post['nombre'];
+        $this->idDificultad =  $post['dificultad'];
+        $this->waypoints = $post['waypoints'];
+        $this->coords = $post['coords'];
+        $this->rutaImagen = "../../img/subidas/escenarios/" . $files["nombreImagen"]["name"];
+        $archivo = $_FILES["nombreImagen"]["tmp_name"];
+        move_uploaded_file($archivo, $this->rutaImagen);
+
+
         $conexion = $this->conexion;
-        $prepare = $conexion->prepare("INSERT INTO escenario(nombre) VALUES(?)");
-        $prepare->bind_param('s', $this->nombre);
+        $prepare =  $conexion->prepare("INSERT INTO escenario (nombre, idDificultad, waypoints, coordenadas, nombreImagen) VALUES(?,?,?,?,?)");
+        $prepare->bind_param("sisss", $this->nombre, $this->idDificultad, $this->waypoints, $this->coords, $this->rutaImagen);
         $prepare->execute();
+        $prepare->close();
     }
-    public function update($arrayPost, $arrayFiles ,$rutaImagen, $id) //el nombre lo añado cuando creo el objeto escenario
+    public function update($arrayPost, $arrayFiles, $rutaImagen, $id) //el nombre lo añado cuando creo el objeto escenario
     {
         if (
             isset($arrayPost["nombre"]) && !empty($arrayPost["nombre"])

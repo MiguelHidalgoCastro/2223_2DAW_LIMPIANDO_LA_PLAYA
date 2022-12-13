@@ -25,14 +25,21 @@ class ControladorEscenario
             header("Location: listaescenarios.php");
     }
 
-    public function updateEscenario($arrayPost, $arrayFiles ,$rutaImagen, $id){
-        if($this->escenario->update($arrayPost, $arrayFiles, $rutaImagen, $id)){
-            header('Location: listarescenarios.php'); 
-        }
-        else{
+    public function updateEscenario($arrayPost, $arrayFiles, $rutaImagen, $id) //acabar
+    {
+        if ($this->escenario->update($arrayPost, $arrayFiles, $rutaImagen, $id)) {
+            header('Location: listarescenarios.php');
+        } else {
             return true;
         }
+    }
 
-
+    public function addEScenario($post, $files)
+    {
+        if ($this->escenario->add($post, $files)) {
+            header('Location: listaescenarios.php');
+        } else {
+            return true;
+        }
     }
 }

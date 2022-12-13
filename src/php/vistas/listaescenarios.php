@@ -26,7 +26,7 @@ if (isset($_GET['action'])) {
     <meta name="author" content="Grupo Limpiemos La Playa 2DAW 22/23" />
     <link rel="shortcut icon" href="../../img/logo/logoicon.png">
     <link rel="stylesheet" href="../../css/style.css">
-    <title>Enemigos</title>
+    <title>Lista Escenarios</title>
 </head>
 
 <body>
