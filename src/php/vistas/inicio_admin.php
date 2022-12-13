@@ -35,7 +35,7 @@
 				<li><a id="resalto" href="inicio_admin.php">Inicio</a></li>
 				<li><a href="configuracion.php">Configuración</a></li>
 				<li><a href="#">Escenarios</a></li>
-				<li><a href="#">Defensas</a></li>
+				<li><a href="listartorres.php">Defensas</a></li>
 				<li><a href="listarenemigos.php">Enemigos</a></li>
 				<li>
 					<form action="" method="POST">
