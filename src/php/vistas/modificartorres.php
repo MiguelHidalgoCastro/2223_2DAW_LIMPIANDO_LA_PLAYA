@@ -7,20 +7,23 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 
 include('../controladores/controlador_torres.php');
 
-$void = false; 
+$vacio = false;
 
 $controlador = new Controlador();
 
+$id = $_GET["variable1"];
+
+$datos = $controlador-> datosModificarTorres($id);
+
 if(isset($_POST) && !empty($_POST))
 {
-    $void = $controlador-> nuevaTorre($_POST, $_FILES);
+    $vacio = $controlador-> modificarTorres($_POST, $_FILES, $datos[0]["nombreImagen"], $id);
 }
 
-if($void)
+if($vacio)
 {
-    echo('<script> alert("Rellene todos los campos, por favor")</script>');
+    echo '<script> alert("No puede haber ningun campo vacío")</script>';
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,7 +34,7 @@ if($void)
         <meta name="author" content="Grupo Limpiemos La Playa 2DAW 22/23" />
         <link rel="shortcut icon" href="../../img/logo/logoicon.png">
         <link rel="stylesheet" href="../../css/style.css">
-        <title>Añadir torre</title>
+        <title>Modificar torre</title>
     </head>
     <body>
         <header class="header">
@@ -45,10 +48,10 @@ if($void)
                 </label>
                 <ul class="nav-links">
                     <li><a href="inicio_admin.php">Inicio</a></li>
-                    <li><a href="configuracion.php">Configuración</a></li>
+                    <li><a href="#">Configuración</a></li>
                     <li><a href="#">Escenarios</a></li>
-                    <li><a href="listartorres.php">Defensas</a></li>
-                    <li><a href="listarenemigos.php">Enemigos</a></li>
+                    <li><a href="#">Defensas</a></li>
+                    <li><a href="#">Enemigos</a></li>
                     <li>
                         <form action="" method="POST">
                             <input class="btn" type="submit" name="cerrarSesion" value="Cerrar Sesión" />
@@ -59,21 +62,23 @@ if($void)
         </header>
         <main>
             <div id="divNuevoEnemigo">
-                <h2>Añadir nueva torre</h2><br>
-                <form enctype="multipart/form-data" action="" method="POST" onSubmit="return confirm('¿Está seguro de añadir esta torre?.')">
+                <h2>Modificar torre</h2><br>
+                <form enctype="multipart/form-data" id="formularioModificarEnemigo" action="" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este enemigo?.')"><!--El actionm todavía no se usa-->
                     <?php
-                        echo '<label>Nombre de la torre: <input type="text" name="nombre"></label> <br><br><br>
-                        <label>Radio de actuación: <input type="number" name="radioActuacion"></label><br><br><br>
-                        <label>Velocidad de recorrido: <input type="number" name="velocidadRecorrido"></label><br><br><br>
-                        <label>Imagen de la torre: <br><br><input type="file" accept="image/png, image/jpg" name="nombreImagen"></label> <br><br><br>'               
+                        echo '<label>Nombre de la torre: <input type="text" name="nombre" value="'.$datos[0]["nombre"].'"></label> <br><br><br>
+                        <label>Radio de actuación: <input type="number" name="radioActuacion" value="'.$datos[0]["radioActuacion"].'"></label><br><br><br>
+                        <label>Velocidad de recorrido: <input type="number" name="velocidadRecorrido" value="'.$datos[0]["velocidadRecorrido"].'"></label><br><br><br>
+                        <label>Imagen de la torre: <img height="100px" width="100px" src="'.$datos[0]["nombreImagen"].'"> <br><br><input type="file" accept="image/png, image/jpg" name="nombreImagen"></label> <br><br><br>';
                     ?>
-                    <input type="submit" value="AÑADIR"><br><br>
+                    <input type="submit" value="MODIFICAR"><br><br>
+
+
                     <!--Para saber como se debe generar los inputs correctamente
                     <label>Ejemplo<input type="text"></label>
                     <label for="paratexto">Ejemplo</label><input type="text" id="paratexto">
                     -->
                 </form>
-                <a href="listartorres.php"><button>CANCELAR</button></a>
+                <a href="listartorres.php"><button>Cancelar</button></a>
             </div>
         </main>
         <footer>
@@ -97,6 +102,6 @@ if($void)
                         src="../../img/rrss/linkedinnar1.png"></a>
             </div>
         </footer>
-        <script src="../../js/controlador/controladorAdmin.js"></script>
+        <!--<script src="../../js/controlador/controladorAdmin.js"></script>-->
     </body>
 </html>

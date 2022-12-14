@@ -7,14 +7,14 @@
         header('Location: inicio_sesion.html');
     }
 
-    include('../controladores/controlador.php');
+    include('../controladores/controlador_torres.php');
 
     $controlador = new Controlador();
     $datos = $controlador->datosTorres();   
 	
-	if(isset($_GET['variableg2']))
+	if(isset($_GET['variable2']))
 	{
-		$controlador-> borrarTorres($_GET["variableg"]);
+		$controlador-> borrarTorres($_GET["variable1"]);
 	}
 ?>
 <!DOCTYPE html>
@@ -82,8 +82,8 @@
 										<td>'.$dato["radioActuacion"].'</td>
 										<td>'.$dato["velocidadRecorrido"].'</td>
 										<td><img class="imgTabla" src="'.$dato["nombreImagen"].'"</td>
-										<td><a href=listartorres.php?variableg='.$dato["id"].'&variableg2=borrar><img src=../../img/iconos/delete.png title="borrar"></a>
-										<a href=modificartorres.php?variableg='.$dato["id"].'><img src=../../img/iconos/edit.png title="modificar"></a>
+										<td><a onSubmit="return confirm(¿Está seguro de querer borrar la torre?.)" href=listartorres.php?variable1='.$dato["id"].'&variable2=borrar><img src=../../img/iconos/delete.png title="borrar"></a>
+										<a href=modificartorres.php?variable1='.$dato["id"].'><img src=../../img/iconos/edit.png title="modificar"></a>
 									</td></tr>';
 							}
 						}

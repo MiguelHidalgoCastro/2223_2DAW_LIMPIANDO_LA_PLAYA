@@ -103,29 +103,8 @@
 				return true;
 			}
 		}
-		public function datosTorres()
-		{
-			return $this->objeto->listaDatosTorres(null); 
-		}
 
-		public function borrarTorres($id)
-		{
-			if($this-> objeto-> borrarDatosTorres($id))
-			{
-				header('Location: listartorres.php');
-			}
-		}
 
-		public function nuevaTorre($datosTorre, $file)
-		{
-			if($this-> objeto-> altaDatosTorres($datosTorre, $file))
-			{
-				header('Location: listartorres.php');
-			}
-			else
-			{
-				return true;
-			}
-		}
+		
 	}
 ?>
