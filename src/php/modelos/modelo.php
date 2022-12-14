@@ -41,7 +41,6 @@ class Modelo
 			$consulta->bind_param("ss", $nombre, $perfil);
 			$consulta->execute();
 			$resultado = $consulta->get_result();
-<<<<<<< HEAD
 			if($resultado->num_rows == 1){
 			
 			$fila = $resultado ->fetch_array();
