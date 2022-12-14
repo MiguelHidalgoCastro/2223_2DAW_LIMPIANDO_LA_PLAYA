@@ -1,12 +1,14 @@
 <?php
     include('../config/conexion.php');
 
+    /**
+     * Summary of Modelo  Clase que contiene el modelo de la aplicacion
+     */
     class Modelo{
         private $mysqli;
 
         /**
          * Constructor del modelo que contiene la conexion con el servidor de base de datos
-         * 
          * @return void
          */
         public function __construct(){
@@ -43,6 +45,11 @@
 
         /* Borrar torre */
 
+        /**
+         * Summary of borrarDatosTorres Elimina la torre asociada al id
+         * @param {int} $id Id de la torre que se quiere borrar
+         * @return bool
+         */
         public function borrarDatosTorres($id)
         {
             $consulta = $this-> mysqli-> prepare('DELETE FROM torres WHERE id=?');
@@ -53,6 +60,12 @@
         }
 
         /*Alta de torres*/
+        /**
+         * Summary of altaDatosTorres Realiza el alta de la torre
+         * @param {Array}] $datosTorre Datos de la torre que se va añadir
+         * @param {file} $file Archivo (imagen) de la torre que se va a añadir
+         * @return bool
+         */
         public function altaDatosTorres($datosTorre, $file)
         {
             if(isset($datosTorre["nombre"]) && !empty($datosTorre["nombre"])
@@ -81,6 +94,12 @@
         }
 
         /*Modificar <torres */
+        /**
+         * Summary of selectDatosTorres Muestra los valores de las torres en la tabla
+         * de la vista listartorres.php
+         * @param {Int} $id Identificativo de cada torre
+         * @return {Array} $datos Array que guarda los datos de las torres
+         */
         public function selectDatosTorres($id)
         {
             $datos = null;
@@ -102,6 +121,14 @@
             return $datos;
         }
 
+        /**
+         * Summary of actualizarDatosTorre Actualiza los datos de la torre seleccionado en la base de datos 
+         * @param {Array} $datosTorre
+         * @param {mixed} $file
+         * @param {String} $rutaImagenEliminar
+         * @param {Int} $id
+         * @return bool
+         */
         public function actualizarDatosTorre($datosTorre, $file, $rutaImagenEliminar, $id)
         {
             if(isset($datosTorre["nombre"]) && !empty($datosTorre["nombre"])
