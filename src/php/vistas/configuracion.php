@@ -19,7 +19,7 @@
 	}
 	
 	if($vacio){
-		echo '<script>alert("Todos los campos han de estar rellenados")</script>';
+		/*echo '<script>alert("Todos los campos han de estar rellenados")</script>';*/
 	}
 	
 ?>
@@ -62,27 +62,15 @@
 		<main>
 			<div id="divConfiguracion">
 				<h2>AJUSTAR CONFIGURACION</h2><br>
-				<form action="" id="formConfiguracion" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar la configuración?. El juego podría dejar de funcionar')">
-					<label for="rutaDefensa">Ruta defensa</label>
-					<?php
-						/*echo 	'<input value="'.$datos["rutaTorre"].'" type="text" name="rutaDefensa"/>
-								<label for="rutaEnemigo">Ruta enemigo</label>
-								<input value="'.$datos["rutaEnemigo"].'" type="text" name="rutaEnemigo"/>
-								<label for="rutaEscenario">Ruta escenario</label>
-								<input value="'.$datos["rutaEscenario"].'" type="text" name="rutaEscenario"/>
-								<label for="dimensiones">Dimensiones de la pantalla de juego</label>
-								<input readonly value="'.$datos["medidaVentanaJuego"].'" type="text" name="medVentana"/>
-								<label for="numeroRanking">Números de usuarios mostrados en el ránking</label>
-								<input value="'.$datos["filasRanking"].'" type="text" name="numFilas"/>*/
-								
-								
+				<form action="" id="formConfiguracion" method="POST" >
+					<?php		
 						echo	'<label>Ruta torre <input value="'.$datos["rutaTorre"].'" type="text" name="rutaDefensa"></label> 
 								<input value="'.$datos["rutaEnemigo"].'" type="text" name="rutaEnemigo" class="rutar"> <label for="rutaEnemigo" class="rutar">Ruta enemigo</label><br>
 								<label class="centro">Ruta escenario <input value="'.$datos["rutaEscenario"].'" type="text" name="rutaEscenario" class="centro"></label><br><br><hr><br>
 								<h4>Medidas de la ventana</h4><br>
-								<!--<label for="medidasVentana" id="medidaVentana">Medidas de la ventana de juego</label><br>-->
 								<label for="dimensiones" class="alto">Dimensiones de la pantalla de juego</label><br><br>
-								<input readonly type="text" name="medVentana" value="'.$datos["medidaVentanaJuego"].'" class=alto><br><br><hr><br>
+								<input readonly type="text" name="medVentana" value="'.$datos["medidaVentanaJuego"].'" class=alto><br>
+								<div id="divEmergente">La dimensión de la ventana no pueden modificarse</div><br><hr><br>
 								<h4>Filas de la tabla ranking</h4><br>
 								<label class="centro">Jugadores que aparecerán en el ranking <input type="number" value="'.$datos["filasRanking"].'" name="numFilas"></label><br><br>';
 					?>
@@ -107,5 +95,6 @@
 				<a target="_blank" title="LinkedIn" href=""><img class="rrss" alt="Icono red social LinkedIn" src="../../img/rrss/linkedinnar1.png"></a>
 			</div>
 		</footer>
+		<script type=module src="../../js/vistas/validaciones.js"></script>
 	</body>
 </html>

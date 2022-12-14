@@ -44,7 +44,8 @@ export class Torre {
             height: 32,
             fill: "#AFDAFF",
             isDragging: false,
-            radio: 100, vel: 1,
+            radio: 100, 
+            vel: 1,
             lvl: 1,
             upg: false,
             recogidos: 0

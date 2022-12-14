@@ -6,12 +6,22 @@
     box-sizing: border-box;
 }
 
+
+
 @font-face {
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 400;
     src:
         url('fonts/ubuntu/Ubuntu-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Press start';
+    font-style: normal;
+    font-weight: 400;
+    src:
+        url('fonts/pressstart/PressStart2P.ttf') format('truetype');
 }
 
 body {
@@ -24,7 +34,37 @@ body {
     min-height: 100vh;
     min-width: 500px;
     padding-bottom: 40px;
+}
 
+
+/*Cosas Antonio para añadir*/
+main div#divTablaTiempo{
+    width: 35%;
+    padding: 5px;
+    margin: 50px auto;
+    background-color: #E9FAFF;
+    border-radius: 4px;
+    box-shadow: 5px 10px 10px #444A61;
+    font-size: 1em;
+}
+
+div#divTablaTiempo table{
+    width:100%;
+}
+
+div#prueba{
+    position:absolute;
+    top:400px;
+    display:none;
+    z-index: 15;
+}
+
+div#divEmergente{
+    width:80%;
+    text-align: center;
+    margin:10px auto;
+    display:none;
+    background-color: #FEA832;
 }
 
 
@@ -181,6 +221,7 @@ tr:hover td {
 
 
 /*-------------Estilo de los divs para la ventana del canvas-------------*/
+
 main h1#mensajeAviso {
     display: none;
 }
@@ -191,12 +232,35 @@ main div#juego {
     justify-content: center;
 }
 
+/*main div#divContenedorPosition {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position:absolute;
+}*/
+
 main div#juego canvas {
     width: 960px;
     border: 1px solid black;
 	margin-top: 3vh;
     /*MOD*/
     background-color: #E9FAFF;
+}
+
+
+main div#divCaracteristicas{
+    width: 150px;
+    height: 100px;
+    position:absolute;
+    border: 1px solid black;
+    display: none;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: Press start;
+}
+
+div#divCaracteristicas p{
+    margin: 10px 5px;
 }
 
 /*** Estilo del formulario del login ***/
@@ -662,6 +726,10 @@ div#divNuevoEnemigo button {
         border: 1px solid #383e4c;
         text-align: center;
         font-size: 12px;
+    }
+
+    main div#divTablaTiempo{
+        width: 50%;
     }
 
     /*------------- Ajustes del footer -------------*/

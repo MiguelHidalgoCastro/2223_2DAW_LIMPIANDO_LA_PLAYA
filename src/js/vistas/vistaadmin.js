@@ -72,8 +72,6 @@ export class VistaAdmin {
         this.divNuevo.appendChild(this.labelPassword)
         this.divNuevo.appendChild(this.inputPassword)
         this.divNuevo.appendChild(this.btnSubmit)
-
-
     }
 
     /**

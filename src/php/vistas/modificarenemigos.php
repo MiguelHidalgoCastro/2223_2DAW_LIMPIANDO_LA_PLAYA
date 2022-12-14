@@ -21,7 +21,7 @@
 	}
 	
 	if($vacio){
-		echo '<script>alert("Todos los campos han de estar rellenados")</script>';
+		/*echo '<script>alert("Todos los campos han de estar rellenados")</script>';*/
 	}
 ?>
 <!DOCTYPE html>
@@ -62,7 +62,7 @@
 		<main>
 			<div id="divNuevoEnemigo">
 				<h2>Modificar enemigo</h2><br>
-				<form enctype="multipart/form-data" action="" id="formularioModificarEnemigo" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este enemigo?.')">
+				<form enctype="multipart/form-data" action="" id="formularioModificarEnemigo" method="POST">
 					<?php
 						echo 	'<label>Nombre del enemigo: <input type="text" name="nombre" value="'.$datos[0]["nombre"].'"></label> <br><br><br>
 								<label>Velodidad del enemigo: <input type="number" name="velocidadMov" value="'.$datos[0]["velocidadMov"].'"></label><br><br><br>
@@ -92,5 +92,6 @@
 				<a target="_blank" title="LinkedIn" href=""><img class="rrss" alt="Icono red social LinkedIn" src="../../img/rrss/linkedinnar1.png"></a>
 			</div>
 		</footer>
+		<script type=module src="../../js/vistas/validaciones.js"></script>
 	</body>
 </html>
