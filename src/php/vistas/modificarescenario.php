@@ -18,11 +18,6 @@ $dificultades = $controladorDificultad->getDificultades();
 if (isset($_POST) && !empty($_POST)) {
 	$confirm = $controlador->updateEscenario($_POST, $_FILES, $_GET['id']); // cambiar variables luego
 }
-/*
-if (isset($_POST) && !$confirm) {
-	echo '<script>alert("Todos los campos han de estar rellenados")</script>';
-}
-*/
 ?>
 
 <!DOCTYPE html>

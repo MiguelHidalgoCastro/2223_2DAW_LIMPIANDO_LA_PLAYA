@@ -19,9 +19,6 @@ if (isset($_POST) && !empty($_POST)) {
     $vacio = $controlador->addEScenario($_POST, $_FILES);
 }
 
-if ($vacio) {
-    echo '<script>alert("Todos los campos han de estar rellenados")</script>';
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">

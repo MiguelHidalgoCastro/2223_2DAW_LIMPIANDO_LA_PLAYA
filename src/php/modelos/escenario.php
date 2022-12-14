@@ -1,7 +1,8 @@
 <?php
 include('../config/conexion.php');
-
-
+/**
+ * Clase que contiene el Modelo de Escenario
+ */
 class Escenario
 {
     private $conexion;
@@ -11,18 +12,28 @@ class Escenario
     public $coords;
     public $rutaImagen;
 
+    /**
+     *  Constructor del modelo que contiene la conexion con el servidor de base de datos
+     */
     public function __construct()
     {
         $this->conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD) or die("no hay conexion");
         $this->conexion->set_charset('utf8');
     }
-
+    /**
+     * Ejecuta una consulta para traer los escenarios
+     * @return {array} Array con todos los escenarios
+     */
     public function getAll()
     {
         $datos = $this->conexion->query("SELECT * FROM escenario"); //prepare cuando sea losotros con filtros
         return $datos;
     }
-
+    /**
+     * Devuelve los escenarios que contengan el $id. En éste caso, sólo encontrará uno ya que es clave única
+     * @param {int} $id Número que utilizo en la consulta para obtener los datos
+     * @return {array} Devuelve un array con los datos que tengan el id que entra por parámetro
+     */
     public function get($id)
     {
         $conexion = $this->conexion;
@@ -32,7 +43,12 @@ class Escenario
         $result = $prepare->get_result();
         return $result->fetch_assoc();
     }
-
+    /**
+     * Añade un escenario a la BBDD 
+     * @param {array} $post Los datos que tengo $_POST al mandar el formulario
+     * @param {array} $files Datos que tengo $_FILES al mandar el formulario
+     * @return {bool} $ok devuelve true si se ha ejecutado correctamente
+     */
     public function add($post, $files)
     {
         $this->nombre = $post['nombre'];
@@ -47,9 +63,18 @@ class Escenario
         $conexion = $this->conexion;
         $prepare =  $conexion->prepare("INSERT INTO escenario (nombre, idDificultad, waypoints, coordenadas, nombreImagen) VALUES(?,?,?,?,?)");
         $prepare->bind_param("sisss", $this->nombre, $this->idDificultad, $this->waypoints, $this->coords, $this->rutaImagen);
-        $prepare->execute();
+        $ok = $prepare->execute();
         $prepare->close();
+
+        return $ok;
     }
+    /**
+     * Modifico el escenario que tiene el id que me entra por parámetro con los datos del formulario 
+     * @param {array} $post Los datos que tengo $_POST al mandar el formulario
+     * @param {array} $files Datos que tengo $_FILES al mandar el formulario
+     * @param {int} $id dato del escenario a modificar 
+     * @return {bool} $ok devuelve true si se ha ejecutado correctamente
+     */
     public function update($post, $files, $id) //el nombre lo añado cuando creo el objeto escenario
     {
         $this->nombre = $post['nombre'];
@@ -64,18 +89,22 @@ class Escenario
         $conexion = $this->conexion;
         $prepare =  $conexion->prepare("UPDATE escenario SET nombre= ?, idDificultad= ?, waypoints= ?, coordenadas=?, nombreImagen= ? WHERE id = ?");
         $prepare->bind_param("sisssi", $this->nombre, $this->idDificultad, $this->waypoints, $this->coords, $this->rutaImagen, $id);
-        $prepare->execute();
+        $ok = $prepare->execute();
         $prepare->close();
 
-        return true;
+        return $ok;
     }
-
+    /**
+     * Borro el escenario con el id que me llega por parámetro
+     * @param {int} $id dato del escenario a borrar 
+     * @return {bool} $ok devuelve true si se ha ejecutado correctamente
+     */
     public function delete($id)
     {
         $prepare = $this->conexion->prepare("DELETE FROM escenario WHERE id = ?");
         $prepare->bind_param("i", $id);
-        $prepare->execute();
+        $ok = $prepare->execute();
         $prepare->close();
-        return true;
+        return $ok;
     }
 }

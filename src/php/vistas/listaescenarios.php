@@ -6,7 +6,6 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
     header('Location:inicio_sesion.php');
 }
 
-
 require_once('../controladores/controladorescenario.php');
 require_once('../controladores/controladordificultad.php');
 
