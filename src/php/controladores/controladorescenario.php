@@ -44,9 +44,9 @@ class ControladorEscenario
      * @param {Array} $arrayFiles Array con los datos de un fichero (name, tmp_name, error...).
      * @param {Int} $id id del escenario a editar
      */
-    public function updateEscenario($arrayPost, $arrayFiles, $id)
+    public function updateEscenario($arrayPost, $arrayFiles, $nombreImagen, $id)
     {
-        $this->escenario->update($arrayPost, $arrayFiles, $id);
+        $this->escenario->update($arrayPost, $arrayFiles, $nombreImagen, $id);
         header('Location: listaescenarios.php');
     }
     /**

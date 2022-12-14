@@ -60,7 +60,7 @@ if (isset($_POST) && !empty($_POST)) {
     <main>
         <div id="divNuevoEnemigo">
             <h2>Añadir nuevo escenario</h2><br>
-            <form enctype="multipart/form-data" action="" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este escenario?.')">
+            <form enctype="multipart/form-data" action="" method="POST" onSubmit="return confirm('¿Está seguro de querer agregar este escenario?.')">
                 <?php
                 echo     '<label>Escenario <input type="text" name="nombre"></label> <br><br><br>
 								<label>Dificultad: 
@@ -73,9 +73,10 @@ if (isset($_POST) && !empty($_POST)) {
                 <?php echo
                 '</select>
                                 </label><br><br><br>
-                                <label>Waypoints: <textarea name="waypoints"></textarea></label><br><br><br>
-                                <label>Coordenadas: <textarea name="coords"></textarea></label><br><br><br>
-								<label>Imagen del escenario: <br><br><input type="file" accept="image/png, image/jpg" name="nombreImagen"></label> <br><br><br>';
+                                <label>Imagen del escenario: <br><br><input type="file" accept="image/png, image/jpg" name="nombreImagen"></label> <br><br><br>
+                                <label>Waypoints: <textarea  cols="30" rows="3" name="waypoints" placeholder="Introduce las posiciones disponibles de las torres"></textarea></label><br><br><br>
+                                <label>Coordenadas: <textarea cols="30" rows="3" name="coords" placeholder="Introduce la ruta del enemigo"></textarea></label><br><br><br>
+								';
                 ?>
                 <input type="submit" value="AÑADIR">
             </form>

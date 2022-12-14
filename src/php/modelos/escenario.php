@@ -75,20 +75,20 @@ class Escenario
      * @param {int} $id dato del escenario a modificar 
      * @return {bool} $ok devuelve true si se ha ejecutado correctamente
      */
-    public function update($post, $files, $id) //el nombre lo añado cuando creo el objeto escenario
+    public function update($post, $files, $nombreimageneliminar, $id) //el nombre lo añado cuando creo el objeto escenario
     {
-        $this->nombre = $post['nombre'];
-        $this->idDificultad =  $post['select'];
-        $this->waypoints = $post['waypoints'];
-        $this->coords = $post['coords'];
-        $this->rutaImagen = "../../img/subidas/escenarios/" . $files["nombreImagen"]["name"];
-        $archivo = $_FILES["nombreImagen"]["tmp_name"];
-        move_uploaded_file($archivo, $this->rutaImagen);
+        unlink(realpath($nombreimageneliminar));
+
+        $nombreimagenNueva = $files["nombreImagen"]["name"];
+        $rutaImagen = "../../img/subidas/escenarios/" . $nombreimagenNueva;
+        $archivo = $files["nombreImagen"]["tmp_name"];
+        move_uploaded_file($archivo, $rutaImagen);
+
 
 
         $conexion = $this->conexion;
         $prepare =  $conexion->prepare("UPDATE escenario SET nombre= ?, idDificultad= ?, waypoints= ?, coordenadas=?, nombreImagen= ? WHERE id = ?");
-        $prepare->bind_param("sisssi", $this->nombre, $this->idDificultad, $this->waypoints, $this->coords, $this->rutaImagen, $id);
+        $prepare->bind_param("sisssi", $post['nombre'], $post['select'], $post['waypoints'], $post['coords'], $rutaImagen, $id);
         $ok = $prepare->execute();
         $prepare->close();
 
@@ -101,6 +101,10 @@ class Escenario
      */
     public function delete($id)
     {
+        //primero obtengo la ruta de la imagen para borrarlo
+        $nombreimageneliminar = $this->get($id)['nombreImagen'];
+        unlink(realpath($nombreimageneliminar));
+
         $prepare = $this->conexion->prepare("DELETE FROM escenario WHERE id = ?");
         $prepare->bind_param("i", $id);
         $ok = $prepare->execute();

@@ -15,9 +15,15 @@ $escenario = $controlador->getEscenario($_GET['id']);
 $controladorDificultad = new ControladorDificultad();
 $dificultades = $controladorDificultad->getDificultades();
 
+
+
 if (isset($_POST) && !empty($_POST)) {
-	$confirm = $controlador->updateEscenario($_POST, $_FILES, $_GET['id']); // cambiar variables luego
+	$confirm = $controlador->updateEscenario($_POST, $_FILES, $escenario['nombreImagen'], $_GET['id']);
 }
+if ($confirm) {
+	echo '<script>alert("Todos los campos han de estar rellenados")</script>';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -79,9 +85,9 @@ if (isset($_POST) && !empty($_POST)) {
 									
 									
 									</label><br><br><br>
+									<label>Imagen del escenario: <img height="0px" width="0px" src = "' . $escenario["nombreImagen"] . '"> <br><br><input type="file" accept="image/png, image/jpg"  name="nombreImagen"></label> <br><br><br>
 								<label>Waypoint: <input type="text" name="waypoints" value="' . $escenario["waypoints"] . '"></label><br><br><br>
-								<label>Coordenadas: <input type="text" name="coords" value="' . $escenario["coordenadas"] . '"></label><br><br><br>
-								<label>Imagen del escenario: <img height="100px" width="100px" src = "' . $escenario["nombreImagen"] . '"> <br><br><input type="file" accept="image/png, image/jpg"  name="nombreImagen"></label> <br><br><br>';
+								<label>Coordenadas: <input type="text" name="coords" value="' . $escenario["coordenadas"] . '"></label><br><br><br>';
 				?>
 
 				<input type="submit" value="MODIFICAR" />

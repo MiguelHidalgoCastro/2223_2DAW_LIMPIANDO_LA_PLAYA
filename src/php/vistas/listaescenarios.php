@@ -25,7 +25,6 @@ if (isset($_GET['action'])) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,7 +34,6 @@ if (isset($_GET['action'])) {
     <link rel="stylesheet" href="../../css/style.css">
     <title>Listado de Escenarios</title>
 </head>
-
 <body>
     <header class="header">
         <div class="logo">
@@ -70,7 +68,7 @@ if (isset($_GET['action'])) {
                     <th>WayPoints</th>
                     <th>Ruta</th>
                     <th>Imagen</th>
-                    <th>Opciones</th>
+                    <th>Procesos</th>
                 </tr>
                 <?php
                 if ($datos) {
