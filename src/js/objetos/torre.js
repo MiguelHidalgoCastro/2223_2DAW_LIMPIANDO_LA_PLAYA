@@ -31,6 +31,7 @@ export class Torre {
         //cuando sea imagen será la ruta
         this.fill
         this.recogidos
+        this.contadorTiempo
     }
     /**
      * Create especifications to tower lvl 1
@@ -48,7 +49,8 @@ export class Torre {
             vel: 1,
             lvl: 1,
             upg: false,
-            recogidos: 0
+            recogidos: 0,
+            contadorTiempo: 0
         }
     }
     /**
@@ -67,7 +69,8 @@ export class Torre {
             vel: 2,
             lvl: 2,
             upg: false,
-            recogidos: 0
+            recogidos: 0,
+            contadorTiempo: 0
         }
     }
     /**
@@ -86,14 +89,15 @@ export class Torre {
             vel: 3,
             lvl: 3,
             upg: false,
-            recogidos: 0
+            recogidos: 0,
+            contadorTiempo: 0
         }
     }
     /**
      * Modified a tower with a new specification
      * @param {element} Tower with all params to create a new tower 
      */
-    asignarEspecificacion({ x, y, width, height, isDragging, radio, vel, lvl, upg, fill, recogidos }) {
+    asignarEspecificacion({ x, y, width, height, isDragging, radio, vel, lvl, upg, fill, recogidos, contadorTiempo }) {
         this.x = x
         this.y = y
         this.width = width
@@ -106,5 +110,6 @@ export class Torre {
 
         this.fill = fill
         this.recogidos = recogidos
+        this.contadorTiempo = contadorTiempo
     }
 }

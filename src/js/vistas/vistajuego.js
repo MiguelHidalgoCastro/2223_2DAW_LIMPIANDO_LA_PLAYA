@@ -26,6 +26,7 @@ export class VistaJuego {
      * @param {HTMLElement} canvas tag html
      */
     constructor(canvas) {
+        this.contadorTiempo = 0
         this.etiquetaCanvas = canvas
         window.onload = this.iniciar()
     }
@@ -61,6 +62,7 @@ export class VistaJuego {
        
         this.pLvl = document.getElementById('pLvl')
         this.pAlcance = document.getElementById('pAlcance')
+        this.pRecogidos = document.getElementById('pRecogidos')
 
         this.sonidoMatarEnemigo = document.getElementById('bichoMuerto')
     }
@@ -78,7 +80,7 @@ export class VistaJuego {
 
         //Creo el jugador
         this.jugador = new Jugador()
-        this.jugador.asignarPuntos(2000) //Para probar los upgrade
+        this.jugador.asignarPuntos(200) //Para probar los upgrade
 
         //Creo los enemigos
         this.enemigos = []
@@ -181,15 +183,16 @@ export class VistaJuego {
                 this.spawnEnemigos()
             }
         }
-        let comprobar = setInterval(this.comprobarContacto.bind(this), 0.1)
+        setInterval(this.comprobarContacto.bind(this), 0.1)
     }
     /**
      * Function to check that the enemy is in the radius of the tower
      */
     comprobarContacto() { //queda en intento
         //console.log("primero: " + this.enemigos[0].position.x + "-" + this.enemigos[0].position.y);
-
+        
         for (let i = 0; i < this.torresColocadas.length; i++) {
+            this.torresColocadas[i].contadorTiempo++
             /*const element = this.torresColocadas[i];
             let area = Math.PI * Math.pow(element.radio, 2)
             console.log(area); //calcula bien el area de la torres*/
@@ -201,11 +204,8 @@ export class VistaJuego {
                 let px
                 let py
 
-                
-                
                 let cx = this.torresColocadas[i].x + 16
                 let cy = this.torresColocadas[i].y + 16
-                
                 
                 px = cx
 
@@ -225,19 +225,21 @@ export class VistaJuego {
 
                 let distancia = Math.sqrt((cx - px)*(cx - px) + (cy - py)*(cy - py))
 
-                if(distancia < this.torresColocadas[i].radio){
-                    this.enemigos.splice(0,1)
-                    this.jugador.sumarPuntos(50)
-                    this.sonidoMatarEnemigo.play()
-                    
-                    //console.log('contacto')
-                    //debugger
-                    console.log(this.enemigos)
-                    if(this.enemigos.length===0){
-                        this.enemyCount += 2
-                        this.spawnEnemigos()
-                        
+                if(distancia < this.torresColocadas[i].radio && this.torresColocadas[i].contadorTiempo>=230000){
+                    this.enemigos[y].vida -=10
+                    if (this.enemigos[y].vida==0){
+                        this.enemigos.splice(y,1)
+                        this.jugador.sumarPuntos(25)
+                        this.sonidoMatarEnemigo.play()
+                        this.torresColocadas[i].contadorTiempo=0                    
+                        console.log(this.enemigos)
+                        this.torresColocadas[i].recogidos++
+                        if(this.enemigos.length===0){
+                            this.enemyCount += 2
+                            this.spawnEnemigos()
+                        }
                     }
+                    
                 }
             }
         }
@@ -353,9 +355,12 @@ export class VistaJuego {
         this.ctx.beginPath()
         this.ctx.fillStyle = 'white'
         this.ctx.font = '12px "Press Start 2P"'
-        this.ctx.fillText("LVL1", MEDIDA * 10 - 16, MEDIDA * 16 - 8)
-        this.ctx.fillText("LVL2", MEDIDA * 14 - 16, MEDIDA * 16 - 8)
-        this.ctx.fillText("LVL3", MEDIDA * 18 - 16, MEDIDA * 16 - 8)
+        this.ctx.fillText("LVL1", MEDIDA * 10, MEDIDA * 16 - 8)
+        this.ctx.fillText("100$", MEDIDA * 10, MEDIDA * 16.2)
+        this.ctx.fillText("LVL2", MEDIDA * 14, MEDIDA * 16 - 8)
+        this.ctx.fillText("175$", MEDIDA * 14, MEDIDA * 16.2)
+        this.ctx.fillText("LVL3", MEDIDA * 18, MEDIDA * 16 - 8)
+        this.ctx.fillText("225$", MEDIDA * 18, MEDIDA * 16.2)
         
 
 
@@ -452,9 +457,9 @@ export class VistaJuego {
                     // if yes, set that rects isDragging=true
                     this.dragok = true;
                     if (r.lvl == 1 || r.lvl == 2)
-                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: true, lvl: r.lvl, radio: r.radio })
+                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: true, lvl: r.lvl, radio: r.radio, recogidos: r.recogidos, contadorTiempo: r.contadorTiempo })
                     else
-                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: false, lvl: r.lvl, radio: r.radio })
+                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: false, lvl: r.lvl, radio: r.radio, recogidos: r.recogidos, contadorTiempo: r.contadorTiempo })
                 }
             }
             // save the current mouse position
@@ -490,14 +495,31 @@ export class VistaJuego {
             this.torresColocadas[i].isDragging = false
             if (i == this.torresColocadas.length - 1 && !this.torresColocadas[i].colocada) { //Aqui la coloco en el sitio exacto 
                 let elemento = this.devolverCoordenada(mx, my)
-                if (!this.comprobarCeldaOcupada(elemento.x, elemento.y)) {
+                if (!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 1 && this.jugador.puntos>=100) {
                     this.torresColocadas[i].x = elemento.x
                     this.torresColocadas[i].y = elemento.y
                     this.torresColocadas[i].colocada = true
+                    this.jugador.quitarPuntos(100)
                 }
                 else {
-                    this.torresColocadas.pop() //elimino del array si lo pongo encima
-                }
+                    if(!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 2 && this.jugador.puntos>=175){
+                        this.torresColocadas[i].x = elemento.x
+                        this.torresColocadas[i].y = elemento.y
+                        this.torresColocadas[i].colocada = true
+                        this.jugador.quitarPuntos(175)
+                    }
+                    else {
+                        if(!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 3 && this.jugador.puntos>=250){
+                            this.torresColocadas[i].x = elemento.x
+                            this.torresColocadas[i].y = elemento.y
+                            this.torresColocadas[i].colocada = true
+                            this.jugador.quitarPuntos(250)
+                        }
+                        else {
+                            this.torresColocadas.pop() //elimino del array si lo pongo encima
+                        }
+                    }
+                }     
             }
         }
     }
@@ -556,6 +578,7 @@ export class VistaJuego {
                      
                         this.pLvl.textContent = 'Nivel de la torre: '+element.lvl
                         this.pAlcance.textContent = 'Alcance: '+element.radio
+                        this.pRecogidos.textContent = 'Basura recogida: '+element.recogidos
 
                     }
                 else{
@@ -685,12 +708,12 @@ export class VistaJuego {
                     this.jugador.quitarPuntos(100)
                 }
 
-                else if (element.lvl == 2 && this.jugador.puntos >= 200) {
+                else if (element.lvl == 2 && this.jugador.puntos >= 100) {
                     element.lvl++
                     element.fill = "#444444" //cambio el color
                     element.upg = false //lo desactivo ya que es ultimo nivel
                     element.radio += 50
-                    this.jugador.quitarPuntos(200)
+                    this.jugador.quitarPuntos(100)
                 }
             }
 

@@ -22,6 +22,7 @@ export class Enemigo {
 			x: 0,
 			y: 0
 		}
+		this.vida = 100
 		this.ctx = ctx
 	}
 	/**
@@ -47,7 +48,7 @@ export class Enemigo {
 		const distanciaX = waypoint.x - this.centrar.x
 		const angulo = Math.atan2(distanciaY, distanciaX)
 		//Aqui se puede ajustar la rapidez
-		const rapidez = 2
+		const rapidez = 3
 		this.velocidad.x = Math.cos(angulo) * rapidez
 		this.velocidad.y = Math.sin(angulo) * rapidez
 		this.position.x += this.velocidad.x
