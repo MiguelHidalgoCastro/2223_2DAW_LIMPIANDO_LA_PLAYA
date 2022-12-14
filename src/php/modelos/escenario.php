@@ -33,10 +33,10 @@ class Escenario
         return $result->fetch_assoc();
     }
 
-    public function add($post, $files) 
+    public function add($post, $files)
     {
         $this->nombre = $post['nombre'];
-        $this->idDificultad =  $post['dificultad'];
+        $this->idDificultad =  $post['select'];
         $this->waypoints = $post['waypoints'];
         $this->coords = $post['coords'];
         $this->rutaImagen = "../../img/subidas/escenarios/" . $files["nombreImagen"]["name"];
@@ -50,37 +50,24 @@ class Escenario
         $prepare->execute();
         $prepare->close();
     }
-    public function update($arrayPost, $arrayFiles, $rutaImagen, $id) //el nombre lo añado cuando creo el objeto escenario
+    public function update($post, $files, $id) //el nombre lo añado cuando creo el objeto escenario
     {
-        if (
-            isset($arrayPost["nombre"]) && !empty($arrayPost["nombre"])
-            && isset($arrayPost["dificultad"]) && !empty($arrayPost["dificultad"])
-            && isset($arrayPost["puntos"]) && !empty($arrayPost["puntos"])
-            && isset($arrayFiles["nombreImagen"]["name"]) && !empty($arrayFiles["nombreImagen"]["name"])
-        ) {
-
-            unlink(realpath($rutaImagen));
-
-            $nombreImagen = $arrayFiles["nombreImagen"]["name"];
-            $ruta = "../../img/subidas/escenarios/" . $nombreImagen;
-            $archivo = $arrayFiles["nombreImagen"]["tmp_name"];
-            $subir = move_uploaded_file($archivo, $ruta);
+        $this->nombre = $post['nombre'];
+        $this->idDificultad =  $post['select'];
+        $this->waypoints = $post['waypoints'];
+        $this->coords = $post['coords'];
+        $this->rutaImagen = "../../img/subidas/escenarios/" . $files["nombreImagen"]["name"];
+        $archivo = $_FILES["nombreImagen"]["tmp_name"];
+        move_uploaded_file($archivo, $this->rutaImagen);
 
 
-            $consulta =  $this->mysqli->prepare("UPDATE escenario 
-													SET nombre= ?,
-													idDificultad= ?,
-													waypoints= ?,
-                                                    coordenadas=?
-													nombreImagen= ?
-													WHERE id = ?");
-            $consulta->bind_param("sisssi", $arrayPost["nombre"], $arrayPost["velocidadMov"], $arrayPost["puntos"], $ruta, $id);
-            $consulta->execute();
-            $consulta->close();
-            return true;
-        } else {
-            return false; /* Para controlar los mensajes de alertas */
-        }
+        $conexion = $this->conexion;
+        $prepare =  $conexion->prepare("UPDATE escenario SET nombre= ?, idDificultad= ?, waypoints= ?, coordenadas=?, nombreImagen= ? WHERE id = ?");
+        $prepare->bind_param("sisssi", $this->nombre, $this->idDificultad, $this->waypoints, $this->coords, $this->rutaImagen, $id);
+        $prepare->execute();
+        $prepare->close();
+
+        return true;
     }
 
     public function delete($id)

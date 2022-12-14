@@ -6,10 +6,14 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 }
 
 require_once('../controladores/controladorescenario.php');
+require_once('../controladores/controladordificultad.php');
 
 $vacio = false;
 
 $controlador = new ControladorEscenario();
+$controladorDificultad = new ControladorDificultad();
+$dificultades = $controladorDificultad->getDificultades();
+
 
 if (isset($_POST) && !empty($_POST)) {
     $vacio = $controlador->addEScenario($_POST, $_FILES);
@@ -62,7 +66,16 @@ if ($vacio) {
             <form enctype="multipart/form-data" action="" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este escenario?.')">
                 <?php
                 echo     '<label>Escenario <input type="text" name="nombre"></label> <br><br><br>
-								<label>Dificultad: <input type="number" name="dificultad"></label><br><br><br>
+								<label>Dificultad: 
+                                    <select name="select">' ?>
+
+                <?php
+                foreach ($dificultades as $dif) {
+                    echo '<option value=' . $dif['id'] . '>' . $dif['nombre'] . '</option>';
+                } ?>
+                <?php echo
+                '</select>
+                                </label><br><br><br>
                                 <label>Waypoints: <textarea name="waypoints"></textarea></label><br><br><br>
                                 <label>Coordenadas: <textarea name="coords"></textarea></label><br><br><br>
 								<label>Imagen del escenario: <br><br><input type="file" accept="image/png, image/jpg" name="nombreImagen"></label> <br><br><br>';

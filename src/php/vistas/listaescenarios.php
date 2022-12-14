@@ -6,11 +6,19 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
     header('Location:inicio_sesion.php');
 }
 
-//include('../controladores/controlador.php');
-include('../controladores/controladorescenario.php');
+
+require_once('../controladores/controladorescenario.php');
+require_once('../controladores/controladordificultad.php');
 
 $controlador = new ControladorEscenario();
 $datos = $controlador->getEscenarios();
+
+$controladorDificultad = new ControladorDificultad();
+$dificultades = $controladorDificultad->getDificultades();
+$difs = [];
+foreach ($dificultades as $dif) {
+    array_push($difs, $dif['nombre']);
+}
 
 if (isset($_GET['action'])) {
     $controlador->borrarEscenario($_GET["id"]);
@@ -26,7 +34,7 @@ if (isset($_GET['action'])) {
     <meta name="author" content="Grupo Limpiemos La Playa 2DAW 22/23" />
     <link rel="shortcut icon" href="../../img/logo/logoicon.png">
     <link rel="stylesheet" href="../../css/style.css">
-    <title>Lista Escenarios</title>
+    <title>Listado de Escenarios</title>
 </head>
 
 <body>
@@ -70,7 +78,7 @@ if (isset($_GET['action'])) {
                     foreach ($datos as $dato) { //Una vez que recorre la primera fila y la mete en un array, el puntero apunta al siguiente.
                         echo "<tr>
 									<td>" . $dato["nombre"] . "</td>
-									<td>" . $dato["idDificultad"] . "</td>
+									<td>" . $difs[$dato["idDificultad"] - 1] . "</td>
 									<td>" . $dato["waypoints"] . "</td>
                                     <td>" . $dato["coordenadas"] . "</td>
 									<td><img class=imgTabla src=" . $dato["nombreImagen"] . "></td>

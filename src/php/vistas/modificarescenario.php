@@ -6,19 +6,23 @@ if (isset($_POST['cerrarSesion']) || !$_SESSION) {
 }
 
 require_once('../controladores/controladorescenario.php');
+require_once('../controladores/controladordificultad.php');
+
 
 $controlador = new ControladorEscenario();
-$vacio = false;
+$confirm = false;
 $escenario = $controlador->getEscenario($_GET['id']);
+$controladorDificultad = new ControladorDificultad();
+$dificultades = $controladorDificultad->getDificultades();
 
 if (isset($_POST) && !empty($_POST)) {
-	$vacio = $controlador->updateEscenario($_POST, $_FILES, $escenario["nombreImagen"], $_GET['id']); // cambiar variables luego
+	$confirm = $controlador->updateEscenario($_POST, $_FILES, $_GET['id']); // cambiar variables luego
 }
-
-if ($vacio) {
+/*
+if (isset($_POST) && !$confirm) {
 	echo '<script>alert("Todos los campos han de estar rellenados")</script>';
 }
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +68,23 @@ if ($vacio) {
 			<form enctype="multipart/form-data" action="" id="formularioModificarEscenario" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este escenario?.')">
 				<?php
 				echo 	'<label>Nombre: <input type="text" name="nombre" value="' . $escenario["nombre"] . '"></label> <br><br><br>
-								<label>Dificultad: <input type="number" name="dificultad" value="' . $escenario["idDificultad"] . '"></label><br><br><br>
-								<label>Waypoint: <input type="text" name="waypoint" value="' . $escenario["waypoints"] . '"></label><br><br><br>
+								<label>Dificultad: 
+									<select name="select">' ?>
+
+				<?php
+				foreach ($dificultades as $dif) {
+					if ($escenario['idDificultad'] == $dif['id'])
+						echo '<option selected value=' . $dif['id'] . '>' . $dif['nombre'] . '</option>';
+
+					else
+						echo '<option value=' . $dif['id'] . '>' . $dif['nombre'] . '</option>';
+				} ?>
+				<?php echo
+				'</select>
+									
+									
+									</label><br><br><br>
+								<label>Waypoint: <input type="text" name="waypoints" value="' . $escenario["waypoints"] . '"></label><br><br><br>
 								<label>Coordenadas: <input type="text" name="coords" value="' . $escenario["coordenadas"] . '"></label><br><br><br>
 								<label>Imagen del escenario: <img height="100px" width="100px" src = "' . $escenario["nombreImagen"] . '"> <br><br><input type="file" accept="image/png, image/jpg"  name="nombreImagen"></label> <br><br><br>';
 				?>
