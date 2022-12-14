@@ -54,7 +54,7 @@
 					src="../../img/rrss/linkedinnar1.png"></a>
 		</div>
 	</footer>
-	<script type=module src="../../js/controlador/controladoradmin.js"></script>
+	<script type=module src="../../js/controlador/controladorAdmin.js"></script>
 </body>
 
 </html>

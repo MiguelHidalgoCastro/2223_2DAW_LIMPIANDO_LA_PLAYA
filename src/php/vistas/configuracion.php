@@ -48,7 +48,7 @@
 				<ul class="nav-links">
 					<li><a href="inicio_admin.php">Inicio</a></li>
 					<li><a id="resalto" href="configuracion.php">Configuración</a></li>
-					<li><a href="#">Escenarios</a></li>
+					<li><a href="listaescenarios.php">Escenarios</a></li>
 					<li><a href="#">Defensas</a></li>
 					<li><a href="listarenemigos.php">Enemigos</a></li>
 					<li>

@@ -34,8 +34,8 @@
 			<ul class="nav-links">
 				<li><a id="resalto" href="inicio_admin.php">Inicio</a></li>
 				<li><a href="configuracion.php">Configuración</a></li>
-				<li><a href="#">Escenarios</a></li>
-				<li><a href="listartorres.php">Defensas</a></li>
+				<li><a href="listaescenarios.php">Escenarios</a></li>
+				<li><a href="#">Defensas</a></li>
 				<li><a href="listarenemigos.php">Enemigos</a></li>
 				<li>
 					<form action="" method="POST">
@@ -69,7 +69,6 @@
 			<a target="_blank" title="LinkedIn" href=""><img class="rrss" alt="Icono red social LinkedIn" src="../../img/rrss/linkedinnar1.png"></a>
 		</div>
 	</footer>
-	<!--<script type=module src="../../js/controlador/controladorAdmin.js"></script>-->
 </body>
 
 </html>
