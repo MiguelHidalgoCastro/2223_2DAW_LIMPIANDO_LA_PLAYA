@@ -13,7 +13,7 @@ class Controlador {
      * Al cargar la página llama a la funcion iniciar
      */
     constructor() {
-        window.onload = this.iniciar.bind(this)
+       this.iniciar()
     }
 
     /**
@@ -22,8 +22,8 @@ class Controlador {
     iniciar() {
 
         //juego
-        this.juegoCanvas = document.getElementsByTagName('canvas')[0]
-        this.juegoTower = new VistaJuego(this.juegoCanvas)
+	this.juegoCanvas = document.getElementById('juego')
+    this.juegoTower = new VistaJuego(this.juegoCanvas, this)
     }
 }
 

@@ -14,15 +14,24 @@
         url('fonts/ubuntu/Ubuntu-Light.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Press start';
+    font-style: normal;
+    font-weight: 400;
+    src:
+        url('fonts/pressstart/PressStart2P.ttf') format('truetype');
+}
+
+
 body {
     margin: 0 auto;
     background-image: url('../img/fondo.jpg');
-    background-size: 100%;
+	background-size: cover;
     font-family: Ubuntu;
     position: relative;
     /* La posición, el min-height y el padding bottom es para que el footer esté siempre abajo haya el contenido que haya en el body*/
     min-height: 100vh;
-    min-width: 500px;
+    /* min-width: 500px; */
     padding-bottom: 40px;
 
 }
@@ -38,6 +47,7 @@ header.header {
     height: 11vh;
     padding: 5px 3%;
     font-size: 20px;
+	
 }
 
 /*-------------Ajustes main-------------*/
@@ -63,7 +73,14 @@ nav input#check {
 
 header.header .logo {
     cursor: pointer;
+	flex-shrink:1;
+	
 }
+header.header nav{
+	flex-shrink:2;
+	
+}
+
 
 header.header .logo img {
     height: 65px;
@@ -176,6 +193,8 @@ tr:nth-child(odd) td {
 
 tr:hover td {
     background-color: #383E4C;
+	color:white;
+	
 }
 
 
@@ -199,11 +218,26 @@ main div#juego canvas {
     background-color: #E9FAFF;
 }
 
+main div#divCaracteristicas{
+    width: 150px;
+    height: 100px;
+    position:absolute;
+    border: 1px solid black;
+    display: none;
+    font-size: 10px;
+    font-weight: bold;
+    font-family: Press start;
+}
+
+div#divCaracteristicas p{
+    margin: 10px 5px;
+}
+
 /*** Estilo del formulario del login ***/
 
 main form div#formularioLogin {
     width: 29.2825%;/*400px*/
-	height:220px;
+	height:240px;
     padding: 4.56vh 2.1961%;
     margin: 7.6136vh auto;
     border-radius: 4px;
@@ -308,7 +342,18 @@ main p#bienvenida {
     text-align: center;
     font-size: 20px;
 }
-
+main div#divTablaTiempo{
+    width: 35%;
+    padding: 5px;
+    margin: 50px auto;
+    background-color: #E9FAFF;
+    border-radius: 4px;
+    box-shadow: 5px 10px 10px #444A61;
+    font-size: 1em;
+}
+div#divTablaTiempo table{
+    width:100%;
+}
 
 /*** Estilo de los elementos del footer ***/
 footer div {
@@ -343,6 +388,13 @@ main div#divConfiguracion {
     border-color: #383e4c;
     border: 1px solid #383e4c;
     box-shadow: 5px 10px 10px #444A61;  
+}
+div#divEmergente{
+    width:80%;
+    text-align: center;
+    margin:10px auto;
+    display:none;
+    background-color: #FEA832;
 }
 
 /* El estilo se aplicará al h2 que esta dentro del div con id="divConfiguracion" dentro del main y
@@ -447,8 +499,8 @@ form#formConfiguracion input[type="submit"]:hover {
 /*Se aplica el estilo al div con id="divEnemigos", es el div del listado de los enemigos que hay*/
 div#divEnemigos{
     width: 58.9248%;
+	margin:50px auto;
     background-color: #E9FAFF;
-    margin: 40px auto;
     padding: 25px;
     border-radius: 7px;
     border-color: #383E4C;
@@ -498,8 +550,8 @@ div#divEnemigos input[type="submit"]:hover {
 }
 
 table#tableEnemigos img.imgTabla:hover{
-    width: 200px;
-    height: 200px;
+    width: 60%;
+    height: 60%;
 	border:1px solid black;
 }
 
@@ -573,17 +625,23 @@ div#divNuevoEnemigo button {
     text-transform: uppercase;
     color: white;
 }
+textarea {
+	margin-left:5%;
+	resize:none;
+}
 
 /*--------FALTA FLEXBOX Y MQ DEL MOKUP DE AÑADIR UN ENEMIGO------*/
 
 /*-------------Media Query Moviles-------------*/
-@media (max-width: 960px) {
+
+@media (max-width:960px) {
     body {
         padding-bottom: 120px;
     }
 
     nav label#btnMenu {
         display: block;
+
     }
 	
 
@@ -592,7 +650,9 @@ div#divNuevoEnemigo button {
     header.header .logo img {
         height: 55px;
     }
-
+	header.header nav ul{
+		display:block;
+	}
     .nav-links {
         margin-top: 0.4vh;
         position: fixed;
@@ -663,12 +723,15 @@ div#divNuevoEnemigo button {
         text-align: center;
         font-size: 12px;
     }
-
+	main div#divTablaTiempo{
+        width: 50%;
+    }
     /*------------- Ajustes del footer -------------*/
     footer div#rrss {
         float: none;
     }
 
+	
     footer div#copy {
         float: none;
     }
@@ -680,4 +743,31 @@ div#divNuevoEnemigo button {
     footer {
         display: block;
     }
+	/* Ajustes del div de listados */
+	div#divEnemigos{
+		width:100%;
+		margin:0;
+		height:75vh;
+		min-width: auto;
+	
+	}
+	
+	div#divEnemigos table#tableEnemigos{
+		font-size:1em;
+	}
+	div#divEnemigos input[type="submit"]{
+	font-size:0.8em;
+	
+	}
+	div#divNuevoEnemigo{
+		font-size:0.9em;
+		width:100%;
+		margin:0;
+		height:75vh;
+		min-width: auto;
+	}
+	div#divNuevoEnemigo input[type="file"]{
+	font-size:1em;
+	width:65%;
+	}
 }

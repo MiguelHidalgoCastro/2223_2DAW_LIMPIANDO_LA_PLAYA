@@ -39,8 +39,8 @@
 				<ul class="nav-links">
 					<li><a href="inicio_admin.php">Inicio</a></li>
 					<li><a href="configuracion.php">Configuración</a></li>
-					<li><a href="listaescenarios.php">Escenarios</a></li>
-					<li><a href="listartorres.php">Defensas</a></li>
+					<li><a href="#">Escenarios</a></li>
+					<li><a href="#">Defensas</a></li>
 					<li><a id="resalto" href="listarenemigos.php">Enemigos</a></li>
 					<li>
 						<form action="" method="POST">
@@ -70,7 +70,7 @@
 										<td>".$dato["puntos"]."</td>
 										<td><img class=imgTabla src=".$dato["nombreImagen"]."></td>
 										<td>
-											<a href=listarenemigos.php?variable1=".$dato["id"]."&variable2=borrar><img src=../../img/iconos/delete.png title='borrar'></a>
+											<a id=aBorrar href=listarenemigos.php?variable1=".$dato["id"]."&variable2=borrar><img src=../../img/iconos/delete.png title='borrar'></a>
 											<a href=modificarenemigos.php?variable1=".$dato["id"]."><img src=../../img/iconos/edit.png title='modificar'></a>
 										</td>
 									</tr>";
@@ -103,5 +103,6 @@
 				<a target="_blank" title="LinkedIn" href=""><img class="rrss" alt="Icono red social LinkedIn" src="../../img/rrss/linkedinnar1.png"></a>
 			</div>
 		</footer>
+		<script type=module src="../../js/vistas/validaciones.js"></script>
 	</body>
 </html>

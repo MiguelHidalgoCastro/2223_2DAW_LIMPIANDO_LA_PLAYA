@@ -1,6 +1,7 @@
 import { Torre } from "../objetos/torre.js"
 import { Jugador } from "../objetos/jugador.js"
 import { Enemigo } from "../objetos/enemigo.js"
+import { Vista } from "../objetos/vista.js"
 /** 
  * Constant for width of canvas
  * @type {number} 
@@ -20,20 +21,43 @@ const MEDIDA = 32
  * @author Miguel Hidalgo Castro - Sergio Rivera Salgado
  * CLASS VISTAJUEGO
  */
-export class VistaJuego {
+export class VistaJuego extends Vista{
     /**
      * Constructor of VistaJuego
      * @param {HTMLElement} canvas tag html
      */
-    constructor(canvas) {
-        this.etiquetaCanvas = canvas
-        window.onload = this.iniciar()
+    constructor(div,controlador,bandera) {
+		super (div)
+        this.contadorTiempo = 0
+		this.bandera = false
+		this.controlador = controlador
+        window.onload = this.iniciar.bind(this)
     }
 
+	//Añado esto para iniciar el juego
+	cambiarBandera(){
+		this.bandera = true
+		this.continuar()
+		this.divMenu.style.visibility = 'hidden'
+		this.div.style.visibility = 'visible'
+		this.audio.play()
+	 }
     /**
      * Function that starts when the web has been loaded
      */
+	 
     iniciar() {
+		
+		this.audio = document.getElementsByTagName('audio')[0]
+        this.audio.volume = 0.1
+		//Referente a la foto que inicia
+		this.div.style.visibility = 'hidden'
+		this.divMenu = document.getElementById('menu')
+		this.divMenu.style.position ='absolute'
+		this.divMenu.style.top = '40%'
+		this.divMenu.style.left = '40%'
+		this.divMenu.onclick = this.cambiarBandera.bind(this)
+		
         //Canvas
         this.canvas = document.getElementsByTagName("canvas")[0]
         this.canvas.width = WIDTH
@@ -51,12 +75,22 @@ export class VistaJuego {
         this.lvl2.src = "img/torres/lvl2.png"
         this.lvl3 = new Image()
         this.lvl3.src = "img/torres/lvl3.png"
+		
+		this.image = new Image()
+        this.image.src = 'img/sprites/sprite2.png'
 
         this.escenario = new Image()
         this.escenario.src = "img/escenarios/mapa2.png"
         this.escenario.onload = this.continuar.bind(this)
 
+        //div del mouseover de torres
+        this.divCaracteristicas = document.getElementById('divCaracteristicas')
+       
+        this.pLvl = document.getElementById('pLvl')
+        this.pAlcance = document.getElementById('pAlcance')
+        this.pRecogidos = document.getElementById('pRecogidos')
 
+        this.sonidoMatarEnemigo = document.getElementById('bichoMuerto')
     }
     /**
      * Function that starts when the images has been loaded
@@ -72,7 +106,7 @@ export class VistaJuego {
 
         //Creo el jugador
         this.jugador = new Jugador()
-        this.jugador.asignarPuntos(2000) //Para probar los upgrade
+        this.jugador.asignarPuntos(200) //Para probar los upgrade
 
         //Creo los enemigos
         this.enemigos = []
@@ -98,7 +132,6 @@ export class VistaJuego {
         this.canvas.onmousedown = this.pulsar.bind(this)
         this.canvas.onmouseup = this.soltar.bind(this)
         this.canvas.onmousemove = this.moverPulsado.bind(this)
-        //this.canvas.addEventListener("mouseover", this.mouseover.bind(this))
 
         this.spawnEnemigos()
         this.animar()
@@ -141,19 +174,19 @@ export class VistaJuego {
         for (let i = 1; i < this.enemyCount + 1; i++) {
             const diferenciaX = i * 100
             this.enemigos.push(
-                new Enemigo(this.ctx, {
+                new Enemigo(this.ctx, this.image, {
                     position: { x: waypoints[0].x - diferenciaX, y: waypoints[0].y }
                 }))
         }
     }
-
-
     /**
      * Main function to animate the game
      */
     animar() {
-        //setInterval(this.animarEnemigos, 30)
+  
         this.animacion = requestAnimationFrame(this.animar.bind(this))
+		if (this.bandera == false)
+			cancelAnimationFrame(this.animacion)
         this.dibujar()
         for (let i = this.enemigos.length - 1; i >= 0; i--) {
             const enemigo = this.enemigos[i]
@@ -176,18 +209,69 @@ export class VistaJuego {
                 this.spawnEnemigos()
             }
         }
-        let comprobar = setInterval(this.comprobarContacto.bind(this), 1000)
+         setInterval(this.comprobarContacto(), 100000)
     }
     /**
      * Function to check that the enemy is in the radius of the tower
      */
     comprobarContacto() { //queda en intento
         //console.log("primero: " + this.enemigos[0].position.x + "-" + this.enemigos[0].position.y);
-
+        
         for (let i = 0; i < this.torresColocadas.length; i++) {
-            const element = this.torresColocadas[i];
+			if(this.torresColocadas[i].contadorTiempo<1000){
+				this.torresColocadas[i].contadorTiempo++
+			}
+            
+            /*const element = this.torresColocadas[i];
             let area = Math.PI * Math.pow(element.radio, 2)
-            //console.log(area); //calcula bien el area de la torres
+            console.log(area); //calcula bien el area de la torres*/
+
+            for (let y = 0; y < this.enemigos.length; y++){
+                //(px,py) Punto del perímetro del rectángulo más cercano al círculo
+                //(cx,cy) Centro de la circunferencia
+                //(x,y) esquina del rectángulo
+                let px
+                let py
+
+                let cx = this.torresColocadas[i].x + 16
+                let cy = this.torresColocadas[i].y + 16
+                
+                px = cx
+
+                if(px < this.enemigos[y].position.x)
+                    px = this.enemigos[y].position.x
+               
+                if(px > this.enemigos[y].position.x + this.enemigos[y].width)
+                    px = this.enemigos[y].position.x + this.enemigos[y].width
+                
+                py = cy
+
+                if(py < this.enemigos[y].position.y)
+                    py = this.enemigos[y].position.y
+
+                if(py > this.enemigos[y].position.y + this.enemigos[y].height)
+                    py = this.enemigos[y].position.y + this.enemigos[y].height
+
+                let distancia = Math.sqrt((cx - px)*(cx - px) + (cy - py)*(cy - py))
+				
+				console.log(this.torresColocadas[i].contadorTiempo)
+                if(distancia < this.torresColocadas[i].radio && this.torresColocadas[i].contadorTiempo>=1000){
+                    this.enemigos[y].vida -=10
+                    if (this.enemigos[y].vida==0){
+                        this.enemigos.splice(y,1)
+                        this.jugador.sumarPuntos(25)
+                        this.sonidoMatarEnemigo.play()
+                        this.torresColocadas[i].contadorTiempo=0                    
+                        console.log(this.enemigos)
+                        this.torresColocadas[i].recogidos++
+                        if(this.enemigos.length===0){
+                            this.enemyCount += 2
+                            this.spawnEnemigos()
+                        }
+                    }
+                    
+                }
+            }
         }
     }
 
@@ -205,7 +289,7 @@ export class VistaJuego {
 
         this.clear()
         //this.dibujarGrid()
-        this.dibujarLetras()
+        this.dibujarLetras(false)
 
         //DIBUJO EL MENÚ
         for (let i = 0; i < this.torres.length; i++) {
@@ -220,6 +304,8 @@ export class VistaJuego {
                 this.ctx.drawImage(this.lvl3, r.x, r.y)
         }
 
+        
+
         //DIBUJO LAS COPIAS
         for (let i = 0; i < this.torresColocadas.length; i++) {
             let r = this.torresColocadas[i]
@@ -231,23 +317,27 @@ export class VistaJuego {
                 this.ctx.drawImage(this.lvl2, r.x, r.y)
             if (r.lvl == 3)
                 this.ctx.drawImage(this.lvl3, r.x, r.y)
+                
         }
 
         //ZONAS ATAQUE
         for (let i = 0; i < this.torresColocadas.length; i++) {
             let r = this.torresColocadas[i]
             this.ctx.fillStyle = r.fill
-
             if (r.lvl == 1)
                 this.dibujarArc(r.x, r.y, r.radio)
             if (r.lvl == 2)
                 this.dibujarArc(r.x, r.y, r.radio)
             if (r.lvl == 3)
                 this.dibujarArc(r.x, r.y, r.radio)
-
         }
 
     }
+
+    /**
+     * FUNCIÓN COLISIONES
+     */
+    
 
     /**
      * Helper function to draw a grid
@@ -290,13 +380,18 @@ export class VistaJuego {
     /**
      * Function to draw various game texts
      */
-    dibujarLetras() {
+    dibujarLetras(prueba) {
+
         this.ctx.beginPath()
         this.ctx.fillStyle = 'white'
         this.ctx.font = '12px "Press Start 2P"'
-        this.ctx.fillText("LVL1", MEDIDA * 10 - 16, MEDIDA * 16 - 8)
-        this.ctx.fillText("LVL2", MEDIDA * 14 - 16, MEDIDA * 16 - 8)
-        this.ctx.fillText("LVL3", MEDIDA * 18 - 16, MEDIDA * 16 - 8)
+        this.ctx.fillText("LVL1", MEDIDA * 10, MEDIDA * 16 - 8)
+        this.ctx.fillText("100$", MEDIDA * 10, MEDIDA * 16.2)
+        this.ctx.fillText("LVL2", MEDIDA * 14, MEDIDA * 16 - 8)
+        this.ctx.fillText("175$", MEDIDA * 14, MEDIDA * 16.2)
+        this.ctx.fillText("LVL3", MEDIDA * 18, MEDIDA * 16 - 8)
+        this.ctx.fillText("225$", MEDIDA * 18, MEDIDA * 16.2)
+        
 
 
         //Menu superior derecha
@@ -307,6 +402,7 @@ export class VistaJuego {
         this.ctx.stroke()
         this.ctx.closePath()
     }
+
 
     /**
      *  DIBUJAR RECOGIDOS -- Para cuando funcione el mouseover
@@ -368,7 +464,7 @@ export class VistaJuego {
      * @param {event} e 
      */
     pulsar(e) {
-        // console.log("pulsando");
+        console.log("pulsando");
         // tell the browser we're handling this mouse event
         e.preventDefault()
         e.stopPropagation()
@@ -376,6 +472,10 @@ export class VistaJuego {
         // get the current mouse position
         let mx = parseInt(e.clientX - this.offsetX)
         let my = parseInt(e.clientY - this.offsetY)
+
+         console.log("Coords: " + mx + "-" + my)
+
+
 
         if (this.comprobarTorreMenu(mx, my)) {
             //para ver si estoy pulsando en una torre del menú
@@ -387,9 +487,9 @@ export class VistaJuego {
                     // if yes, set that rects isDragging=true
                     this.dragok = true;
                     if (r.lvl == 1 || r.lvl == 2)
-                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: true, lvl: r.lvl, radio: r.radio })
+                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: true, lvl: r.lvl, radio: r.radio, recogidos: r.recogidos, contadorTiempo: r.contadorTiempo })
                     else
-                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: false, lvl: r.lvl, radio: r.radio })
+                        this.torresColocadas.push({ x: r.x, y: r.y, width: 32, height: 32, fill: r.fill, isDragging: true, colocada: false, upg: false, lvl: r.lvl, radio: r.radio, recogidos: r.recogidos, contadorTiempo: r.contadorTiempo })
                 }
             }
             // save the current mouse position
@@ -425,14 +525,31 @@ export class VistaJuego {
             this.torresColocadas[i].isDragging = false
             if (i == this.torresColocadas.length - 1 && !this.torresColocadas[i].colocada) { //Aqui la coloco en el sitio exacto 
                 let elemento = this.devolverCoordenada(mx, my)
-                if (!this.comprobarCeldaOcupada(elemento.x, elemento.y)) {
+                if (!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 1 && this.jugador.puntos>=100) {
                     this.torresColocadas[i].x = elemento.x
                     this.torresColocadas[i].y = elemento.y
                     this.torresColocadas[i].colocada = true
+                    this.jugador.quitarPuntos(100)
                 }
                 else {
-                    this.torresColocadas.pop() //elimino del array si lo pongo encima
-                }
+                    if(!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 2 && this.jugador.puntos>=175){
+                        this.torresColocadas[i].x = elemento.x
+                        this.torresColocadas[i].y = elemento.y
+                        this.torresColocadas[i].colocada = true
+                        this.jugador.quitarPuntos(175)
+                    }
+                    else {
+                        if(!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 3 && this.jugador.puntos>=250){
+                            this.torresColocadas[i].x = elemento.x
+                            this.torresColocadas[i].y = elemento.y
+                            this.torresColocadas[i].colocada = true
+                            this.jugador.quitarPuntos(250)
+                        }
+                        else {
+                            this.torresColocadas.pop() //elimino del array si lo pongo encima
+                        }
+                    }
+                }     
             }
         }
     }
@@ -442,19 +559,22 @@ export class VistaJuego {
      */
     moverPulsado(e) {
         // if we're dragging anything...
+        // tell the browser we're handling this mouse event
+        e.preventDefault()
+        e.stopPropagation()
+
+        let div2 = document.getElementById('prueba')
+
+        // get the current mouse position
+        let mx = parseInt(e.clientX - this.offsetX)
+        let my = parseInt(e.clientY - this.offsetY)
+
+        // calculate the distance the mouse has moved
+        // since the last mousemove
+        let dx = mx - this.startX
+        let dy = my - this.startY
+        
         if (this.dragok) {
-            // tell the browser we're handling this mouse event
-            e.preventDefault()
-            e.stopPropagation()
-
-            // get the current mouse position
-            let mx = parseInt(e.clientX - this.offsetX)
-            let my = parseInt(e.clientY - this.offsetY)
-
-            // calculate the distance the mouse has moved
-            // since the last mousemove
-            let dx = mx - this.startX
-            let dy = my - this.startY
 
             // move each rect that isDragging 
             // by the distance the mouse has moved
@@ -471,6 +591,35 @@ export class VistaJuego {
             this.startX = mx
             this.startY = my
         }
+        else{
+            // get the current mouse position
+            // mx y my es la coordenada del puntero
+            
+            //console.log("Coords: " + mx + "-" + my);
+            //Recorre el array de torres colocadas, obtiene la coordenada y compara si el mouse está sobre ella
+            for (let i = 0; i < this.torresColocadas.length; i++) {
+                const element = this.torresColocadas[i];
+                if (mx >= element.x && mx <= element.x + 32
+                    && my >= element.y && my <= element.y + 32){
+                       // console.log("sobre torre colocada")
+                        this.divCaracteristicas.style.display = 'block'
+                        i=this.torresColocadas.length //Para que salga del bucle for si se posiciona sobre cualquier torre
+                        this.divCaracteristicas.style.transform = "translate(1005px, -100px)"
+                     
+                        this.pLvl.textContent = 'Nivel de la torre: '+element.lvl
+                        this.pAlcance.textContent = 'Alcance: '+element.radio
+                        this.pRecogidos.textContent = 'Basura recogida: '+element.recogidos
+
+                    }
+                else{
+                    //console.log('estoy fuera')
+                    this.divCaracteristicas.style.display = 'none'
+                }
+            }
+
+        }
+        
+        
     }
 
     /**
@@ -478,22 +627,26 @@ export class VistaJuego {
      * Event of mouseover
      * @param {event} e 
      */
-    mouseover(e) {
+   /* mouseover(e) {
         e.preventDefault()
         e.stopPropagation()
 
         // get the current mouse position
+        // mx y my es la coordenada del puntero
+        
         let mx = parseInt(e.clientX - this.offsetX)
         let my = parseInt(e.clientY - this.offsetY)
-        console.log("Coords: " + mx + "-" + my);
+
+        //console.log("Coords: " + mx + "-" + my);
         for (let i = 0; i < this.torresColocadas.length; i++) {
             const element = this.torresColocadas[i];
             if (mx >= element.x && mx <= element.x + 32
                 && my >= element.y && my <= element.y + 32)
-                console.log("estoy");
+                console.log("sobre torre colocada");
+                
         }
     }
-
+*/
     /*CHECKS*/
 
     /**
@@ -585,12 +738,12 @@ export class VistaJuego {
                     this.jugador.quitarPuntos(100)
                 }
 
-                else if (element.lvl == 2 && this.jugador.puntos >= 200) {
+                else if (element.lvl == 2 && this.jugador.puntos >= 100) {
                     element.lvl++
                     element.fill = "#444444" //cambio el color
                     element.upg = false //lo desactivo ya que es ultimo nivel
                     element.radio += 50
-                    this.jugador.quitarPuntos(200)
+                    this.jugador.quitarPuntos(100)
                 }
             }
 

@@ -18,6 +18,7 @@
 	<meta name="author" content="Grupo Limpiemos La Playa 2DAW 22/23" />
 	<link rel="shortcut icon" href="../../img/logo/logoicon.png">
 	<link rel="stylesheet" href="../../css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<title>Inicio</title>
 </head>
 
@@ -34,8 +35,8 @@
 			<ul class="nav-links">
 				<li><a id="resalto" href="inicio_admin.php">Inicio</a></li>
 				<li><a href="configuracion.php">Configuración</a></li>
-				<li><a href="listaescenarios.php">Escenarios</a></li>
-				<li><a href="listartorres.php">Defensas</a></li>
+				<li><a href="#">Escenarios</a></li>
+				<li><a href="#">Defensas</a></li>
 				<li><a href="listarenemigos.php">Enemigos</a></li>
 				<li>
 					<form action="" method="POST">
@@ -50,6 +51,32 @@
 			<p id="bienvenida">
 				La sesión ha sido iniciada con éxito. Bienvenido a la app de administrador.
 			</p>
+		</div>
+		<div id="divTablaTiempo">
+			<table id="tableTiempo">
+				<thead>
+					<th colspan="2">Predicción meteorológica actual</th>
+				</thead>
+					<tr>
+						<td>Localidad</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Estado del cielo</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Temperatura mínima</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Temperatura máxima</td>
+						<td></td>
+					</tr>
+				<tbody>
+
+				</tbody>
+			</table>
 		</div>
 	</main>
 	<footer>
@@ -69,6 +96,7 @@
 			<a target="_blank" title="LinkedIn" href=""><img class="rrss" alt="Icono red social LinkedIn" src="../../img/rrss/linkedinnar1.png"></a>
 		</div>
 	</footer>
+	<script type=module src="../../js/vistas/apiaemet.js"></script>
 </body>
 
 </html>

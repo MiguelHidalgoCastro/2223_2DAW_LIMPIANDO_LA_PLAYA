@@ -17,7 +17,7 @@
 	}
 	
 	if($vacio){
-		echo '<script>alert("Todos los campos han de estar rellenados")</script>';
+		//echo '<script>alert("Todos los campos han de estar rellenados")</script>';
 	}
 ?>
 <!DOCTYPE html>
@@ -44,8 +44,8 @@
 				<ul class="nav-links">
 					<li><a href="inicio_admin.php">Inicio</a></li>
 					<li><a href="configuracion.php">Configuración</a></li>
-					<li><a href="listaescenarios.php">Escenarios</a></li>
-					<li><a href="listartorres.php">Defensas</a></li>
+					<li><a href="#">Escenarios</a></li>
+					<li><a href="#">Defensas</a></li>
 					<li><a id="resalto" href="listarenemigos.php">Enemigos</a></li>
 					<li>
 						<form action="" method="POST">
@@ -58,16 +58,19 @@
 		<main>
 			<div id="divNuevoEnemigo">
 				<h2>Añadir nuevo enemigo</h2><br>
-				<form enctype="multipart/form-data" action="" method="POST" onSubmit="return confirm('¿Está seguro de querer modificar este enemigo?.')">
+				<form id="formAnadir" action='' enctype="multipart/form-data"  method="POST")>
 					<?php
-						echo 	'<label>Nombre del enemigo: <input type="text" name="nombre"></label> <br><br><br>
-								<label>Velodidad del enemigo: <input type="number" name="velocidadMov"></label><br><br><br>
-								<label>Puntos del enemigo: <input type="number" name="puntos"></label><br><br><br>
-								<label>Imágen del enemigo: <br><br><input type="file" accept="image/png, image/jpg" name="nombreImagen"></label> <br><br><br>';
+						echo 	'<label>Nombre del enemigo: <input type="text" name="nombre" id="inputNombre"></label> <br><br><br>
+								<label>Velodidad del enemigo: <input type="number" name="velocidadMov" id="inputVelocidad"></label><br><br><br>
+								<label>Puntos del enemigo: <input type="number" name="puntos" id="inputPuntos"></label><br><br><br>
+								<label>Imágen del enemigo: <br><br><input type="file" accept="image/png, image/jpg" name="nombreImagen" id="inputFile"></label> <br><br><br>';
 					?>
 					<input type="submit" value="AÑADIR">
 				</form>
 				<a href="listarenemigos.php"><button>CANCELAR</button></a>
+			</div>
+			<div id="prueba2">
+
 			</div>
 		</main>
 		<footer>
@@ -87,5 +90,6 @@
 				<a target="_blank" title="LinkedIn" href=""><img class="rrss" alt="Icono red social LinkedIn" src="../../img/rrss/linkedinnar1.png"></a>
 			</div>
 		</footer>
+		<script type=module src="../../js/vistas/validaciones.js"></script>
 	</body>
 </html>
