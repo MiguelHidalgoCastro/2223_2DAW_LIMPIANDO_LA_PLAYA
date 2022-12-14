@@ -12,7 +12,7 @@
 	$datos = $controlador->datosEnemigos();
 	
 	if(isset($_GET['variable2'])){
-		$controlador->borrarEnemigo($_GET["variable1"]);
+		$controlador->borrarEnemigo($_GET["variable1"], $_GET['variable2']);
 	}
 ?>
 <!DOCTYPE html>
@@ -70,7 +70,7 @@
 										<td>".$dato["puntos"]."</td>
 										<td><img class=imgTabla src=".$dato["nombreImagen"]."></td>
 										<td>
-											<a id=aBorrar href=listarenemigos.php?variable1=".$dato["id"]."&variable2=borrar><img src=../../img/iconos/delete.png title='borrar'></a>
+											<a id=aBorrar href=listarenemigos.php?variable1=".$dato["id"]."&variable2=".$dato["nombreImagen"]."><img src=../../img/iconos/delete.png title='borrar'></a>
 											<a href=modificarenemigos.php?variable1=".$dato["id"]."><img src=../../img/iconos/edit.png title='modificar'></a>
 										</td>
 									</tr>";

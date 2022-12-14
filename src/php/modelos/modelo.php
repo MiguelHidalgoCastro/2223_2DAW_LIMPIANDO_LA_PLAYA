@@ -172,8 +172,10 @@ class Modelo
 	/**
 	 * Elimina el enemigo asociado al id.
 	 */
-	public function borrarDatosEnemigo($id)
+	public function borrarDatosEnemigo($id, $nombreImagen)
 	{
+		unlink(realpath($nombreImagen));
+		
 		$consulta = $this->mysqli->prepare("DELETE FROM enemigos WHERE id = ?");
 		$consulta->bind_param("i", $id);
 		$consulta->execute();

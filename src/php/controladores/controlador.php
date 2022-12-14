@@ -85,8 +85,8 @@
 		 * Le manda el id del enemigo a borrar al modelo.
 		 * @param {Integer} $id Id del enemigo a borrar.
 		 */
-		public function borrarEnemigo($id){
-			if($this->objeto->borrarDatosEnemigo($id)){
+		public function borrarEnemigo($id, $nombreImagen){
+			if($this->objeto->borrarDatosEnemigo($id, $nombreImagen)){
 				header('Location:listarenemigos.php');
 			}
 		}
