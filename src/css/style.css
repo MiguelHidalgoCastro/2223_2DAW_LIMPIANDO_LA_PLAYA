@@ -208,6 +208,7 @@ main div#juego {
     width: 100%;
     display: flex;
     justify-content: center;
+	margin:5px 0px 20px; /*Se quiere fijo, el juego no va a ser adaptable*/
 }
 
 main div#juego canvas {
@@ -222,7 +223,6 @@ main div#divCaracteristicas{
     width: 150px;
     height: 100px;
     position:absolute;
-    border: 1px solid black;
     display: none;
     font-size: 10px;
     font-weight: bold;
@@ -231,6 +231,13 @@ main div#divCaracteristicas{
 
 div#divCaracteristicas p{
     margin: 10px 5px;
+}
+
+main div#divContenedorPosition{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position:relative;
 }
 
 /*** Estilo del formulario del login ***/

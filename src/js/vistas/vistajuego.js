@@ -604,7 +604,7 @@ export class VistaJuego extends Vista{
                        // console.log("sobre torre colocada")
                         this.divCaracteristicas.style.display = 'block'
                         i=this.torresColocadas.length //Para que salga del bucle for si se posiciona sobre cualquier torre
-                        this.divCaracteristicas.style.transform = "translate(1005px, -100px)"
+                        this.divCaracteristicas.style.transform = "translate(405px, 470px)"
                      
                         this.pLvl.textContent = 'Nivel de la torre: '+element.lvl
                         this.pAlcance.textContent = 'Alcance: '+element.radio
