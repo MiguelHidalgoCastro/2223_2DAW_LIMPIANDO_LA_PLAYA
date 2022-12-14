@@ -7,6 +7,7 @@
 import { VistaAdmin } from '../vistas/vistaadmin.js'
 
 
+
 /**
  * Controlador de la aplicación
  */
