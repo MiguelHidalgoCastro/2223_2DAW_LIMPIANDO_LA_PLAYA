@@ -17,12 +17,12 @@
 body {
     margin: 0 auto;
     background-image: url('../img/fondo.jpg');
-    background-size: 100%;
+	background-size: cover;
     font-family: Ubuntu;
     position: relative;
     /* La posición, el min-height y el padding bottom es para que el footer esté siempre abajo haya el contenido que haya en el body*/
     min-height: 100vh;
-    min-width: 600px;
+    /* min-width: 500px; */
     padding-bottom: 40px;
 
 }
@@ -38,6 +38,7 @@ header.header {
     height: 11vh;
     padding: 5px 3%;
     font-size: 20px;
+	
 }
 
 /*-------------Ajustes main-------------*/
@@ -63,7 +64,14 @@ nav input#check {
 
 header.header .logo {
     cursor: pointer;
+	flex-shrink:1;
+	
 }
+header.header nav{
+	flex-shrink:2;
+	
+}
+
 
 header.header .logo img {
     height: 65px;
@@ -90,7 +98,6 @@ header.header .nav-links li:hover {
 }
 
 header.header .nav-links a {
-    font-size: 700;
     color: #eceff1;
     text-decoration: none;
 }
@@ -130,7 +137,9 @@ nav label#btnMenu {
     /*MOD*/
 }
 
-
+li a#resalto{
+	color:orange;
+}
 
 
 /*-------------Estilo tabla Vista Ranking-------------*/
@@ -146,7 +155,6 @@ div#tablaRanking {
     background-color: #AFDAFF;
     box-shadow: 5px 10px 10px black;
     font-size: 24px;
-
 }
 
 div#tablaRanking>table {
@@ -176,6 +184,8 @@ tr:nth-child(odd) td {
 
 tr:hover td {
     background-color: #383E4C;
+	color:white;
+	
 }
 
 
@@ -194,7 +204,7 @@ main div#juego {
 main div#juego canvas {
     width: 960px;
     border: 1px solid black;
-    margin-top: 3vh;
+	margin-top: 3vh;
     /*MOD*/
     background-color: #E9FAFF;
 }
@@ -202,10 +212,10 @@ main div#juego canvas {
 /*** Estilo del formulario del login ***/
 
 main form div#formularioLogin {
-    width: 400px;
-    height: 220px;
-    padding: 30px;
-    margin: 50px auto;
+    width: 29.2825%;/*400px*/
+	height:240px;
+    padding: 4.56vh 2.1961%;
+    margin: 7.6136vh auto;
     border-radius: 4px;
     background-color: #E9FAFF;
     box-shadow: 5px 10px 10px #444A61;
@@ -218,30 +228,28 @@ main form#login h2 {
 
 div#formularioLogin input[type="text"],
 div#formularioLogin input[type="password"] {
-    width: 300px;
-    height: 30px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+    width: 88.2352%; /*300px*/
+    height: 4.56vh;
+    margin: 0 0 2.9411%;
+    padding: 0 0 0 2.9411%;
     display: block;
 }
 
-div#formularioLogin input[type="text"]:focus,
+div#formularioLogin input[type="text"]:focus, 
 div#formularioLogin input[type="password"]:focus {
     background-color: #AFDAFF;
     outline: none;
 }
 
 div#formularioLogin button {
-    width: 30%;
+    width: 100px;
     padding: 8px;
     background: #66727e;
     border-radius: 5px;
     border-style: none;
-    float: right;
     cursor: pointer;
     text-transform: uppercase;
     color: white;
-    margin-bottom: 10px;
 }
 
 div#formularioLogin button:hover {
@@ -251,9 +259,9 @@ div#formularioLogin button:hover {
 
 /*** Estilo de la vista de alta ***/
 main form div#formularioAlta {
-    width: 400px;
-    height: 280px;
-    padding: 30px;
+	width: 29.2825%;
+    height: 220px;
+    padding: 4.56vh 2.1961%;
     margin: 50px auto;
     border-radius: 4px;
     background-color: #E9FAFF;
@@ -267,10 +275,10 @@ main form#alta h2 {
 
 div#formularioAlta input[type="text"],
 div#formularioAlta input[type="password"] {
-    width: 300px;
-    height: 30px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+    width: 88.2352%; /*300px*/
+    height: 4.56vh;
+    margin: 0 0 2.9411%;
+    padding: 0 0 0 2.9411%;
     display: block;
 }
 
@@ -280,8 +288,8 @@ div#formularioAlta input[type="password"]:focus {
     outline: none;
 }
 
-div#formularioAlta submit {
-    width: 30%;
+div#formularioAlta input[type="submit"] {
+    width: 100px;
     padding: 8px;
     background: #66727e;
     border-radius: 5px;
@@ -293,17 +301,9 @@ div#formularioAlta submit {
     margin: 0 auto;
 }
 
-div#formularioAlta submit:hover {
+div#formularioAlta input[type="submit"]:hover {
     opacity: 0.8;
     border: 1px silver solid;
-}
-
-
-div#formularioAlta select {
-    width: 130px;
-    height: 30px;
-    margin-bottom: 10px;
-    display: block;
 }
 
 /*** Estilo de la vista de inicio de administrador ***/
@@ -344,10 +344,9 @@ footer div#rrss img:hover {
 
 /*Se refiere al div con id="divConfiguracion" que esta dentro del main*/
 main div#divConfiguracion {
-    width: 53.77164973%; /*Ancho del formulario 810px y su contenedor 1506.37px*/
+    width: 53.771649%; /*Ancho del formulario*/
     /*height: 250px;*/
-    /*max-width: 600px;*/
-    padding: 3%; /*Ancho del padding 40px y su contenedor 551.311px*/
+    padding: 3%; 
     margin: 50px auto;
     background-color: #E9FAFF;  
     border-radius: 7px;
@@ -371,7 +370,7 @@ main div#divConfiguracion form hr{
 
 /*Modificar los inputs type="text" que estan el en formulario de configuracion*/
 main div#divConfiguracion form input[type="text"]{
-    width: 24.04615763%; /*Contenido width= 175px contenedor width= 727.767*/
+    width: 24.0461%;
     height: 26px;
     margin-bottom: 10px;
     padding-left: 10px;
@@ -381,7 +380,7 @@ main div#divConfiguracion form input[type="text"]{
 
 /*Modificar los inputs type="number" que estan el en formulario de configuracion*/
 main div#divConfiguracion form input[type="number"]{
-    width: 8.557363827%;/*Contenido width= 55px contenedor width= 727.767*/
+    width: 8.5573%;
     height: 26px;
     text-align: center;
     margin-bottom: 10px;
@@ -399,7 +398,7 @@ div#divConfiguracion form input.rutar{
 }
 
 div#divConfiguracion form label.centro{
-   padding-left:150px; /*150px*/
+    margin-left:190px;
 }
 
 /*div#divConfiguracion form input.centro{
@@ -440,6 +439,11 @@ form#formConfiguracion input[type="submit"]{
     margin-bottom: 15px;
 }
 
+form#formConfiguracion input[type="submit"]:hover {
+    opacity: 0.8;
+    border: 1px silver solid;
+}
+
 /*--------FALTA FLEX BOX Y MQ DEL FORMULARIO DE CONFIGURACION------*/
 
 
@@ -452,9 +456,9 @@ form#formConfiguracion input[type="submit"]{
 
 /*Se aplica el estilo al div con id="divEnemigos", es el div del listado de los enemigos que hay*/
 div#divEnemigos{
-    width: 58.92481848%;/*Eran 900px y su contenedor 1525,37=100%*/
+    width: 58.9248%;
+	margin:50px auto;
     background-color: #E9FAFF;
-    margin: auto;
     padding: 25px;
     border-radius: 7px;
     border-color: #383E4C;
@@ -469,7 +473,7 @@ div#divEnemigos h1{
 
 /*Se le aplican estilos a la tabla del listado de enemigos que estan en el div con id="divEnemigos"*/
 div#divEnemigos table#tableEnemigos{
-    width: 89.22755704%; /*Su anchira era 800px y siu contenedor 896,584*/
+    width: 89.2275%;
     text-align: center;
     border-radius: 5px;
     border-color: #AFDAFF;
@@ -498,6 +502,17 @@ div#divEnemigos input[type="submit"]{
     /*margin-bottom: 15px;*/
 }
 
+div#divEnemigos input[type="submit"]:hover {
+    opacity: 0.8;
+    border: 1px silver solid;
+}
+
+table#tableEnemigos img.imgTabla:hover{
+    width: 60%;
+    height: 60%;
+	border:1px solid black;
+}
+
 /*--------FALTA HACER FLEX BOX Y MEDIA QUERIS EN LE MOKUP DE LISTAR ENEMIGOS Y TORRES------*/
 
 /*-----Estilo del mokup de añadir un nuevo enemigo-----
@@ -507,8 +522,8 @@ div#divEnemigos input[type="submit"]{
 
 /*Aplicamos estilo al div con id="divNuevoEnemigo"*/
 div#divNuevoEnemigo{
-    width: 33.19215603%; /*Su ancbhira era de 500px y su contenedor de 1525.37px*/
-    height: 375px;
+    width: 33.1921%;
+    height: 470px;
     padding: 30px;
     margin: 50px auto;
     border-radius: 4px;
@@ -534,8 +549,8 @@ div#divNuevoEnemigo form input{
 
 /*Se le aplica estilos a los inputs type="number" que estan en el div con id="divNuevoEnemigo"*/
 div#divNuevoEnemigo form input[type="number"]{
-   width: 16.84808129%;/*Su ancbhira era de 65px y su contenedor de 437.767px*/
-   padding-left: 20px;/*Su ancbhira era de 25px y su contenedor de 64.9833px*/
+   width: 16.8480%;
+   padding-left: 25px;
 }
 
 /*Se le aplica estilos a los inputs type="sumbit" que estan en el div con id="divNuevoEnemigo"
@@ -553,26 +568,50 @@ div#divNuevoEnemigo form input[type="submit"]{
     /*margin-bottom: 15px;*/
 }
 
+div#divNuevoEnemigo form input[type="submit"]:hover, div#divNuevoEnemigo button:hover{
+    opacity: 0.8;
+    border: 1px silver solid;
+}
+
+div#divNuevoEnemigo button {
+    width: 30%;
+    padding: 8px;
+    background: #383e4c;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+}
+textarea {
+	margin-left:5%;
+	resize:none;
+}
+
 /*--------FALTA FLEXBOX Y MQ DEL MOKUP DE AÑADIR UN ENEMIGO------*/
 
 /*-------------Media Query Moviles-------------*/
-@media (max-width: 960px) { /*Los siguientes estilos se aplican cuando el ancho de la páfina es inferior a 960px*/
+
+@media (max-width:960px) {
     body {
         padding-bottom: 120px;
     }
 
     nav label#btnMenu {
-        display: block; /*El btonos de cerrar sesion de coloca en la siguiente linea 
-        comportandose como un elemento en bloque*/
+        display: block;
+
     }
+	
 
     /*-------------Ajustes de la navbar-------------*/
 
-    header.header .logo img { /*Se modifica el tamaño del logo*/
+    header.header .logo img {
         height: 55px;
     }
-
-    .nav-links { /*Se modifican los li del nav*/
+	header.header nav ul{
+		display:block;
+	}
+    .nav-links {
         margin-top: 0.4vh;
         position: fixed;
         width: 100%;
@@ -589,7 +628,7 @@ div#divNuevoEnemigo form input[type="submit"]{
         padding-left: 20px;
     }
 
-    main div#juego canvas { /*Desaparece el div del juego*/
+    main div#juego canvas {
         display: none;
     }
 
@@ -604,7 +643,7 @@ div#divNuevoEnemigo form input[type="submit"]{
     }
 
     .nav-links li a,
-    .btn input { /*Aparece el icono para mostrar el menu vertical*/
+    .btn input {
         font-size: 30px;
     }
 
@@ -617,6 +656,18 @@ div#divNuevoEnemigo form input[type="submit"]{
     nav input#check:checked~ul {
         left: 0;
     }
+	
+	/*------------- Ajustes del div inicio sesión -------------*/
+	main form div#formularioLogin {
+    width: 50%;/*400px*/
+	height:220px;
+    padding: 4.56vh 2.1961%;
+    margin: 7.6136vh auto;
+    border-radius: 4px;
+    background-color: #E9FAFF;
+    box-shadow: 5px 10px 10px #444A61;
+    border: 1px solid #383e4c;
+	}
 
     /*------------- Ajustes del div aviso inicio -------------*/
     main p#bienvenida {
@@ -632,10 +683,11 @@ div#divNuevoEnemigo form input[type="submit"]{
     }
 
     /*------------- Ajustes del footer -------------*/
-    footer div#rrss { /*Los elementos dle footer se colcan uno debajo de otros como elementos en bloque*/
+    footer div#rrss {
         float: none;
     }
 
+	
     footer div#copy {
         float: none;
     }
@@ -647,33 +699,37 @@ div#divNuevoEnemigo form input[type="submit"]{
     footer {
         display: block;
     }
-}
+	/* Ajustes del div de listados */
+	div#divEnemigos{
+		width:100%;
+		margin:0;
+		height:75vh;
+		min-width: auto;
+	
+	}
+	
+	div#divEnemigos table#tableEnemigos{
+		font-size:1em;
+	}
+	div#divEnemigos input[type="submit"]{
+	font-size:0.8em;
+	
+	}
+	div#divNuevoEnemigo{
+		font-size:0.9em;
+		width:100%;
+		margin:0;
+		height:75vh;
+		
+		 /* min-height: 100vh; */
+		min-width: auto;
+	}
 
-/*Flex box*/
-
-/*Estilo del contenedor*/
-
-
-/*Estilo de los items*/
-#item1{
-    flex-grow: 1;
-}
-
-#item2{
-    flex-shrink: 0;
-    flex-grow: 2;
-}
-#item3{
-    flex-grow: 1;
-}
-
-#item4{
-    flex-grow: 1;
-}
-#item5{
-    flex-grow: 1;
-}
-
-#item6{
-    flex-grow: 1;
+	/* div#divNuevoEnemigo input[type="submit"], button{ */
+	/* font-size:0.5em; */
+	/* } */
+	div#divNuevoEnemigo input[type="file"]{
+	font-size:1em;
+	width:65%;
+	}
 }
