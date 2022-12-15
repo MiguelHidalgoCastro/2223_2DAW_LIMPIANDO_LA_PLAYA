@@ -32,6 +32,7 @@
 		</nav>
 	</header>
 	<main>
+		<!-- Creado por DOM js -->
 	</main>
 	<footer>
 		<div id="copy">
