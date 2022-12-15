@@ -28,11 +28,11 @@
 
             if(!isset($id))
             {
-                $consulta = $this->mysqli-> query('SELECT * FROM torres');
+                $consulta = $this->mysqli-> query('SELECT * FROM lp_torres');
             }
             else
             {
-                $consulta = $this->mysqli->query('SELECT * FROM torres WHERE id="'.$id.'"');	
+                $consulta = $this->mysqli->query('SELECT * FROM lp_torres WHERE id="'.$id.'"');	
             }
 
             while($filas = $consulta-> fetch_assoc())
@@ -52,7 +52,7 @@
          */
         public function borrarDatosTorres($id)
         {
-            $consulta = $this-> mysqli-> prepare('DELETE FROM torres WHERE id=?');
+            $consulta = $this-> mysqli-> prepare('DELETE FROM lp_torres WHERE id=?');
             $consulta-> bind_param('i', $id);
             $consulta->execute();
             $consulta->close();
@@ -80,7 +80,7 @@
                 $subir = move_uploaded_file($archivo,$rutaImg);
 
                 //Proceso de consulta preparada. Añade valores a la tabla torres
-                $consulta = $this->mysqli->prepare("INSERT INTO torres (nombre, radioActuacion, velocidadRecorrido, nombreImagen) VALUES (?, ?, ?, ?)");
+                $consulta = $this->mysqli->prepare("INSERT INTO lp_torres (nombre, radioActuacion, velocidadRecorrido, nombreImagen) VALUES (?, ?, ?, ?)");
                 $consulta->bind_param("siis", $datosTorre["nombre"], $datosTorre["radioActuacion"], $datosTorre["velocidadRecorrido"], $rutaImg);
                 $consulta-> execute();
                 $consulta-> close();
@@ -106,11 +106,11 @@
 
             if(!isset($id))
             {
-                $consulta = $this-> mysqli-> query("SELECT * FROM torres");
+                $consulta = $this-> mysqli-> query("SELECT * FROM lp_torres");
             }
             else
             {
-                $consulta = $this-> mysqli-> query('SELECT * FROM torres WHERE id="'.$id.'"');
+                $consulta = $this-> mysqli-> query('SELECT * FROM lp_torres WHERE id="'.$id.'"');
             }
 
             while($filas=$consulta->fetch_assoc())
@@ -143,7 +143,7 @@
                 $archivo = $file["nombreImagen"]["tmp_name"];
                 $subir = move_uploaded_file($archivo,$rutaImagen);
 
-                $consulta = $this-> mysqli-> prepare("UPDATE torres SET nombre=?, radioActuacion=?, velocidadRecorrido=?, nombreImagen=? WHERE id=?");
+                $consulta = $this-> mysqli-> prepare("UPDATE lp_torres SET nombre=?, radioActuacion=?, velocidadRecorrido=?, nombreImagen=? WHERE id=?");
                 $consulta-> bind_param('siisi', $datosTorre["nombre"], $datosTorre["radioActuacion"], $datosTorre["velocidadRecorrido"], $rutaImagen, $id);
                 $consulta->execute();
                 $consulta->close();

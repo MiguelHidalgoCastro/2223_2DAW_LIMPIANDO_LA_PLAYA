@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS usuarios;
 DROP TABLE IF EXISTS enemigos;
 DROP TABLE IF EXISTS ranking;*/
 
-CREATE TABLE configuracion (
+CREATE TABLE lp_configuracion (
 	rutaTorre VARCHAR(30) NOT NULL DEFAULT "img/torres",
 	rutaEnemigo VARCHAR(30) NOT NULL DEFAULT "img/enemigos",
 	rutaEscenario VARCHAR(30) NOT NULL DEFAULT "img/escenarios",
@@ -15,14 +15,14 @@ CREATE TABLE configuracion (
 	filasRanking TINYINT UNSIGNED NOT NULL DEFAULT 50
 );
 
-CREATE TABLE administrador(
+CREATE TABLE lp_administrador(
 	id TINYINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	nombre VARCHAR(60) NOT NULL,
 	perfil VARCHAR(2) NOT NULL CHECK(perfil='LP'),
 	clave VARCHAR(255) NOT NULL
 ); 
 
-CREATE TABLE enemigos(
+CREATE TABLE lp_enemigos(
 	id TINYINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	nombre VARCHAR(90) NOT NULL UNIQUE,
 	velocidadMov TINYINT UNSIGNED NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE enemigos(
 	nombreImagen VARCHAR(50) UNIQUE NOT NULL
 );
 
-CREATE TABLE torres(
+CREATE TABLE lp_torres(
 	id TINYINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	nombre VARCHAR(90) NOT NULL UNIQUE,
 	radioActuacion smallint UNSIGNED NOT NULL,
@@ -38,12 +38,12 @@ CREATE TABLE torres(
 	nombreImagen VARCHAR(50) UNIQUE NOT NULL
 ); 
 
-CREATE TABLE dificultad(
+CREATE TABLE lp_dificultad(
 	id TINYINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	nombre CHAR(7) NOT NULL
 );
 
-CREATE TABLE escenario(
+CREATE TABLE lp_escenario(
 	id TINYINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	nombre VARCHAR(90) NOT NULL UNIQUE,
 	nombreImagen VARCHAR(50) UNIQUE NOT NULL,
@@ -51,16 +51,16 @@ CREATE TABLE escenario(
 	CONSTRAINT FK_idDificultad FOREIGN KEY (idDificultad) REFERENCES dificultad (id)
 );
 
-CREATE TABLE ranking(
+CREATE TABLE lp_ranking(
 	id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	alias VARCHAR(20) NOT NULL,
 	puntos INT UNSIGNED NOT NULL
 );
 
-INSERT INTO configuracion (rutaTorre, rutaEnemigo, rutaEscenario, medidaVentanaJuego, filasRanking)
+INSERT INTO lp_configuracion (rutaTorre, rutaEnemigo, rutaEscenario, medidaVentanaJuego, filasRanking)
 				VALUES(DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
  				
-INSERT INTO dificultad(nombre)
+INSERT INTO lp_dificultad(nombre)
 				VALUES	('Fácil'),
 						('Media'),
 						('Difícil');

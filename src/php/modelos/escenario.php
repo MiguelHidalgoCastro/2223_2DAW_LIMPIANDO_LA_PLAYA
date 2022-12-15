@@ -26,7 +26,7 @@ class Escenario
      */
     public function getAll()
     {
-        $datos = $this->conexion->query("SELECT * FROM escenario"); //prepare cuando sea losotros con filtros
+        $datos = $this->conexion->query("SELECT * FROM lp_escenario"); //prepare cuando sea losotros con filtros
         return $datos;
     }
     /**
@@ -37,7 +37,7 @@ class Escenario
     public function get($id)
     {
         $conexion = $this->conexion;
-        $prepare = $conexion->prepare("SELECT * FROM escenario WHERE id=?");
+        $prepare = $conexion->prepare("SELECT * FROM lp_escenario WHERE id=?");
         $prepare->bind_param('i', $id);
         $prepare->execute();
         $result = $prepare->get_result();
@@ -61,7 +61,7 @@ class Escenario
 
 
         $conexion = $this->conexion;
-        $prepare =  $conexion->prepare("INSERT INTO escenario (nombre, idDificultad, waypoints, coordenadas, nombreImagen) VALUES(?,?,?,?,?)");
+        $prepare =  $conexion->prepare("INSERT INTO lp_escenario (nombre, idDificultad, waypoints, coordenadas, nombreImagen) VALUES(?,?,?,?,?)");
         $prepare->bind_param("sisss", $this->nombre, $this->idDificultad, $this->waypoints, $this->coords, $this->rutaImagen);
         $ok = $prepare->execute();
         $prepare->close();
@@ -87,7 +87,7 @@ class Escenario
 
 
         $conexion = $this->conexion;
-        $prepare =  $conexion->prepare("UPDATE escenario SET nombre= ?, idDificultad= ?, waypoints= ?, coordenadas=?, nombreImagen= ? WHERE id = ?");
+        $prepare =  $conexion->prepare("UPDATE lp_escenario SET nombre= ?, idDificultad= ?, waypoints= ?, coordenadas=?, nombreImagen= ? WHERE id = ?");
         $prepare->bind_param("sisssi", $post['nombre'], $post['select'], $post['waypoints'], $post['coords'], $rutaImagen, $id);
         $ok = $prepare->execute();
         $prepare->close();
@@ -105,7 +105,7 @@ class Escenario
         $nombreimageneliminar = $this->get($id)['nombreImagen'];
         unlink(realpath($nombreimageneliminar));
 
-        $prepare = $this->conexion->prepare("DELETE FROM escenario WHERE id = ?");
+        $prepare = $this->conexion->prepare("DELETE FROM lp_escenario WHERE id = ?");
         $prepare->bind_param("i", $id);
         $ok = $prepare->execute();
         $prepare->close();

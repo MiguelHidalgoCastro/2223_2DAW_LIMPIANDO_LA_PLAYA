@@ -21,7 +21,7 @@ class Dificultad
      */
     public function getAll()
     {
-        $datos = $this->conexion->query("SELECT * FROM dificultad"); 
+        $datos = $this->conexion->query("SELECT * FROM lp_dificultad"); 
         return $datos;
     }
 }

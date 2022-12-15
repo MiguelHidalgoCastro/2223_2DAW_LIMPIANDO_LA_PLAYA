@@ -77,7 +77,7 @@ class Modelo
 	 */
 	public function selectDatosConfig()
 	{
-		$consulta =  $this->mysqli->prepare("SELECT * FROM configuracion");
+		$consulta =  $this->mysqli->prepare("SELECT * FROM lp_configuracion");
 		$consulta->execute();
 
 		$resultado = $consulta->get_result();
@@ -102,7 +102,7 @@ class Modelo
 			&& isset($datos["medVentana"]) && !empty($datos["medVentana"])
 			&& isset($datos["numFilas"]) && !empty($datos["numFilas"])
 		) {
-			$consulta =  $this->mysqli->prepare("UPDATE configuracion 
+			$consulta =  $this->mysqli->prepare("UPDATE lp_configuracion 
 													SET rutaTorre= ?,
 													rutaEnemigo= ?,
 													rutaEscenario= ?,
@@ -124,9 +124,9 @@ class Modelo
 		$datos = null;
 
 		if (!isset($id))
-			$consulta = $this->mysqli->query("SELECT * FROM enemigos");
+			$consulta = $this->mysqli->query("SELECT * FROM lp_enemigos");
 		else
-			$consulta = $this->mysqli->query('SELECT * FROM enemigos WHERE id="' . $id . '"');
+			$consulta = $this->mysqli->query('SELECT * FROM lp_enemigos WHERE id="' . $id . '"');
 
 		while ($filas = $consulta->fetch_assoc()) {
 			$datos[] = $filas;
@@ -176,7 +176,7 @@ class Modelo
 	{
 		unlink(realpath($nombreImagen));
 		
-		$consulta = $this->mysqli->prepare("DELETE FROM enemigos WHERE id = ?");
+		$consulta = $this->mysqli->prepare("DELETE FROM lp_enemigos WHERE id = ?");
 		$consulta->bind_param("i", $id);
 		$consulta->execute();
 		$consulta->close();
@@ -199,7 +199,7 @@ class Modelo
 			$archivo = $_FILES["nombreImagen"]["tmp_name"];
 			$subir = move_uploaded_file($archivo, $rutaImagen);
 
-			$consulta =  $this->mysqli->prepare("INSERT INTO enemigos (nombre, velocidadMov, puntos, nombreImagen)
+			$consulta =  $this->mysqli->prepare("INSERT INTO lp_enemigos (nombre, velocidadMov, puntos, nombreImagen)
 														VALUES(?,?,?,?)");
 			$consulta->bind_param("siis", $datosEnemigo["nombre"], $datosEnemigo["velocidadMov"], $datosEnemigo["puntos"], $rutaImagen);
 			$consulta->execute();
