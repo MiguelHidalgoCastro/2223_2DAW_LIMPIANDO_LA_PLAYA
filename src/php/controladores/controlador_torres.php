@@ -28,9 +28,9 @@
          * Summary of borrarTorres Manda el id de la torre que se quiere borrar al modelo 
          * @param {Integer} $id Id de la torre que se quiere borrar
          */
-        public function borrarTorres($id)
+        public function borrarTorres($id, $nombreImagen)
         {
-            if($this-> objeto-> borrarDatosTorres($id))
+            if($this-> objeto-> borrarDatosTorres($id, $nombreImagen))
             {
                 header('Location: listartorres.php');
             }

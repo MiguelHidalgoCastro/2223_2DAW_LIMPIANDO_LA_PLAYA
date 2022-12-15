@@ -50,9 +50,10 @@
          * @param {int} $id Id de la torre que se quiere borrar
          * @return bool
          */
-        public function borrarDatosTorres($id)
+        public function borrarDatosTorres($id, $nombreImagen)
         {
-            $consulta = $this-> mysqli-> prepare('DELETE FROM lp_torres WHERE id=?');
+            unlink(realpath($nombreImagen));
+			$consulta = $this-> mysqli-> prepare('DELETE FROM lp_torres WHERE id=?');
             $consulta-> bind_param('i', $id);
             $consulta->execute();
             $consulta->close();

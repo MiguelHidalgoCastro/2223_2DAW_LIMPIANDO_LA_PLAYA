@@ -14,7 +14,7 @@
 	
 	if(isset($_GET['variable2']))
 	{
-		$controlador-> borrarTorres($_GET["variable1"]);
+		$controlador-> borrarTorres($_GET["variable1"], $_GET["variable2"]);
 	}
 ?>
 <!DOCTYPE html>
@@ -82,7 +82,7 @@
 										<td>'.$dato["radioActuacion"].'</td>
 										<td>'.$dato["velocidadRecorrido"].'</td>
 										<td><img class="imgTabla" src="'.$dato["nombreImagen"].'"</td>
-										<td><a onSubmit="return confirm(¿Está seguro de querer borrar la torre?.)" href=listartorres.php?variable1='.$dato["id"].'&variable2=borrar><img src=../../img/iconos/delete.png title="borrar"></a>
+										<td><a onSubmit="return confirm(¿Está seguro de querer borrar la torre?.)" href=listartorres.php?variable1='.$dato["id"].'&variable2='.$dato["nombreImagen"].'><img src=../../img/iconos/delete.png title="borrar"></a>
 										<a href=modificartorres.php?variable1='.$dato["id"].'><img src=../../img/iconos/edit.png title="modificar"></a>
 									</td></tr>';
 							}
