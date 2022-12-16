@@ -6,7 +6,7 @@
 		header('Location: inicio_sesion.php');
 	}
 	
-	include('../controladores/controlador.php');
+	include('../controladores/controladorenemigos.php');
 	
 	$vacio = false; /*Variable para mostrar alert o no, controla si algún campo está vacío.*/
 	

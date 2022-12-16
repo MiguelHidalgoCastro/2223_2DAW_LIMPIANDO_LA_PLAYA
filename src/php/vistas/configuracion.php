@@ -6,7 +6,7 @@
 		header('Location: inicio_sesion.php');
 	}
 	
-	include('../controladores/controlador.php');
+	include('../controladores/controladorconfiguracion.php');
 	
 	$controlador = new Controlador();
 	

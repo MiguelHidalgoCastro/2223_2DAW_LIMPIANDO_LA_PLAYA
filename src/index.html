@@ -27,7 +27,6 @@
 			<ul class="nav-links">
 				<li><a href="index.html">Juego</a></li>
 				<li><a href="php/vistas/ranking.html">Ranking</a></li>
-				<!--<li><a class="btn" href="#"><button>Cerrar Sesion</button></a></li>-->
 			</ul>
 		</nav>
 	</header>
@@ -37,6 +36,14 @@
 				<p id="menu"><img src="boton.png"></p>
 			</div>
 			<div id="juego">
+				<div id="divRankingJuego">
+					<h3 id="h3PuntuacionLograda"></h3>
+					<form id="formRanking">
+						<label>Nickname: <input id="nickname" type="text" name="nickname"></label>
+						<input type="submit" value="GUARDAR PTS">
+					</form>
+					<a href="index.html"><button>CANCELAR</button></a>
+				</div>
 				<h1 id="mensajeAviso">SÓLO VERSIÓN DESKTOP</h1>
 				<canvas>
 					
@@ -78,8 +85,4 @@
 	<script src="js/coordenadas/coordenadas.js"></script>
 	<script src="js/coordenadas/waypoints.js"></script>
 </body>
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-</style>
-
 </html>

@@ -39,7 +39,7 @@ export class Torre {
      */
     especificacionlvl1() {
         return {
-            x: MEDIDA * 12,
+            x: 320,
             y: HEIGHT - 64,
             width: 32,
             height: 32,
@@ -59,7 +59,7 @@ export class Torre {
          */
     especificacionlvl2() {
         return {
-            x: MEDIDA * 16,
+            x: 480,
             y: HEIGHT - 64,
             width: 32,
             height: 32,
@@ -79,7 +79,7 @@ export class Torre {
          */
     especificacionlvl3() {
         return {
-            x: MEDIDA * 20,
+            x: 640,
             y: HEIGHT - 64,
             width: 32,
             height: 32,

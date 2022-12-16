@@ -9,6 +9,7 @@ export class Jugador {
     constructor() {
         this.puntos = 0
         this.vidas = 10
+        this.dinero = 0
     }
     /* Puntos */
     /**
@@ -33,6 +34,30 @@ export class Jugador {
      */
     quitarPuntos(puntos) {
         this.puntos -= puntos
+    }
+    /* Dinero */
+    /**
+     * Asignar dinero al jugador
+     * @param {number} dinero 
+     */
+    asignarDinero(dinero) {
+        this.dinero = dinero
+    }
+    /**
+     * Sumar dinero al jugador
+     * @param {number} dinero points of kill enemies
+     * @returns {boolean}
+     */
+    sumarDinero(dinero) {
+        this.dinero += dinero
+        return true
+    }
+    /**
+     * Quitar dinero al jugador
+     * @param {*} dinero 
+     */
+    quitarDinero(dinero) {
+        this.dinero -= dinero
     }
 
     /* Vidas */

@@ -48,8 +48,12 @@ export class VistaJuego extends Vista{
 	 
     iniciar() {
 		
+        //Audios usados en el juego
 		this.audio = document.getElementsByTagName('audio')[0]
-        this.audio.volume = 0.1
+        this.audio.volume = 0
+        this.sonidoMatarEnemigo = document.getElementById('bichoMuerto')
+        this.sonidoMatarEnemigo.volume = 0.5
+
 		//Referente a la foto que inicia
 		this.div.style.visibility = 'hidden'
 		this.divMenu = document.getElementById('menu')
@@ -57,6 +61,11 @@ export class VistaJuego extends Vista{
 		this.divMenu.style.top = '40%'
 		this.divMenu.style.left = '40%'
 		this.divMenu.onclick = this.cambiarBandera.bind(this)
+
+        //Referencia al formulario ranking
+        this.divFormRanking = document.getElementById('divRankingJuego')
+        this.h3Ranking = document.getElementById('h3PuntuacionLograda')
+        
 		
         //Canvas
         this.canvas = document.getElementsByTagName("canvas")[0]
@@ -79,6 +88,12 @@ export class VistaJuego extends Vista{
 		this.image = new Image()
         this.image.src = 'img/sprites/sprite2.png'
 
+        this.imgDinero = new Image()
+        this.imgDinero.src = 'img/iconos/billete.png'
+        
+        this.imgCorazon = new Image()
+        this.imgCorazon.src = 'img/iconos/corazon.png'
+
         this.escenario = new Image()
         this.escenario.src = "img/escenarios/mapa2.png"
         this.escenario.onload = this.continuar.bind(this)
@@ -90,7 +105,7 @@ export class VistaJuego extends Vista{
         this.pAlcance = document.getElementById('pAlcance')
         this.pRecogidos = document.getElementById('pRecogidos')
 
-        this.sonidoMatarEnemigo = document.getElementById('bichoMuerto')
+
     }
     /**
      * Function that starts when the images has been loaded
@@ -106,7 +121,8 @@ export class VistaJuego extends Vista{
 
         //Creo el jugador
         this.jugador = new Jugador()
-        this.jugador.asignarPuntos(200) //Para probar los upgrade
+        this.jugador.asignarPuntos(0) //Para probar los upgrade
+        this.jugador.asignarDinero(200) //Para probar los upgrade
 
         //Creo los enemigos
         this.enemigos = []
@@ -197,11 +213,17 @@ export class VistaJuego extends Vista{
                 this.enemigos.splice(i, 1)
 
                 if (this.jugador.vidas === 0) {
-                    this.ctx.font = '40px "Press Start 2P"';
+                    this.dibujar()
+                    this.ctx.font = '40px "arco"';
                     //Que te ponga gameover
                     this.ctx.fillStyle = 'black'
-                    this.ctx.fillText("Game over", this.canvas.width / 4, this.canvas.height / 2)
+                    this.ctx.strokeStyle = 'white'
+                    this.ctx.fillText("Game over", this.canvas.width / 2.75, this.canvas.height / 2)
+                    this.ctx.strokeText("Game over", this.canvas.width / 2.75, this.canvas.height / 2)
                     cancelAnimationFrame(this.animacion)
+
+                    //Aparece formulario para registro de puntuación
+                    this.registrarPuntuacion()
                 }
             }
             if (this.enemigos.length === 0) {
@@ -209,7 +231,7 @@ export class VistaJuego extends Vista{
                 this.spawnEnemigos()
             }
         }
-         setInterval(this.comprobarContacto(), 100000)
+        setInterval(this.comprobarContacto(), 1000000)
     }
     /**
      * Function to check that the enemy is in the radius of the tower
@@ -218,7 +240,7 @@ export class VistaJuego extends Vista{
         //console.log("primero: " + this.enemigos[0].position.x + "-" + this.enemigos[0].position.y);
         
         for (let i = 0; i < this.torresColocadas.length; i++) {
-			if(this.torresColocadas[i].contadorTiempo<1000){
+			if(this.torresColocadas[i].contadorTiempo<870){
 				this.torresColocadas[i].contadorTiempo++
 			}
             
@@ -255,11 +277,12 @@ export class VistaJuego extends Vista{
                 let distancia = Math.sqrt((cx - px)*(cx - px) + (cy - py)*(cy - py))
 				
 				console.log(this.torresColocadas[i].contadorTiempo)
-                if(distancia < this.torresColocadas[i].radio && this.torresColocadas[i].contadorTiempo>=1000){
+                if(distancia < this.torresColocadas[i].radio && this.torresColocadas[i].contadorTiempo>=870){
                     this.enemigos[y].vida -=10
                     if (this.enemigos[y].vida==0){
                         this.enemigos.splice(y,1)
-                        this.jugador.sumarPuntos(25)
+                        this.jugador.sumarPuntos(100)
+                        this.jugador.sumarDinero(25)
                         this.sonidoMatarEnemigo.play()
                         this.torresColocadas[i].contadorTiempo=0                    
                         console.log(this.enemigos)
@@ -290,6 +313,13 @@ export class VistaJuego extends Vista{
         this.clear()
         //this.dibujarGrid()
         this.dibujarLetras(false)
+
+        //DETALLES MENÚ SUPERIOR
+        this.ctx.fillStyle = this.imgDinero.fill
+        this.ctx.drawImage(this.imgDinero, MEDIDA * 23.2, 0)
+        
+        this.ctx.fillStyle = this.imgCorazon.fill
+        this.ctx.drawImage(this.imgCorazon, MEDIDA * 28.3, 0)
 
         //DIBUJO EL MENÚ
         for (let i = 0; i < this.torres.length; i++) {
@@ -380,45 +410,49 @@ export class VistaJuego extends Vista{
     /**
      * Function to draw various game texts
      */
-    dibujarLetras(prueba) {
+    dibujarLetras() {
 
         this.ctx.beginPath()
-        this.ctx.fillStyle = 'white'
-        this.ctx.font = '12px "Press Start 2P"'
-        this.ctx.fillText("LVL1", MEDIDA * 10, MEDIDA * 16 - 8)
-        this.ctx.fillText("100$", MEDIDA * 10, MEDIDA * 16.2)
-        this.ctx.fillText("LVL2", MEDIDA * 14, MEDIDA * 16 - 8)
-        this.ctx.fillText("175$", MEDIDA * 14, MEDIDA * 16.2)
-        this.ctx.fillText("LVL3", MEDIDA * 18, MEDIDA * 16 - 8)
-        this.ctx.fillText("225$", MEDIDA * 18, MEDIDA * 16.2)
+
+        this.ctx.fillStyle = 'white';
+        this.ctx.strokeStyle = 'black';
+        
+        this.ctx.font = '14px "arco"'
+
+        this.ctx.fillText("LVL1", 280, MEDIDA * 16 - 8)
+        this.ctx.strokeText("LVL1", 280, MEDIDA * 16 - 8)
+        this.ctx.fillText("100$", 280, MEDIDA * 16.2)
+        this.ctx.strokeText("100$", 280, MEDIDA * 16.2)
+
+        this.ctx.fillText("LVL2",  440, MEDIDA * 16 - 8)
+        this.ctx.strokeText("LVL2", 440, MEDIDA * 16 - 8)
+        this.ctx.fillText("175$", 440, MEDIDA * 16.2)
+        this.ctx.strokeText("175$", 440, MEDIDA * 16.2)
+
+        this.ctx.fillText("LVL3", 600, MEDIDA * 16 - 8)
+        this.ctx.strokeText("LVL3", 600, MEDIDA * 16 - 8)
+        this.ctx.fillText("225$", 600, MEDIDA * 16.2)
+        this.ctx.strokeText("225$", 600, MEDIDA * 16.2)
         
 
 
         //Menu superior derecha
         this.ctx.fillStyle = 'black'
-        this.ctx.fillText("Puntos: " + this.jugador.puntos, MEDIDA * 20, 18)
+        this.ctx.strokeStyle = 'white'
+
+        this.ctx.fillText("Dinero: " + this.jugador.dinero+ '$', MEDIDA * 20, 18 )
+        this.ctx.strokeText("Dinero: " + this.jugador.dinero+ '$', MEDIDA * 20, 18 )
+
+        this.ctx.fillText("Puntuación: " + this.jugador.puntos, MEDIDA * 14, 18)
+        this.ctx.strokeText("Puntuación: " + this.jugador.puntos, MEDIDA * 14, 18)
+
         this.ctx.fillText("Vidas: " + this.jugador.vidas, MEDIDA * 26, 18)
+        this.ctx.strokeText("Vidas: " + this.jugador.vidas, MEDIDA * 26, 18)
 
         this.ctx.stroke()
         this.ctx.closePath()
     }
 
-
-    /**
-     *  DIBUJAR RECOGIDOS -- Para cuando funcione el mouseover
-     * 
-     * @param {number} coordX 
-     * @param {number} coordY 
-     * @param {number} cuantos 
-     */
-    dibujarRecogidos(coordX, coordY, cuantos) {
-        this.ctx.beginPath()
-        this.ctx.fillStyle = 'white'
-        this.ctx.font = '26px "Press Start 2P"'
-        this.ctx.fillText(cuantos, coordX, coordY)
-        this.ctx.stroke()
-        this.ctx.closePath()
-    }
     /**
      * Function that returns all the cells that you can use for the towers
      * @param {array} array Array of coordenadas.js 
@@ -525,25 +559,25 @@ export class VistaJuego extends Vista{
             this.torresColocadas[i].isDragging = false
             if (i == this.torresColocadas.length - 1 && !this.torresColocadas[i].colocada) { //Aqui la coloco en el sitio exacto 
                 let elemento = this.devolverCoordenada(mx, my)
-                if (!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 1 && this.jugador.puntos>=100) {
+                if (!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 1 && this.jugador.dinero>=100) {
                     this.torresColocadas[i].x = elemento.x
                     this.torresColocadas[i].y = elemento.y
                     this.torresColocadas[i].colocada = true
-                    this.jugador.quitarPuntos(100)
+                    this.jugador.quitarDinero(100)
                 }
                 else {
-                    if(!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 2 && this.jugador.puntos>=175){
+                    if(!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 2 && this.jugador.dinero>=175){
                         this.torresColocadas[i].x = elemento.x
                         this.torresColocadas[i].y = elemento.y
                         this.torresColocadas[i].colocada = true
-                        this.jugador.quitarPuntos(175)
+                        this.jugador.quitarDinero(175)
                     }
                     else {
-                        if(!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 3 && this.jugador.puntos>=250){
+                        if(!this.comprobarCeldaOcupada(elemento.x, elemento.y) && this.torresColocadas[i].lvl == 3 && this.jugador.dinero>=250){
                             this.torresColocadas[i].x = elemento.x
                             this.torresColocadas[i].y = elemento.y
                             this.torresColocadas[i].colocada = true
-                            this.jugador.quitarPuntos(250)
+                            this.jugador.quitarDinero(250)
                         }
                         else {
                             this.torresColocadas.pop() //elimino del array si lo pongo encima
@@ -604,7 +638,7 @@ export class VistaJuego extends Vista{
                        // console.log("sobre torre colocada")
                         this.divCaracteristicas.style.display = 'block'
                         i=this.torresColocadas.length //Para que salga del bucle for si se posiciona sobre cualquier torre
-                        this.divCaracteristicas.style.transform = "translate(405px, 470px)"
+                        this.divCaracteristicas.style.transform = "translate(380px, 475px)"
                      
                         this.pLvl.textContent = 'Nivel de la torre: '+element.lvl
                         this.pAlcance.textContent = 'Alcance: '+element.radio
@@ -731,23 +765,32 @@ export class VistaJuego extends Vista{
                 //si se puede upgradear y está colocada
                 console.log("encontrado");
                 //Subo el nivel 
-                if (element.lvl == 1 && this.jugador.puntos >= 100) {
+                if (element.lvl == 1 && this.jugador.dinero >= 100) {
                     element.lvl++
                     element.fill = "#ff550d" //cambio el color
                     element.radio += 50
-                    this.jugador.quitarPuntos(100)
+                    this.jugador.quitarDinero(100)
                 }
 
-                else if (element.lvl == 2 && this.jugador.puntos >= 100) {
+                else if (element.lvl == 2 && this.jugador.dinero >= 100) {
                     element.lvl++
                     element.fill = "#444444" //cambio el color
                     element.upg = false //lo desactivo ya que es ultimo nivel
                     element.radio += 50
-                    this.jugador.quitarPuntos(100)
+                    this.jugador.quitarDinero(100)
                 }
             }
 
         });
+    }
+
+    //Registrar puntuación
+    /**
+     * Función que muestra el formulario para registrar puntuación del jugador
+     */
+    registrarPuntuacion(){
+        this.h3Ranking.textContent = 'Puntuación lograda: ' + this.jugador.puntos
+        this.divFormRanking.style.display = 'block'
     }
 
 }

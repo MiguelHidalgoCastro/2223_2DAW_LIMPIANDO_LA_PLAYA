@@ -6,7 +6,7 @@
 		header('Location:inicio_sesion.php');
 	}
 	
-	include('../controladores/controlador.php');
+	include('../controladores/controladorenemigos.php');
 	
 	$controlador = new Controlador();
 	$datos = $controlador->datosEnemigos();

@@ -16,6 +16,14 @@
 }
 
 @font-face {
+    font-family: 'arco';
+    font-style: normal;
+    font-weight: 400;
+    src:
+        url('fonts/arco/ARCO.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'Press start';
     font-style: normal;
     font-weight: 400;
@@ -75,13 +83,11 @@ nav input#check {
 header.header .logo {
     cursor: pointer;
 	flex-shrink:1;
-	
-}
-header.header nav{
-	flex-shrink:2;
-	
 }
 
+header.header nav{
+	flex-shrink:2;
+}
 
 header.header .logo img {
     height: 65px;
@@ -115,7 +121,6 @@ header.header .nav-links a {
 header.header .nav-links li a:hover {
     color: #ffbc0e;
 }
-
 
 header.header input[type="submit"].btn {
     font-weight: 700;
@@ -221,17 +226,17 @@ main div#juego canvas {
 }
 
 main div#divCaracteristicas{
-    width: 150px;
+    width: 200px;
     height: 100px;
     position:absolute;
     display: none;
     font-size: 10px;
     font-weight: bold;
-    font-family: Press start;
 }
 
 div#divCaracteristicas p{
     margin: 10px 5px;
+    font-size: 14px;
 }
 
 main div#divContenedorPosition{
@@ -239,7 +244,57 @@ main div#divContenedorPosition{
     display: flex;
     justify-content: center;
     position:relative;
+    font-family: arco;
+    -webkit-text-stroke: 0.5px rgb(255, 255, 255)
 }
+
+div#divContenedorPosition div#divRankingJuego{
+    padding: 3.5vh 4.1961%;
+    border-radius: 4px;
+    background-color: #E9FAFF;
+    box-shadow: 5px 10px 10px #444A61;
+    border: 1px solid #383e4c;
+
+    margin:310px 0 auto;
+    position: absolute;
+    font-size: 16px;
+    display: none;
+}
+
+form#formRanking label{
+    display:block;
+    margin-top:10px;
+}
+
+form#formRanking input[type=submit]{
+    padding: 8px;
+    margin:10px;
+    background: #383e4c;
+    border-radius: 5px;
+    border-style: none;
+    float: right;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+    border: 1px rgb(27, 22, 22) solid;
+}
+
+div#divRankingJuego button{
+    padding: 8px;
+    margin:10px 5px;
+    background: #383e4c;
+    border-radius: 5px;
+    border-style: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+    border: 1px rgb(27, 22, 22) solid;
+}
+
+form#formRanking input[type=submit]:hover, div#divRankingJuego button:hover{
+    opacity: 0.8;
+}
+
 
 /*** Estilo del formulario del login (inicio de sesión) ***/
 
