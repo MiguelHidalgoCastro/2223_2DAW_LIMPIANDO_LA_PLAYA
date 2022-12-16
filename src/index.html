@@ -32,6 +32,37 @@
 	</header>
 	<main>
 		<div id="divContenedorPosition">
+			<img id="instrucciones" src="img/iconos/instrucciones.png" onclick='aparece()'>
+			<div id="divInstrucciones">
+				<h2 id="ins1">Instrucciones</h2><br>
+				El juego es muy sencillo y cualquiera puede jugar. Consiste en conseguir que la basura no llegue
+				hasta el final del río. Cada vez que una basura llegue al final se le restará 1 vida.<br><br>
+				<h2>¿Cómo juego?</h2><br>
+				Es muy sencillo, hay que colocar los diferentes tipos de pescadores sobre la zona gris del mapa,
+				para hacerlo arrastramos el pescador que queremos a la zona del mapa que elijamos. Una vez colocado
+				el pesacador empezará a recoger la basura que aparezca. Colocar las torres tiene un coste de monedas 
+				que se te restaran al poner una torre. También es posible mejorar los pescadores para que estos tengan
+				un mayor rango de recogida y a mayor velocidad.<br><br>
+				<button>Salir</button><img src="img/iconos/siguiente.png" onclick='siguiente()'><br>
+				<span>Página 1/2</span>
+			</div>
+			<div id="instrucciones2">
+				<h2>¿Cómo mejoro a los pescadores?</h2>
+				Es tan fácil como clikar sobre el pescador que se quiere mejorar. Para este proceso
+				hay que tener en cuenta las monedas que tienes, que aparecen arriba del mapa. Comienzas con
+				200 monedas y puedes colocar los pescadores que quieras (teniendo monedas suficientes). Cada 
+				pescador tiene un coste distinto de monedas dependiendo de su calidad. Para conseguir monedas 
+				solo vasta con recoger la basura del río.<br><br>
+				<h2>Otros datos</h2>
+				Si pasamos el ratón por encima de un pescador que este colocado en el mapa podremos saber:
+				<ul>
+					<li>Nivel del pescador</li>
+					<li>Alcance del pescador</li>
+					<li>Basura que ha recogido ese pescador</li>
+				</ul><br>  
+				<button onclick='salirse()'>Salir</button><img src="img/iconos/anterior.png" onclick='volver()'><br>
+				<span>Página 2/2</span>
+			</div>
 			<div >
 				<p id="menu"><img src="boton.png"></p>
 			</div>
@@ -84,5 +115,43 @@
 	<script type="module" src="js/controlador/app.js"></script>
 	<script src="js/coordenadas/coordenadas.js"></script>
 	<script src="js/coordenadas/waypoints.js"></script>
+	<script>
+
+		let divInstrucciones = document.getElementsByTagName('div')[2]
+		let btnSalir = document.getElementsByTagName('button')[0]
+		let div2 = document.getElementsByTagName('div')[3]
+		//let btnSalte = document.getElementsByTagName(button)[1]
+
+		function aparece(){
+			divInstrucciones.style.display = 'block';
+
+			//Añadimos evento a el boton
+			btnSalir.addEventListener('click', salir)
+		} 
+
+		function salir()
+		{
+			//console.log(divInstrucciones)
+			divInstrucciones.style.display = 'none'
+		}
+
+		function siguiente()
+		{
+			divInstrucciones.style.display = 'none'
+			div2.style.display = 'block'
+
+		}
+
+		function volver()
+		{
+			divInstrucciones.style.display = 'block'
+			div2.style.display = 'none'
+		}
+
+		function salirse()
+		{
+			div2.style.display = 'none'
+		}
+	</script>
 </body>
 </html>
