@@ -30,7 +30,18 @@
     src:
         url('fonts/pressstart/PressStart2P.ttf') format('truetype');
 }
-
+svg{
+    fill:rgba(255, 255, 255, 0.7);
+    background-color:#383e4c;
+    border-radius: 15px;
+    position:absolute;
+    left:90%;
+    bottom:80%;
+	z-index:1000000;
+}
+svg{
+   display:none;
+}
 
 body {
     margin: 0 auto;
@@ -53,7 +64,7 @@ header.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 11vh;
+    height: 10vh;
     padding: 5px 3%;
     font-size: 20px;
 	
@@ -214,29 +225,29 @@ main div#juego {
     width: 100%;
     display: flex;
     justify-content: center;
-	margin:5px 0px 20px; /*Se quiere fijo, el juego no va a ser adaptable*/
+	margin:0px 0px 20px; /*Se quiere fijo, el juego no va a ser adaptable*/
 }
 
 main div#juego canvas {
     width: 960px;
     border: 1px solid black;
-	margin-top: 3vh;
+	position:fixed;
     /*MOD*/
     background-color: #E9FAFF;
 }
 
 main div#divCaracteristicas{
     width: 200px;
-    height: 100px;
+    height: 80px;
     position:absolute;
     display: none;
-    font-size: 10px;
     font-weight: bold;
 }
 
 div#divCaracteristicas p{
-    margin: 10px 5px;
-    font-size: 14px;
+   margin: 10px 5px;
+   font-size: 14px;
+	
 }
 
 main div#divContenedorPosition{
@@ -259,6 +270,7 @@ div#divContenedorPosition div#divRankingJuego{
     position: absolute;
     font-size: 16px;
     display: none;
+	z-index:1;
 }
 
 form#formRanking label{
@@ -736,7 +748,7 @@ textarea {
         width: 100%;
         height: 100vh;
         background: #383e4c;
-        top: 11vh;
+        top: 10vh;
         left: -100%;
         text-align: center;
         transition: all 1s;

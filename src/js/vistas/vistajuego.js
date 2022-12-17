@@ -36,6 +36,7 @@ export class VistaJuego extends Vista{
 
 	//Añado esto para iniciar el juego
 	cambiarBandera(){
+		this.play.style.display = 'block'
 		this.bandera = true
 		this.continuar()
 		this.divMenu.style.visibility = 'hidden'
@@ -45,11 +46,33 @@ export class VistaJuego extends Vista{
     /**
      * Function that starts when the web has been loaded
      */
-	 
+	apagarMusica(){
+		console.log("clicando")
+		this.play.style.display = 'none'
+		this.mute.style.display = 'block'
+		this.sonidoMatarEnemigo.volume = 0
+		this.audio.pause()
+    }
+    encenderMusica(){
+		console.log("clicando2")
+        this.mute.style.display = 'none'
+        this.play.style.display = 'block'
+        this.sonidoMatarEnemigo.volume = 0.5
+        this.audio.play()
+    }
     iniciar() {
 		
+		//Administración del audio de la pagina
+        this.mute = document.getElementsByTagName('svg')[0]
+		
+		this.play = document.getElementsByTagName('svg')[1]
+		
+		this.play.onclick = this.apagarMusica.bind(this)
+        this.mute.onclick = this.encenderMusica.bind(this)
+        
+		
         //Audios usados en el juego
-		this.audio = document.getElementsByTagName('audio')[0]
+		this.audio = document.getElementById('inicio')
         this.audio.volume = 0.5
 
         this.sonidoMatarEnemigo = document.getElementById('bichoMuerto')
@@ -247,6 +270,7 @@ export class VistaJuego extends Vista{
         //console.log("primero: " + this.enemigos[0].position.x + "-" + this.enemigos[0].position.y);
         
         for (let i = 0; i < this.torresColocadas.length; i++) {
+			
 			if(this.torresColocadas[i].contadorTiempo<870){
 				this.torresColocadas[i].contadorTiempo++
 			}
@@ -645,7 +669,7 @@ export class VistaJuego extends Vista{
                        // console.log("sobre torre colocada")
                         this.divCaracteristicas.style.display = 'block'
                         i=this.torresColocadas.length //Para que salga del bucle for si se posiciona sobre cualquier torre
-                        this.divCaracteristicas.style.transform = "translate(380px, 475px)"
+                         this.divCaracteristicas.style.transform = "translate(380px, 450px)"
                      
                         this.pLvl.textContent = 'Nivel de la torre: '+element.lvl
                         this.pAlcance.textContent = 'Alcance: '+element.radio
@@ -659,8 +683,6 @@ export class VistaJuego extends Vista{
             }
 
         }
-        
-        
     }
 
     /**
