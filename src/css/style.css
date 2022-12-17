@@ -266,6 +266,10 @@ form#formRanking label{
     margin-top:10px;
 }
 
+form#formRanking input[type=text]{
+    padding:5px;
+}
+
 form#formRanking input[type=submit]{
     padding: 8px;
     margin:10px;
@@ -293,6 +297,10 @@ div#divRankingJuego button{
 
 form#formRanking input[type=submit]:hover, div#divRankingJuego button:hover{
     opacity: 0.8;
+}
+
+form#formRanking input#puntosOculto{
+    display: none;
 }
 
 

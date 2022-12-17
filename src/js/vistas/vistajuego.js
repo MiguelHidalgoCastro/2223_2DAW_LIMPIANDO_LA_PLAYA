@@ -50,9 +50,13 @@ export class VistaJuego extends Vista{
 		
         //Audios usados en el juego
 		this.audio = document.getElementsByTagName('audio')[0]
-        this.audio.volume = 0
+        this.audio.volume = 0.5
+
         this.sonidoMatarEnemigo = document.getElementById('bichoMuerto')
         this.sonidoMatarEnemigo.volume = 0.5
+
+        this.sonidoDerrota = document.getElementById('derrota')
+        this.sonidoDerrota.volume = 0.5
 
 		//Referente a la foto que inicia
 		this.div.style.visibility = 'hidden'
@@ -65,6 +69,7 @@ export class VistaJuego extends Vista{
         //Referencia al formulario ranking
         this.divFormRanking = document.getElementById('divRankingJuego')
         this.h3Ranking = document.getElementById('h3PuntuacionLograda')
+        this.inputPuntos = document.getElementById('puntosOculto')
         
 		
         //Canvas
@@ -220,6 +225,8 @@ export class VistaJuego extends Vista{
                     this.ctx.strokeStyle = 'white'
                     this.ctx.fillText("Game over", this.canvas.width / 2.75, this.canvas.height / 2)
                     this.ctx.strokeText("Game over", this.canvas.width / 2.75, this.canvas.height / 2)
+                    this.audio.pause()
+                    this.sonidoDerrota.play()
                     cancelAnimationFrame(this.animacion)
 
                     //Aparece formulario para registro de puntuación
@@ -791,6 +798,7 @@ export class VistaJuego extends Vista{
     registrarPuntuacion(){
         this.h3Ranking.textContent = 'Puntuación lograda: ' + this.jugador.puntos
         this.divFormRanking.style.display = 'block'
+        this.inputPuntos.value = this.jugador.puntos
     }
 
 }

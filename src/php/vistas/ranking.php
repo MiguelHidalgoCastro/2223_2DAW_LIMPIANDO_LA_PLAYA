@@ -1,3 +1,10 @@
+<?php
+	/*Recuerda la sesión*/
+	include('../controladores/controladorranking.php');
+	
+	$controlador = new Controlador();
+	$datos = $controlador->datosRanking();
+?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -20,8 +27,8 @@
 					<img src="../../img/iconos/menu.png" alt="Icono de menú"/>
 				</label>
 				<ul class="nav-links">
-					<li><a href="../../index.html">Juego</a></li>
-					<li><a href="ranking.html">Ranking</a></li>
+					<li><a href="../../index.php">Juego</a></li>
+					<li><a href="ranking.php">Ranking</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -35,18 +42,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Juan</td>
-							<td>7800 puntos</td>
-						</tr>
-						<tr>
-							<td>Sole</td>
-							<td>7500 puntos</td>
-						</tr>
-						<tr>
-							<td>Guille</td>
-							<td>6500 puntos</td>
-						</tr>
+					<?php
+						foreach($datos as $dato){ //Una vez que recorre la primera fila y la mete en un array, el puntero apunta al siguiente.
+							echo "<tr>
+									<td>".$dato["alias"]."</td>
+									<td>".$dato["puntos"]."</td>
+								</tr>";
+						}
+					?>
 					</tbody>
 				</table>
 			</div>

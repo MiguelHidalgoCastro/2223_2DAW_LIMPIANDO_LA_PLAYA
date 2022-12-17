@@ -1,3 +1,11 @@
+<?php
+	include('php/controladores/controladorjuego.php');
+	
+	$controlador = new Controlador();
+	if(isset($_POST) && !empty($_POST)){
+		$controlador->altaJugador($_POST);
+	}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,7 +21,10 @@
 
 <body>
 	<audio>
-        <source src="iniciojuego.mp3" type="audio/mp3">  
+        <source src="sonido/iniciojuego.mp3" type="audio/mp3">  
+    </audio>
+	<audio id="derrota">
+        <source src="sonido/derrota.mp3" type="audio/mp3">  
     </audio>
 	<header class="header">
 		<div class="logo">
@@ -25,8 +36,8 @@
 				<img src="img/iconos/menu.png" alt="Icono de menú" />
 			</label>
 			<ul class="nav-links">
-				<li><a href="index.html">Juego</a></li>
-				<li><a href="php/vistas/ranking.html">Ranking</a></li>
+				<li><a href="index.php">Juego</a></li>
+				<li><a href="php/vistas/ranking.php">Ranking</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -69,9 +80,10 @@
 			<div id="juego">
 				<div id="divRankingJuego">
 					<h3 id="h3PuntuacionLograda"></h3>
-					<form id="formRanking">
+					<form id="formRanking" action="" method="POST">
 						<label>Nickname: <input id="nickname" type="text" name="nickname"></label>
 						<input type="submit" value="GUARDAR PTS">
+						<input id="puntosOculto" type="text" name="puntos">
 					</form>
 					<a href="index.html"><button>CANCELAR</button></a>
 				</div>
@@ -110,7 +122,7 @@
 		</div>
 	</footer>
 	<audio id="bichoMuerto">
-		<source src="img/arcade.mp3">
+		<source src="sonido/arcade.mp3">
 	</audio>
 	<script type="module" src="js/controlador/app.js"></script>
 	<script src="js/coordenadas/coordenadas.js"></script>
