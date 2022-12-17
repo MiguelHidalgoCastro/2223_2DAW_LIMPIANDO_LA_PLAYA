@@ -24,7 +24,6 @@ class ModeloRanking
 	 */
 	public function altaJugadorRanking($datosJugador)
 	{
-        var_dump($datosJugador);
 		if (isset($datosJugador) && !empty($datosJugador)) {
 
 			$consulta =  $this->mysqli->prepare("INSERT INTO lp_ranking (alias, puntos)
