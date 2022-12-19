@@ -42,7 +42,7 @@ class ModeloRanking
 	 */
 	public function selectDatosRanking()
 	{
-		$consulta = $this->mysqli->query("SELECT * FROM lp_ranking");
+		$consulta = $this->mysqli->query("SELECT * FROM lp_ranking ORDER BY puntos DESC");
 		while ($filas = $consulta->fetch_assoc()) {
 			$datos[] = $filas;
 		}
